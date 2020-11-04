@@ -1,0 +1,71 @@
+/* =================== 过渡(Transition) ==============*/
+/* 
+一、概念
+    允许css属性值在一定的时间区间内平滑地过渡
+    在鼠标点击、获得焦点、被点击或对元素任何改变中触发
+
+    兼容性：加上4种设置
+    -webkit-transition-property
+       -moz-transition-property
+         -o-transition-property
+            transition-property
+
+
+    简写：transition: property duration timing-function delay;
+
+ 
+二、transition属性
+    1. transition-property: none | all | 特指属性;
+        (1) 参数说明：
+            - none
+            - all(默认值) 所有属性改变
+            - 特指属性名
+        
+        (2) 作用：规定应用过渡效果的 CSS 属性的名称，当指定的 CSS 属性改变时，过渡效果将开始
+
+        (3) 应用场景：
+             对于鼠标悬浮时改变属性进入过渡效果，鼠标离开时又改变属性进入过渡效果
+
+
+    
+    2. transition-duration: 时间s / ms; 默认为0
+        (1) 作用：设置元素过渡的持续时间
+
+        (2) 例子：
+             过渡前和过渡后分为两个状态，鼠标悬浮的时候就是进行第一个状态到第二个状态的过渡
+             duration设置的就是两个状态之间过渡的时间，property设置就是以哪个属性来区分两个状态
+
+             比如：
+             对一个div，悬浮之前没有阴影，悬浮之后会出现阴影
+             那么property就设置为box-shadow，想要这两个状态经过一定时间的过渡，就设置duration具体的过渡时间即可
+    
+    3. transition-timing-function
+        (1) 作用：
+             改变过渡期间的某一时刻的快慢，比如都是2s过渡，会有匀速过渡、慢-快-慢过渡...
+
+        (2) 语法：
+             transition-timing-function: ease | linear | ease-in | ease-out |
+                                         ease-in-out | step-start | step-end |
+                                         steps
+                                         cubic-bezier
+
+        (3) 参数说明：
+             * linear: 匀速
+             * ease: 慢-快-慢(默认值)
+             * ease-in: 慢-快
+             * ease-out: 快-慢
+             * ease-in-out: 慢-快-慢
+             * step (了解)
+             * cubic-bezier (了解)
+
+    4. tansition-delay
+        (1) 作用：
+             设置元素延迟过渡的时间，当属性改变的时候是立刻执行还是延迟执行
+
+        (2) 语法：
+             transition-delay: time s/ms;
+
+
+
+*/
+

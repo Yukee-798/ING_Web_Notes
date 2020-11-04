@@ -1,0 +1,189 @@
+<!-- 
+一、创建节点对象
+    1. 创建文本节点：document.createTextNode()
+        参数：文本内容
+        返回值：返回一个文本节点对象
+
+    2. 创建元素节点：document.createElement()
+        参数：HTML标签名
+        返回值：返回一个元素节点对象
+
+二、为父元素添加子节点
+    1. 向父元素末尾追加新子元素：父元素对象.appendChild()
+        参数：添加的子节点对象
+        注意：如果父元素中已经存在该newNode，则会删除原来的newNode，然后再追加到该父元素的末尾
+    
+    2. 在父元素的指定子元素前面插入新子元素：父元素对象.insert()
+        参数1：新的子节点
+        参数2：指定的已经存在的子节点
+
+
+三、在父元素中用 新子节点 替换 旧子节点
+    1. 父元素对象.replaceChild()
+        参数1：新子节点对象
+        参数2：旧的子节点对象
+
+四、删除父节点的子节点
+    1. 父元素对象.removeChild()
+        参数：子节点对象
+
+
+五、通过 innerHTML 也可以实现父元素对子元素的增删改(了解)
+    但是在这过程中会修改更多的内容
+     
+
+
+
+
+
+
+
+
+
+
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body::after {
+            width: 0;
+            height: 0;
+            content: "";
+            clear: both;
+            display: block;
+        }
+
+        ul {
+            float: left;
+        }
+
+        div {
+            float: left;
+            position: absolute;
+            left: 100px;
+            top: 30px;
+        }
+
+        button {
+            float: left;
+        }
+
+
+        input {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>北京</li>
+        <li>上海</li>
+        <li>重庆</li>
+    </ul>
+
+    <div>
+        <input type="text" name="input-city" id="input-city" />
+        <button class="add">添加城市</button>
+        <button class="delete">删除指定城市</button>
+        <button class="clear">清空城市</button>
+        <input type="checkbox" name="check" id="isAppend" />往后添加
+    </div>
+
+
+
+    <script>
+        var ul;
+        var liArr;
+        var input;
+        var btn1, btn2, btn3;
+        var check;
+
+        initNode();
+
+        // 清空城市
+        myClick(btn3, function () {
+            var n = liArr.length;
+            // 遍历li，把除了内容为北京、上海、重庆的标签全删除
+            for (var i = 0; i < n; i++) {
+                if (liArr[0].innerText != "重庆" && liArr[0].innerText != "北京" && liArr[0].innerText != "上海") {
+                    ul.removeChild(liArr[0]);
+                }
+
+                // console.log(liArr.length);
+            }
+        });
+
+        // 添加城市
+        myClick(btn1, function () {
+            // 获取input输入的框的值用其创建一个文本节点
+            var textNode = document.createTextNode(input.value);
+
+            // 创建一个li元素节点对象
+            var li = document.createElement("li");
+
+            // 设置li元素节点对象的子节点为文本节点
+            li.appendChild(textNode);
+
+            // 获取checkbox状态
+            var isAppend = check.checked;
+
+            if (isAppend) {
+                // 判断添加的城市是否存在
+                if (isExisted(li)) {
+                    input.value = "";
+                    alert("请忽重复添加城市");
+                } else {
+                    input.value = "";
+                    // 将li元素节点对象往后添加到ul元素节点中
+                    ul.appendChild(li);
+                }
+
+            } else {
+                if (isExisted(li)) {
+                    input.value = "";
+                    alert("请忽重复添加城市");
+                } else {
+                    // 在ul的第一个li前面插入新的li
+                    input.value = "";
+                    ul.insertBefore(li, ul.firstElementChild);
+                }
+
+            }
+        });
+
+        function isExisted(element) {
+            // 获取所有的li
+            var liArr = document.getElementsByTagName("li");
+            for (var i = 0; i < liArr.length; i++) {
+                if (liArr[i].innerText == element.innerText) return true;
+            }
+            return false;
+        }
+
+
+        function initNode() {
+            ul = document.querySelector("ul");
+            liArr = document.getElementsByTagName("li");
+            input = document.getElementById("input-city");
+            btn1 = document.querySelector(".add");
+            btn2 = document.querySelector(".delete");
+            btn3 = document.querySelector(".clear");
+            check = document.getElementById("isAppend");
+        }
+
+        function myClick(btn, fun) {
+            btn.onclick = fun;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+/* =======================盒子模型========================== */
+
+/* 
+    1. 概念：详见备忘录盒子模型概念图
+
+    2. 常用的属性
+        (1) 宽度
+        width:长度值|百分比｜auto
+        max-width:长度值|百分比｜auto
+        min-width:长度值|百分比｜auto
+
+        (2) 高度
+        height:长度值|百分比｜auto
+        max-height:长度值|百分比｜auto
+        min-width:长度值|百分比｜auto
+
+        注意：只有块级元素和替换元素(img、input、textarea、select)可以设置高度和宽度
+
+        (3) 边框
+        border-width:thin|medium|thick|长度值，指的是边框这条线的粗细！！任何一个标签的边框就是它的盒子外侧边框
+        border-color
+        border-style:默认为none，其他具体取值查看备忘录
+
+        设置边框属性的时候可以指定是哪一边，如：border-left-width...
+
+        (4) 内边距属性
+        padding-top/bottom/left/right:长度值｜百分比  (不能取负值)
+        
+        注意：设置了padding属性后，盒子的宽高也会变化，如：padding-top:30px,则盒子的高度会在上面填充30px
+
+        (5) 外边距属性
+        margin-top/bottom/left/right:长度值｜百分比|auto (可以取负值)
+        通常情况下html的块级元素默认存在一定的外边距
+
+        小技巧：把盒子的margin设置为auto，则该盒子会在其容器内水平居中显示
+
+        注意：当相邻的两个盒子在垂直方向上设置了外边距后，相邻外边距会进行合并，最终取最大的那个
+            如：上面的一个盒子设置了margin-bottom:20px,下面的一个盒子设置了margin-top:10px
+                最终合并为上盒子与下盒子垂直方向上的margin为20px，相对于下盒子的margin-top变为了0
+
+
+        (6) 盒子模型的计算
+            什么是盒子模型？
+            一个盒子在页面内占据的整个大小面积就是一个盒子，其中height和width设置的是最内层内容的大小
+            盒子的大小还会受到padding和margin还有border的取值影响
+            所以如果想要一个盒子为100x100大小，那么其width=100-2*padding-2*margin-2*border
+                                               height=100-2*padding-2*margin-2*border才可
+            还有一点需要注意：盒子的大小并不是border的大小！！！而是宽：2*margin+2*border+2*padding+width
+
+            以上说的是标准盒子模型，其中还有IE盒子模型，具体规则有偏差，详见备忘录
+            但是如果添加少DOCTYPE文档后，所有浏览器都会以标准盒子模型取解析
+
+        (7) 块级元素与行内元素的转换dispaly属性
+            display:inilne 元素转变为行内元素，前后没有换行符
+            display:block 元素转变为块级元素，前后有换行符
+            display:inilne-block 行内元素，但是具有块级元素部分特征，即可以设置其宽高
+
+            display:none 元素不会被显示出来(元素被隐藏起来，可以用于导航栏的动态展开)
+
+ 
+                
+
+
+
+*/

@@ -1,0 +1,223 @@
+/* ====================== css3基本选择器 ========================= */
+/* 
+一、概览
+    1. 子元素选择器 >
+    2. 相邻兄弟元素选择器 +
+    3. 通用兄弟元素选择器 ~
+    4. 群组选择器 ,
+
+二、子元素选择器
+    1. 概念： 直接子元素选择器 -----> 只能选择某个元素的直接子元素，孙子即更后代的子元素不会被选择
+    2. 语法：父元素 > 子元素
+    3. 例子：
+        结构：div>article>div+div
+        子选择器使用：div > div，表示的是最外层div的下一层直接子元素div，不会选择article下的div
+
+三、相邻兄弟元素选择器(相邻下一个)
+    1. 概念：选择元素相邻的下一个兄弟元素
+    2. 语法：元素 + 兄弟相邻元素
+    3. 例子：
+        结构：div>div+article>div+article>div
+        相邻兄弟元素选择器的使用：div > div + article，表示的是选择最外层div的直接子元素div的相邻下一个兄弟元素article
+
+四、通用兄弟选择器(相邻后面所有)
+    1. 概念：选择元素后面的所有兄弟元素
+    2. 语法：元素 ~ 其后面的所有兄弟元素
+    3. 例子：
+        结构：div>div+article>div+article>div
+        通用兄弟选择器的使用：div > div ~ article，表示的选择最外层div的直接子元素div后面的所有article兄弟元素
+
+五、群组选择器
+    很简单，看下例子就好
+    语法：..,..,..
+    例子：
+        div > div,
+        div > article,
+        div > p {
+            color: #0ff;
+        }
+
+兼容性：以上的选择器除了群组选择器兼容IE6以上，其余只兼容IE8以上
+
+*/
+
+
+/* ======================= css3属性选择器 ==================== */
+/* 
+
+概览：
+    1. Element[attribute]
+    2. Element[attribute="value"]
+    3. Element[attribute~="value"]
+    4. Element[attribute^="value"]
+    5. Element[attribute$="value"]
+    6. Element[attribute*="value"]
+    7. Element[attribute|="value"]
+
+注意：这里的attribute属性必须是html标签的属性
+
+用法一：Element[attribute]
+    含义：选择所有带有attribute属性的元素
+    例子：a[href]，选择的是所有a标签中包含href的html属性的元素
+
+用法二：Element[attribute="value"]
+    含义：选择所有attribute属性的取值字符串匹配value的元素
+    例子：a[href="https://www.baidu.com"]，选择的是所有链接为百度的a标签
+    
+    注意：
+        <div class="box box1"></div>
+        此时想要选择该div，div[class="box box1"]，不能使用div[class="box1"]
+        只能出现属性的所有取值情况，不能出现部分
+
+用法三：Element[attribute~="value"]
+    含义：选择所有attribute属性取值字符串以空格划分后匹配value的元素
+    例子：
+        <div class="box box1"></div>，div[class~="box1"]
+
+
+用法四：Element[attribute^="value"]
+    含义：选择所有属性值字符串以子串value开头的元素
+
+用法五：Element[attribute$="value"]
+    含义：选择所有属性值字符串以子串value结尾的元素
+
+用法六：Element[attribute*="value"]
+    含义：选择所有属性值字符串包含子串value的元素
+
+用法七：Element[attribute|="value"]
+    含义：选择所有属性值字符串以子串value开头的元素，该被选中的元素value必须为整个单词，或者用-链接，如value-header
+*/
+
+
+/* ===================== 伪类选择器 =================== */
+/* 
+一、概览：
+    1. 动态伪类
+    2. UI元素状态伪类
+    3. CSS3结构伪类
+    4. 否定选择器
+    5. 伪元素
+
+二、动态伪类
+    1. 锚点伪类
+     (1) :link，表示链接默认状态
+     (2) :visited，表示链接访问过后的状态
+
+    2. 用户行为伪类
+     (1) :hover，表示鼠标移到了链接上的状态
+     (2) :active，表示链接被点击的时候的状态
+     (3) :focus，一个输入字段(input)获得焦点时选择的样式
+
+三、UI元素状态伪类
+    1. :enabled，表示输入字段(input or textarea) 为可编辑状态时的样式设置
+
+    2. :disabled，表示输入字段(input or textarea) 为不可编辑状态时的样式设置
+        <intput type="text" disabled="disabled">
+    
+    3. :checked
+
+四、结构选择器
+    1. Element:first-child
+         选择Element是其父容器中的第一个子元素的元素 
+
+    2. Element:last-child
+         选择Element是其父容器中的最后一个子元素的元素
+    
+    3. Element:nth-child(2)
+         选择Element是其父容器的第2个子元素的元素 
+         注意：父容器的第二个子元素如果不是Element元素，则不会渲染相应的样式 
+
+       Element:nth-child(n)
+         选择在某一父容器内所有的Element子元，n从0开始计数
+
+       Element:nth-child(odd / 2n + 1)
+         选择在某一父容器内所有奇数序号的Element子元素
+
+       Element:nth-child(even / 2n)
+         选择在某一父容器内所有偶数序号的Element子元素
+
+    4. Element:nth-last-child(2)
+         倒着开始数，类比上面
+
+    5. Element:nth-of-type(N)
+         选择的是某个父容器的第几个Element
+
+         注意区分Elelment:nth-child(N)，该方式不会区分元素种类
+         而nth-of-type(N) 会区分元素种类
+
+    6. Element:nth-last-of-type(N)
+         倒着开始数，类比上面
+
+    7. Element:fitrst-of-type
+         选择某个父容器中首个Element类型元素
+
+    8. Element:last-of-type
+         选择某个父容器中最后一个Element类型元素
+
+    9. Element:only-child
+         选择某个父容器中，Element作为唯一一个子元素的元素
+
+    10. Element:only-of-type
+         选择某个父容器中，Element作为唯一一个Element类型的元素
+
+
+    11. Element:empty
+         选择所有没有子元素和文本内容的元素
+
+
+    助记：只要加type了，那么父容器中除了Element类型的其他元素均不可见，只计数Element类型的元素
+
+五、否定选择器(:not)
+
+使用场景：
+    在nav中每个导航中间有一根短线，但是对每个li都设置右边框的话，最后会多个边框出来
+    nav > li:not(:last-of-type) {
+        border-right: black 1px solid;
+    }
+    这句话的意思就是nav下的所有子元素li中除了最后一个不设置右边框外，其余的要设置
+
+六、伪元素
+    作用：用于向某些选择器设置特殊效果
+    语法格式：Element::pseudo-element
+
+    1. Element::first-line
+        作用：对Element元素的第一行文本进行样式设置，只能用于块级元素
+
+    2. Element::first-letter 
+        作用：对Element元素的第一个字符进行样式设置，只能用于块级元素
+
+    3. Element::before
+        将content插到Element元素内容的前面
+
+        特点：(1) 始终作为Element的第一个子元素
+             (2) 插入的内容默认是inline，可以修改为block
+             (3) 必须通过content属性来使用
+    
+    4. Element::after
+        将content插到Element元素内容的后面
+
+
+        特点：(1) 始终作为Element的最后一个子元素
+             (2) 插入的内容默认是inline，可以修改为block 
+             (3) 必须通过content属性来使用
+    5. Element::selection
+        设置浏览器中选中文本后的背景色和文字颜色
+
+
+
+      
+
+
+*/
+
+
+
+/* ====================== 选择器权重 ===================== */
+/* 
+
+行内样式(1000) > ID选择器(100) > 类、属性选择器和伪类选择器(10) > 元素和伪元素(1) > *(0)
+
+
+*/
+
+

@@ -1,0 +1,97 @@
+/* =============== CSS3动画 =============== */
+/* 
+一、概览
+    1. CSS3动画
+    2. CSS3 animation
+    3. CSS3 @keyframes
+    4. CSS3 will-change
+
+二、关于兼容性
+    所有的动画属性请务必加上-webkit-   -moz-  -o- 缺省 4件套！
+
+
+    animation简写:
+    animation: name duration timing-function delay iteration-count direction fill-mode paly-state;
+
+
+
+三、animation
+    1. animation-name: keyframename | none;
+        keyframename: 指定要绑定到选择器到关键帧的名称
+        none: 指定没有动画
+    
+    2. animation-duration: time s/ ms;
+        作用：设置动画播放完成的持续时间，默认为0
+
+    3. animation-timing-function
+        * linear: 匀速 
+        * ease: 慢-快-慢(默认值) 
+        * ease-in: 慢-快 
+        * ease-out: 快-慢 
+        * ease-in-out: 慢-快-慢 
+        * step (了解) 
+        * cubic-bezier (了解)
+
+    4. animation-delay: time s/ms;
+         作用：设置动画播放前的等待时间，默认为0
+
+    5. animation-iteration-count: infinite | <number>
+         作用：设置动画的播放次数，infinite为无限循环，number为指定次数，默认为1
+
+
+    6. animation-direction: normal | reverse | alternate | alternate-reverse | initial | inherit;
+        作用：设置动画播放的顺序，即倒放还是顺放
+        参数说明：
+            normal: 正常方向
+            reverse: 倒放
+
+            下面两个参数必须配合循环才能实现
+            alternate: 先正放后倒放再正放后倒放...
+            alternate-reverse: 先倒放后正放
+
+    7. animation-fill-mode: none | forwards | backwards | both | initial | inherit;
+        作用：规定动画不播放时的元素样式(延迟播放 或 播放结束)
+        参数说明：
+            none: 默认值，不设置其他样式
+            forwards: 设置元素样式为动画结束时的样式
+            backwards: 设置元素样式为动画开始时的样式
+            both: 设置元素样式为动画结束或开始的样式
+
+    8. animation-play-state: paused | running;
+        作用：指定暂停动画或播放动画
+
+
+四、@keyframes
+     1. 作用：关键帧，可以指定任何顺序排列来决定动画变化的关键位置
+
+     2. 语法：
+        @keyframes 动画名 {
+            关键帧选择器(动画播放到某一时间百分比的时候渲染下面的样式) {
+                样式
+            }
+        }
+
+    3. 例子：
+        @keyframes circle_inner {
+            0% { transform: rotateX(0deg); }
+            25% { transform: rotateX(45deg); }
+            50% { transform: rotateX(315deg); }
+            100% { transform: rotateX(360deg); }
+        }
+
+        div {
+            width: 100px;
+            height: 50px;
+            border: black 1px solid;
+            animation: circle_inner 5s ease-in-out infinite;
+        }
+
+        此时div就会在播放时间为0%到25%内，从0度旋转到45度
+                           25%到50%内，从45度旋转到315度
+                           50%到100%内，从315度旋转到360度
+
+        注意：0%可以用from替换，100%可以用to替换
+
+
+*/
+

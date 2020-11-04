@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="iconfont.css" />
+    <style type="text/css">
+        body,
+        div,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .header {
+            height: 50px;
+            background-color: rgba(255, 0, 0, 0.521);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            display: flex;
+            flex: 1;
+        }
+
+        .main .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            background-color: rgba(0, 128, 0, 0.623);
+        }
+
+        .main .main-sidebar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 105, 180, 0.685);
+            order: -1;
+        }
+
+        .tabbar-container {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tabbar-container .tabbar {
+            display: flex;
+            list-style: none;
+            width: 100%;
+            justify-content: space-around;
+
+        }
+
+        .tabbar-container .tabbar .tabbar-item a {
+            display: flex;
+            text-decoration: none;
+            color: #000;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="header">header</div>
+
+    <div class="main">
+        <div class="main-content">main-content</div>
+        <div class="main-sidebar">main-sidebar</div>
+    </div>
+
+
+    <div class="tabbar-container">
+        <ul class="tabbar">
+            <li class="tabbar-item">
+                <a href="#">
+                    <i class="iconfont icon-shouye"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+
+            <li class="tabbar-item">
+                <a href="#">
+                    <i class="iconfont icon-fenlei"></i>
+                    <span>分类页</span>
+                </a>
+            </li>
+
+            <li class="tabbar-item">
+                <a href="#">
+                    <i class="iconfont icon-gouwuche"></i>
+                    <span>购物车</span>
+                </a>
+            </li>
+            <li class="tabbar-item">
+                <a href="#">
+                    <i class="iconfont icon-gerenzhongxin"></i>
+                    <span>个人中心</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!-- 
+一、前言
+    之前我们学习的内容都是通过DOM来操作页面内的标签，本节我们来学习通过DOM操作元素的样式
+
+二、修改元素内联样式
+    1. 语法：元素对象.style.样式名 = 样式值; 注意！！只能是元素对象，不能是文本节点对象
+
+    2. 注意：
+        (1) 在CSS样式中有些属性比如，background-color中间有短横线，那么通过DOM来获取该属性时需要用驼峰命名
+        (2) 通过DOM修改样式，实际上是修改的元素内联样式，优先级最高！但是不会修改样式表中设置了 !important 的属性
+
+三、获取元素的内联样式
+    1. 语法：元素对象.style.样式名
+
+    2. 注意：
+        通过DOM获取出来的样式都是内联样式，也就是说如果这个元素没有设置内联样式，那么获取出来的就是空字符串
+
+
+
+四、获取元素当前显示的样式：直接在浏览器里点击检查看见的样式
+    1. 语法：
+        (1) 元素对象.currentStyle.样式名(了解，该属性只有IE浏览器支持)
+
+        (2) window.getComputedStyle() (IE8及以下浏览器不支持)
+            参数1：元素对象
+            参数2：可以传入一个伪元素，一般为null
+            返回值：返回一个对象，其中封装了当前元素显示的所有样式
+
+            例子：
+                var div = document.getElementById("container");
+                var cssObj = getComputedStyle(div, null);
+                // 通过cssObj来获取样式
+                cssObj.width;
+                cssObj.height;
+                ...
+
+
+    2. 注意：
+        (1) 通过该方式是获取当前元素显示的样式，其不是获取样式表中的也不是获取内联样式
+        (2) 如果没有设置样式，则获取样式属性的默认值
+        (3) 该方式获取到的样式为只读模式，不能进行修改的！！
+
+    3. 同时兼容IE8和正常浏览器 (B站P109 了解)
+        function(element, property) {
+
+        }
+
+
+五、直接获取元素的可见高度和宽度
+    1. 语法
+        (1) 元素对象.clientWidth
+            元素对象.clientHeight
+
+            返回值：具体的数值
+                在 box-sizing为默认情况下 clientWidth = padding + width
+                在 box-sizing为 border-box 情况下 clientWidth = width - border
+
+        (2) 元素对象.offsetWidth
+            元素对象.offsetHeight
+
+            返回值：具体数值
+                在box-sizing为默认情况下 offsetWidth = 盒子模型下可见宽度的计算，即 = width + padding + border
+                在box-sizing为 border-box 情况下 offsetWidth = width
+
+    2. 注意：这些属性为只读，不能修改数值
+
+
+
+
+ -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>DOM操作CSS</title>
+     <style type="text/css">
+        div {
+            box-sizing: border-box;
+            width: 100px;
+            height: 200px;
+            border: black 1px solid;
+            padding: 20px;
+            /* margin: 10px; */
+        }
+    </style>
+ </head>
+ <body>
+     <div></div>
+     <script>
+        var div = document.getElementsByTagName("div")[0];
+        console.log(div.offsetParent);
+
+
+
+
+     </script>
+     
+ </body>
+ </html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .text {
+            overflow: hidden;
+        }
+
+        .text p {
+            float: left;
+        }
+
+        .text .input-container {
+            float: left;
+        }
+
+        .checks {
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .checks .input-container {
+            float: left;
+        }
+
+        .checks span {
+            margin-right: 15px;
+        }
+
+        .btns {
+            overflow: hidden;
+        }
+
+        button {
+            width: 50px;
+            float: left;
+            margin-top: 10px;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<!-- 你这个HTML标签写得也太尼玛恶心了把？ 什么叫语意化？？？ -->
+<body>
+    <div class="text">
+        <p>你爱好的运动是？</p>
+        <div class="input-container">
+            <input type="checkbox" />
+            <span>全选/全不选</span>
+        </div>
+    </div>
+
+    <div class="checks">
+        <div class="input-container part-one">
+            <input type="checkbox" id="check-one" />
+            <span>足球</span>
+        </div>
+        <div class="input-container part-two">
+            <input type="checkbox" id="check-two" />
+            <span>篮球</span>
+        </div>
+        <div class="input-container part-three">
+            <input type="checkbox" id="check-three" />
+            <span>羽毛球</span>
+        </div>
+        <div class="input-container part-four">
+            <input type="checkbox" id="check-four" />
+            <span>乒乓球</span>
+        </div>
+    </div>
+
+    <div class="btns">
+        <button id="select-all">全选</button>
+        <button id="select-none">全不选</button>
+        <button id="select-reverse">反选</button>
+        <button id="submit">提交</button>
+    </div>
+
+
+    <script>
+        var myClick = function (id, fun) {
+            var btn = document.getElementById(id);
+            btn.onclick = fun;
+        }
+
+        // 获取所有爱好的checkbox
+        var checkArr = document.getElementsByClassName("checks")[0].getElementsByTagName("input");
+
+        // 为全选按钮设置点击事件
+        myClick("select-all", function () {
+            for (var i = 0; i < checkArr.length; i++) {
+                checkArr[i].checked = true;
+            }
+        });
+
+        myClick("select-none", function () {
+            for (var i = 0; i < checkArr.length; i++) {
+                checkArr[i].checked = false;
+            }
+        });
+        myClick("select-reverse", function () {
+            for (var i = 0; i < checkArr.length; i++) {
+                checkArr[i].checked = checkArr[i].checked == true ? false : true;
+            }
+        });
+
+        myClick("submit", function () {
+            var strBuffer = "";
+            for (var i = 0; i < checkArr.length; i++) {
+                strBuffer += (checkArr[i].checked == true ? checkArr[i].nextElementSibling.innerHTML + "\n" : "");
+            }
+            alert(strBuffer);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+/* =====================列表样式属性==================== */
+
+/* 
+    1. list-style-type 设置列表标志类型：关键字｜none，关键字可以查备忘录
+
+    2. list-style-image 将图像设置为列表标志：url|none
+
+    3. list-style-position 设置列表标志的位置：inside|outside(默认值)，让li的换行后的内容对齐图标还是文字
+
+    4. list-style 简写属性
+
+    主要：list-style-image会覆盖list-style-type
+
+
+
+
+
+*/

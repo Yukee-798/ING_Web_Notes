@@ -1,0 +1,62 @@
+/* 
+一、概览
+    1. CSS3 背景图像区域
+    2. CSS3 背景图像定位
+    3. CSS3 背景图像大小
+    4. CSS3 多重背景图像
+    5. CSS3 背景属性整合
+
+二、背景图像区域 bg-clip
+    
+    1. 作用：指定背景绘制区域
+    2. 语法：bg-clip: border-box | padding-box | content-box
+        
+        (1) border-box: 背景被裁剪到边框盒内
+        (2) padding-box: 背景被裁剪到内边距框
+        (3) content-box: 背景被裁剪到内容框    
+    
+三、背景图像定位 bg-origin
+
+    1. 作用：指定bg-position的最初参照点
+    2. 语法：bg-origin: padding-box | border-box | content-box
+
+        (1) padding-box: 参照点在padding的左上角
+        (2) border-box: 参照点在border的左上角
+        (3) content-box: 参照点在content的左上角
+
+四、背景图像大小 bg-size
+
+    1. 作用: 指定背景图片大小(宽度和高度)
+    2. 语法: bg-size: px | % | cover | contain
+
+        (1) 填入数值或百分比时，可以填入两个值分别代表宽和高
+        (2) cover: 从position参照点开始，等比例缩放图片直到填满整个容器 (不留白)
+        (3) contain: 从position参照点开始，等比例缩放图片直到某一边贴紧容器边缘 (可能会留白)
+
+    3. 例子：
+        div {
+            //把背景高度和宽度均设置为父容器的100% 
+            background-size: 100% 100%;
+
+            // 缺省时默认为auto，根据原始比例变化
+            background-size: 100%;
+        }
+
+五、多重背景图像
+
+    1. 作用: 允许为元素使用多个背景图像
+    2. 语法: bg-image: url(img1.jpg), url(img2.png);
+    3. 注意: 放在前面的url会覆盖掉后面的url，所以通常前面的图像一般是一些透明背景图标
+
+六、背景属性整合
+
+    语法顺序：background: color position size repeat origin clip attachment image
+
+    建议使用的方式：
+        background: color url() no-repeat 0 0;
+
+        background-size: 50%;
+        background-origin: content-box;
+        background-clip: content-box;
+        backgorund-attachment: fixed;
+*/

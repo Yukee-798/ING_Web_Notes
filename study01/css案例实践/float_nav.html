@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        body,
+        div,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            border: orange 1px solid;
+            margin: 0 auto;
+        }
+
+        .header {
+            border: orange 1px solid;
+            background-color: #cccccc;
+        }
+
+        .header::after {
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;   
+        }
+        .header { zoom: 1; }
+
+        .header .logo {
+            width: 200px;
+            height: 80px;
+            border: orange 1px solid;
+            float: left;
+        }
+
+        .header .nav {
+            border: orange 1px solid;
+            float: right;
+        }
+
+        .header .nav::after {
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+
+        .nav { zoom: 1; }
+
+        .header .nav li {
+            border: orange 1px solid;
+            margin-right: 20px;
+            float: left;
+            height: 80px;
+        }
+
+        .header .nav a {
+            padding: 0 20px;
+            line-height: 80px;
+            font-family: "微软雅黑";
+            color: black;
+            font-size: 20px;
+        }
+
+        .header .nav a:hover {
+            color: white;
+        }
+
+        .header .nav a:active {
+            color: teal;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo"></div>
+            <ul class="nav">
+                <li>
+                    <a href="#">免费课程</a>
+                </li>
+
+                <li>
+                    <a href="#">职业路径</a>
+                </li>
+
+                <li>
+                    <a href="#">实战</a>
+                </li>
+
+                <li>
+                    <a href="#">猿问</a>
+                </li>
+
+                <li>
+                    <a href="#">手记</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content"></div>
+
+        <div class="sidebar"></div>
+
+        <div class="footer"></div>
+    </div>
+
+
+</body>
+
+</html>

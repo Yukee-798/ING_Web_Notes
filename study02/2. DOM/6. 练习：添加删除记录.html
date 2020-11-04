@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            position: relative;
+            height: 80%;
+        }
+
+        .container {
+            height: 250px;
+            width: 300px;
+            border: black 1px solid;
+            box-sizing: border-box;
+            padding: 15px;
+            position: absolute;
+            top: 40%;
+            left: 15%;
+            margin-left: -150px;
+            margin-top: -125px;
+        }
+
+        .container p {
+            font-size: 25px;
+            color: rgb(211, 122, 39);
+            margin: 20px 10px;
+        }
+
+        .container form {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .container form input {
+            width: 200px;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        .container form button {
+            width: 100px;
+            height: 30px;
+            margin: 10px auto;
+        }
+
+        table {
+            width: 360px;
+            border-collapse: collapse;
+            margin: 10px auto;
+        }
+
+
+
+        table th {
+            width: 70px;
+            height: 30px;
+            border: black 1px solid;
+            text-align: center;
+        }
+
+        table td {
+            width: 70px;
+            border: black 1px solid;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Order</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+    </table>
+
+    <div class="container">
+        <p>添加新员工</p>
+        <form action="#">
+            name:<input type="text" id="input-name">
+            email:<input type="email" id="input-email">
+            salary:<input type="number" id="input-salary">
+            <button>Submit</button>
+        </form>
+    </div>
+
+    <script>
+        var input_name;
+        var input_email;
+        var input_salary;
+        // 记录
+        var record;
+        // 用于保存每条记录
+        var recordArr = [];
+        var order = 0;
+        var btn_submit;
+        var table;
+        var a_delete_arr;
+
+
+        initNode();
+        // 在表中增加记录
+        myClick(btn_submit, function () {
+
+            // 创建行
+            var tr = document.createElement("tr");
+
+            // 创建列
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            var td3 = document.createElement("td");
+            var td4 = document.createElement("td");
+            var td5 = document.createElement("td");
+
+            // 获取输入的数据
+            var name = input_name.value;
+            var email = input_email.value;
+            var salary = input_salary.value;
+
+            // 创建记录对象，存放在记录数组中
+            record = new People(++order, name, email, salary);
+            recordArr.push(record);
+
+            // 向列中添加数据
+            td1.innerText = order;
+            td2.innerText = name;
+            td3.innerText = email;
+            td4.innerText = salary;
+            var a = document.createElement("a");
+            a.innerText = "delete";
+            a.href = "#";
+            td5.appendChild(a);
+
+            // 向行中append列
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+
+            // 向table的tbody中append列
+            table.children[1].appendChild(tr);
+
+            // 每次添加记录时，同时给改行记录的a标签添加点击事件
+
+            // 点击a标签的时候，删除该行记录
+            myClick(a_delete_arr[order - 1], function () {
+                var index = order - 1;
+                // 从tbody中删除子节点tr
+                var tr = a_delete_arr[index].parentElement.parentElement;
+                var tbody = tr.parentElement;
+                tbody.removeChild(tr);
+                // console.log(tbody.innerText);
+            });
+
+        });
+
+
+
+
+
+        function People(order, name, email, salary) {
+            this.order = order;
+            this.name = name;
+            this.email = email;
+            this.salary = salary;
+        }
+
+        function initNode() {
+            input_name = document.getElementById("input-name");
+            input_email = document.getElementById("input-email");
+            input_salary = document.getElementById("input-salary");
+            btn_submit = document.querySelector("button");
+            table = document.querySelector("table");
+            a_delete_arr = document.getElementsByTagName("a");
+        }
+
+        function myClick(element, fn) {
+            element.onclick = fn;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+/* 
+一、概览
+    1. Transform
+    2. 2D转换
+    3. 3D转换
+    4. Transform与坐标系统
+    5. 扩展属性
+*/
+
+
+/* ====================== Transform ======================== */
+/* 
+
+一、作用
+    让元素在一个坐标系统中变形，这个属性包含一系列变形函数，可以移动、旋转和缩放元素。
+
+二、语法
+    transform: none | <transform-function> 可以无限制放多个函数
+
+ ======================== 2D转换 ======================
+
+函数
+    1. rotate() 旋转
+        (1) 作用：通过指定的角度参数对元素进行2D旋转
+        (2) 语法：transform: rotate(角度值deg)
+        (3) 参数说明：角度值取正数表示顺时针，负数表示逆时针
+        (4) 例子：
+            -webkit-transform: rotate(60deg);
+               -moz-transform: rotate(60deg);
+                -ms-transform: rotate(60deg);
+                 -o-transform: rotate(60deg);
+                    transform: rotate(60deg);
+
+    2. scale() 缩放
+        (1) 作用：指定元素进行缩放
+        (2) 语法：
+            transform: scaleX(数值) 使元素水平方向缩放
+            transform: scaleY(数值) 元素垂直方向缩放
+            transform: scale(数值, 数值) 元素水平、垂直方向缩放
+
+        (3) 例子：
+            transform: scale(1) 默认为1，既不放大也不缩小
+            transform: scaleX(.5);
+            transform: scaleX(2);
+            transform: scale(.5 .5)
+            transform: scale(.5) 缺省一个值是，另一个默认跟它相等
+
+            注意：缩放是从元素的中线缩放
+
+             
+    3. translate() 平移
+        (1) 作用：指定元素进行水平或者垂直平移
+        (2) 语法：
+            transformX(数值)
+            transformY(数值)
+            transform(数值,数值)
+
+            注意：这里的数值单位可以用所有单位如: px % em vh vw
+
+    4. skew() 扭曲或斜切
+        (1) 作用：指定元素斜切扭曲
+        (2) 语法：
+            transform: skewX(角度) 使元素在水平方向扭曲变形
+            transform: skewY(角度) 使元素在垂直方向扭曲变形
+            transform: skew(x, y)
+
+    ====================== 3D转换 =====================
+    1. 三维参考系：
+        屏幕从左到右为x轴正方向
+        屏幕从上到下为y轴正方向
+        屏幕从里面到眼睛处为z轴正方向
+
+    2. 3D选转
+        (1) 语法：
+            transform: rotateX(角度deg) —— 以X轴为旋转轴进行3D旋转
+
+            transform: rotateY(角度deg) —— 以Y轴为旋转轴进行3D旋转
+            
+            transform: rotateZ(角度deg) —— 以Z轴为旋转轴进行3D旋转
+            
+            transform: rotate3d(1, 1, 1, 角度deg)
+                前三个参数传入0或1是表示是否在该方向上进行旋转
+
+
+    3. 3D平移
+        (1) 语法：
+            transform: translateZ(数值px/em...) —— 可以设置元素的叠放
+            transform: translate3d(x, y, z)
+
+    4. 3D缩放
+        (1) 语法：
+            transform: scaleZ(数值) —— 在Z轴方向缩放
+            transform: scale3d(x, y, z)
+
+
+*/
+
+
+
+/* ================ Transform与坐标系统(2d、3d通用) ===============*/
+/* 
+    一、写在前面
+        对于一个元素的transform，都会有一个基准点，比如旋转的时候是绕哪一个点旋转
+
+    二、改变基准点
+        (1) 使用transform-origin属性
+        (2) 语法：
+            transform-origin: x-axis y-axis z-axis;
+            可以省略z
+
+        (3) 例子：
+            transform-origin: 0 0; 表示基准点在元素点左上角
+            transform-origin: left top;
+            transform-orgin: 50% 50%; 表示基准点在元素的中心(默认情况)
+
+*/
+
+
+/* ====================== CSS3 矩阵 =================== (了解) */
+/* 
+    一、写在前面
+        CSS3中的矩阵指的是一个方法，matrix()和matrix3d()
+
+    二、matrix()和matrix3d()
+        1. matrix() 指的是2d变化矩阵，是一个3x3矩阵
+            (1) 语法：transform: matrix()
+
+
+
+        2. matrix3d() 指的是3d变化矩阵，是一个4x4矩阵
+*/
+
+
+/* ===================== Transform扩展属性 ====================== */
+/* 
+    一、transform-style
+        (1) 语法：transform-style: flat(默认值) | preserve-3d;
+
+        (2) 应用场景
+            有一个圆圈需要围着一个物品旋转，圆圈转到物品后方的时候被挡住，转到前方的时候显示出来
+            此时需要给父容器(圆圈和物品的父容器)添加preserve-3d属性
+    二、perspective
+        (1) 语法：perspective: number | none(默认值);
+        (2) 作用：指定观察者与 z=0平面的距离
+
+    三、perspective-origin
+        (1) 语法：perspective-origin: x-axis y-axis; 默认值为50% 50%
+        (2) 作用：指定透视点的位置
+
+    四、backface-visibility
+        (1) 语法：backface-visibility: visible | hidden;
+        (2) 作用：指定元素背面面向用户是否可见
+*/

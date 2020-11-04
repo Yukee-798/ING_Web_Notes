@@ -1,0 +1,22 @@
+/* ========================有关背景的样式属性=================== */
+    
+/* 
+        背景区域包括：内容、padding、和border，不包括margin
+
+    1. bg-color 元素的背景颜色：颜色｜transparent（默认）
+        
+    2. bg-iamge 元素的背景图：URL|none, 图像的位置默认在内容区的左上角, 且在水平和垂直方向重复
+
+    3. bg-position 设置背景图像起始位置：百分比｜值｜top/bottom/left/right/center, 详见备忘录
+
+    4. bg-attachment 背景是否固定或者随着页面其余部分滚动：scroll(默认值，背景随着滚动条滚动)|fixed(页面其余部分滚动，背景不滚动)
+
+    5. bg-repeat 设置图像如何重复：repeat|no-repeat|repeat-x|repeat-y, 图像以默认方式重复、不重复、沿x重复、沿y重复
+
+    6. bg 简写属性
+
+
+
+
+
+*/

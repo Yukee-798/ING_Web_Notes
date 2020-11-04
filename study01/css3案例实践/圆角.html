@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)http://127.0.0.1:5500/study/css3%E6%A1%88%E4%BE%8B%E5%AE%9E%E8%B7%B5/%E5%9C%86%E8%A7%92.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        div {
+            width: 500px;
+            height: 350px;
+            border: black 1px solid;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        p {
+            line-height: 300px;
+            text-align: center;
+        }
+
+        div::after {
+            display: block;
+            content: "";
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: black 1px solid;
+            position: absolute;
+            left: 500px;
+        }
+
+        div::before {
+            display: block;
+            content: "";
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: black 1px solid;
+            position: absolute;
+            left: 450px;
+            bottom: 0px;
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p> 大家好，欢迎来到慕课网！</p>
+    </div>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>

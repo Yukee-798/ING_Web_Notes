@@ -1,0 +1,62 @@
+/* 
+一、概览
+
+    1. 渐变基本概念
+    2. 线性渐变
+    3. 径向渐变
+
+二、渐变基本概念
+
+    1. 基本概念：渐变(gradients)可以在两个或多个指定颜色之间显示平稳的过渡
+    2. 
+    3. 兼容性设置：
+        background: -webkit-linear-gradient()
+        background:    -moz-linear-gradient()
+        background:      -o-linear-gradient()
+        background:         linear-gradient()
+
+三、线性渐变
+
+    1. 作用: 沿着一根轴线改变颜色，从起点到终点颜色进行顺序渐变
+    2. 语法: 
+        (1) bg: linear-gradient(direction, red, orange, yellow, green, blue, violet);
+        (2) 缺省direction的时候默认为从上到下
+        (3) 
+            * 不同浏览器内核的语法有差异，下面表示从左到右渐变
+            background: -webkit-linear-gradient(left, red, blue) 
+            background: -moz-linear-gradient(right, red, blue) 
+            background: -o-linear-gradient(right, red, blue) 
+            background: linear-gradient(to right, red, blue)
+
+            * 下面是对线线方向的渐变，从左上角渐变到右下角
+            background: -webkit-linear-gradient(left top, red, blue) 
+            background: -moz-linear-gradient(right bottom, red, blue) 
+            background: -o-linear-gradient(right bottom, red, blue) 
+            background: linear-gradient(to right bottom, red, blue)
+
+            * 使用角度调整渐变方向：(-webkit-内核有差异，具体可以百度，爷头晕了)
+                默认为180deg即从上往下渐变，详见备忘录通过角度控制渐变方向
+            background: linear-gradient(0deg, red, blue);
+
+            * 使用百分数控制渐变色的分布
+            background: linear-gradient(red 10%, orange 20%, yellow 50%, green 60%, blue 90%, violet 95%);
+
+            0-10%为纯red
+            10%-20%的位置都是red渐变到orange
+            20%-50%的位置都是orange渐变到yellow
+            50%-60%的位置都是yellow渐变到green
+            60%-90%的位置都是green渐变到blue
+            90%-95%的位置都是blue渐变到violet
+            95%-100%的位置都是纯violet
+
+            * 透明色渐变
+            background: linear-gradient(rgba(255, 0, 0, 0), rgba(255, 0, 0, .1), rgba(255, 0, 0, 1));
+
+
+四、径向渐变
+
+    1. 作用:
+    2. 语法:
+
+
+*/

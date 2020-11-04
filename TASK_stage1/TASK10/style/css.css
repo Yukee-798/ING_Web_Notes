@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 先写小屏样式 */
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 100px 20px 20px 20px;
+}
+
+.box {
+    width: 150px;
+    border: #f00 1px solid;
+    margin: 10px;
+}
+
+.box1 {
+    height: 200px;
+    border: blue 1px solid; 
+}
+.box2 { height: 120px; }
+.box3 { height: 100px; }
+.box4 { height: 40px; }
+
+@media (min-width: 641px) {
+    body {
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .box1 { order: 1; }
+}

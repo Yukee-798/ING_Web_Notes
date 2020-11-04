@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .content {
+            margin-top: 300px;
+            width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        img {
+            width: 300px;
+        }
+
+        .btns {
+            width: 200px;
+            margin: 0 auto;
+            position: fixed;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="content">
+        <img id="pic" src="../../pictures/img1.gif" alt="pic" />
+        <div class="btns">
+            <button id="prev">上一张</button>
+            <button id="next">下一张</button>
+        </div>
+
+    </div>
+
+
+    <!-- 切换图片 -->
+    <script>
+        var btn_prev = document.getElementById("prev");
+        var btn_next = document.getElementById("next");
+        var pic = document.getElementById("pic");
+        var imgs = [];
+        imgs[0] = "img1.gif";
+        imgs[1] = "img2.gif";
+        imgs[2] = "img3.gif";
+        imgs[3] = "img4.HEIC";
+        imgs[4] = "img5.jpeg";
+        imgs[5] = "img6.JPG";
+        var index = 0;
+        btn_prev.onclick = function () {
+            if (index > 0)
+                pic.src = "../../pictures/" + imgs[--index];
+            else index = 0;
+        }
+
+        btn_next.onclick = function () {
+            if (index < imgs.length - 1)
+                pic.src = "../../pictures/" + imgs[++index];
+            else index = imgs.length - 1;
+        }
+        
+    </script>
+</body>
+
+</html>

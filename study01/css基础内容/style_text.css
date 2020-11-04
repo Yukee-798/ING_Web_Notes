@@ -1,0 +1,77 @@
+
+/* ====================== 一些常用的属性 ======================  */
+
+/* 
+    font-family: 字体，可以设置文字的字体和所属字体集
+
+    font-size: 只需要知道不同的单位可以设置绝对大小和相对大小就行，其中常用的px就是相对于分辨率的相对大小，
+               em单位是相对于之前的字体大小来变化的，比如1.3em就是字体默认值的1.3倍
+    color
+
+    font-weight: 设置文字粗细，可以使用里面的关键字，也可以用数字100~900，normal=400，bold=700
+
+    font-style: 文字样式,normal为正常，italic为斜体
+
+    font-variant: small-caps 将小写字母变为小型大写字母
+
+    text-align: 控制文本在父容器中的水平重力
+                justify的作用是让文本每行长度相同 (注意：该属性只对块级元素内的文本有效)
+
+    vertical-align: 控制文本在父容器内的垂直重力 (注意：该属性只对行内元素的文本有效)
+        取值：baseline
+             sub：下移动一点
+             super：上移动一点
+             top
+             text-top
+             middle
+             bottom
+             text-bottom (以上的取值均根据基准线来对齐，详细看备忘录)
+
+        数字取值：15px，基于文本基线上移动15个像素，-15px，基于基线下移动15个像素
+                100%，基于文本基线上移动100%，-50%，基于文本基线下移动50%
+             
+
+    line-height: 设置文本的行间距，注意当字体大小大于行间距时，会出现字体重叠
+                 通常用em为单位，则行距会根据字体大小而动态改变
+
+    text-indent: 2em, 设置文本首元缩进
+
+*/
+
+
+
+/* ============================== 应用 ============================ */
+/* 
+        1. 实现单行文本水平与垂直居中： line-height:父容器的高度，text-align:center
+        2. 实现多行文本水平与垂直居中： 给父容器和子容器同时设置 display:table-cell 
+                                   然后再用vertical-align:middle, text-align:center
+*/
+
+
+/* ============================= 文本样式属性 ====================== */
+/* 
+    1. word-spaceing 设置元素内文本的单词之间的间距
+    2. letter-spaceing 设置元素内字母间的间距
+    3. text-tranform 设置元素内文本的大小写，首字母大写、字母大写、字母小写、默认
+    4. text-decoration 设置元素文本的装饰，下划线、上滑线、删除线
+
+*/
+
+/* ======================== 应用 ==================== */
+
+/* 
+
+
+
+
+
+
+
+
+
+*/
+#container { background:rgb(218, 214, 214); width: 100%; height: 150px;}
+#content { line-height: 150px; text-align: center;}
+#span1 { font-family: serif; font-size: 75px; color: rgb(167, 33, 33);}
+#span2 { font-family: serif; vertical-align: 12px; font-size: 33.5px; text-decoration: underline; color: rgb(156, 150, 150); font-weight: bold; }
+#span3 { font-family: serif; color: rgb(156, 150, 150); vertical-align: -10px; font-size: 75px; font-style: italic;}

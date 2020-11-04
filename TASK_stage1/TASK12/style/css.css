@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 350px;
+    margin: 100px auto;
+    border: black 1px solid;
+}
+
+.table {
+    border-collapse: collapse;
+    text-align: left;
+    margin: 0 auto 20px auto;
+    width: 250px;
+    font-weight: bold;
+    color: rgb(206, 10, 10);
+}
+
+th,
+td {
+    height: 25px;
+    border: 2px solid white;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #ccc;
+    color: black;
+}
+
+tr:nth-child(2),
+tr:nth-child(3),
+tr:nth-child(4) { color: rgb(206, 10, 10); }
+
+.input {
+    margin: 0 auto;
+    margin-left: 100px;
+    width: 100px;
+    transition: width .5s;
+}
+
+.input:focus { width: 200px; }
+
+/*轮播图*/
+.carousel {
+    margin: 0 auto;
+    position: relative;
+    width: 300px;
+    height: 150px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.images {
+    position: absolute;
+    left: 0;
+    width: 900px;
+    height: 150px;
+    animation: carousel linear 12s infinite;
+}
+
+@keyframes carousel {
+    0% { left: 0; }
+    28% { left: 0; }
+    35% { left: -300px; }
+    63% { left: -300px; }
+    70% { left: -600px; }
+    98% { left: -600px; }
+    100% { left: 0; }
+}
+
+.pic {
+    position: absolute;
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+}
+
+#one {
+    background-color: green;
+    left: 0;
+}
+
+#two {
+    background-color: red;
+    left: 300px;
+}
+
+#three {
+    background-color: blue;
+    left: 600px;
+}
+
+.tag {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    position: relative;
+    top: -30px;
+    left: 200px;
+    background-color: rgba(255, 255, 255, 0.418);
+    text-decoration: none;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+}
+
+.tag1:target {
+    left: 0;
+    animation: .1s 1;
+}
+
+.tag2:target {
+    left: 0;
+    animation: .1s 1;
+}
+
+.tag3:target {
+    left: 0;
+    animation: .1s 1;
+}

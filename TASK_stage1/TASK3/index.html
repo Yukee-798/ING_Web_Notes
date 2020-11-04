@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .div-bg {
+            width: 90%;
+            height: auto;
+            padding: 20px;
+            background-color: #eee;
+            border: 1px solid #999;
+            margin: 20px auto 0 auto;
+            position: relative;
+        }
+
+        .div-bg::after {
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+
+        .div-left {
+            width: 200px;
+            height: 120px;
+            top: 0;
+            left: 0;
+            background-color: white;
+            border: 1px solid #999;
+            float: left;
+            position: relative;
+        }
+
+        .div-left div {
+            width: 80px;
+            height: 80px;
+            margin: 20px;
+            background-color: #eee;
+            border: 1px solid #999;
+            font-size: 12px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .div-left div p {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+        }
+
+        .div-left .team-name {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .div-right {
+            width: 120px;
+            height: auto;
+            border: 1px solid #999;
+            background-color: white;
+            float: right;
+        }
+
+        .div-right div {
+            width: 80px;
+            height: 80px;
+            margin: 20px;
+            background-color: #eee;
+            border: 1px solid #999;
+            font-size: 12px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .div-right div p {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+        }
+
+        .div-mid {
+            width: auto;
+            height: 400px;
+            border: 1px solid #999;
+            background-color: white;
+            margin-left: 220px;
+            margin-right: 140px;
+        }
+        .div-mid p {
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="div-bg">
+        <div class="div-left">
+            <div>
+                <p>团队logo<br />80x80</p>
+            </div>
+            <p class="team-name">团队名称</p>
+        </div>
+
+
+    <div class="div-right">
+        <div>
+            <p>个人logo<br />80x80</p>
+        </div>
+        <div>
+            <p>个人logo<br />80x80</p>
+        </div>
+        <div>
+            <p>个人logo<br />80x80</p>
+        </div>
+        <div>
+            <p>个人logo<br />80x80</p>
+        </div>
+    </div>
+
+    <div class="div-mid">
+        <p>团队介绍</p>
+    </div>
+
+</body>
+
+</html>

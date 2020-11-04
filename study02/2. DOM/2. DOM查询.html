@@ -1,0 +1,115 @@
+<!-- 
+一、什么是DOM查询？
+    就是通过document对象来获取元素对象的过程，之前通过 document.getElementById("btn")就是一种DOM查询
+
+二、获取元素节点对象的方式(ById / ByTagName / ByName / ByClassName)
+    1. document.getElementById()
+        作用：通过元素的id属性来获取一个元素节点对象
+
+    2. document.getElementsByTagName()
+        作用：通过标签名获取一组元素节点对象，会返回一个类数组对象，查询到的所有元素对象都会封装在里面
+
+    3. document.getElementsByName()
+        作用：通过name属性获取一组元素节点对象，返回一个类数组对象，查询到的所有元素对象会封装在里面
+
+    4. document.getElementsByClassName()
+        作用：通过class属性获取一组元素节点对象，返回一个类数组对象
+
+
+三、获取元素对象的属性
+    元素对象.属性名
+    如<input name="" value=""></intput>，就可以在获取了该元素对象后直接调用name和value来获取对应属性
+    注意：元素的class属性不能通过这种方式来获取，要通过 元素对象.className
+
+四、获取元素节点的子节点和子元素
+(ByTagName / ByClassName / childNodes / children / first(Element)Child / last(Element)Child )
+
+    注意：区分什么是子节点、子元素
+        子节点：包括子元素和文本节点
+        子元素：只表示子标签元素
+
+    1. 元素对象.getElementsByTagName()
+        作用：返回该元素对象指定标签名的后代元素类数组
+
+    2. 元素对象.childNodes
+        作用：获取存放该元素对象的所有直接子元素对象和文本节点的类数组
+        注意：元素中的换行符也属于其文本节点，对于IE8及以下则不会把换行符当作子节点
+        例子：
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+
+            对于ul元素对象的 childNodes 属性长度为9
+            
+    3. 元素对象.children
+        作用：获取元素对象的所有直接子元素类数组，不包括文本节点
+
+
+    4. 元素对象.firstChild / 元素对象.firstElementChild
+        作用：获取该元素对象的第一个子节点对象 / 获取该元素对象的第一个子元素对象
+
+    5. 元素对象.lastChild / 元素对象.lastElementChild
+        作用：获取该元素对象的最后一个子节点对象 / 获取该元素对象的最后一个子元素对象
+
+
+
+五、获取父节点和兄弟节点
+    1. 元素对象.parentNode / 元素对象.parentElement
+       作用：获取当前节点的父节点 / 获取当前节点的父元素
+
+    2. 元素对象.previousSibling / 元素对象.previousElementSibling
+       作用：获取当前节点的前一个兄弟节点 / 获取当前节点的前一个兄弟元素
+
+    3. 元素对象.nextSibling / 元素对象.nextElementSibling
+       作用：获取当前节点的后一个兄弟节点 / 获取当前节点的后一个兄弟元素
+
+六、获取body标签和html标签
+    1. document.body
+    2. document.documentElement
+
+
+七、获取页面所有标签
+    document.all
+
+八、通过css选择器字符串来获取元素节点对象
+
+    document.querySelector(".header .pic-container");
+    注意：使用该方法只会返回唯一的一个元素对象，如果有多个class相同的，只会返回第一个
+
+    documemt.querySelectorAll(".box");
+    该方法就可以返回一个类数组了
+ 
+
+
+
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+<div></div>
+<div id="divs">
+    <div id="div1"><div></div></div>
+    <div><div></div></div>
+</div>
+
+    <script type="text/javascript">
+        
+        console.log(document.getElementById("divs"));
+    </script>
+
+</body>
+
+</html>
