@@ -1,0 +1,57 @@
+<!-- 
+一、什么是事件的冒泡
+    场景：
+        给body设置一个onclick事件
+        给body中的div设置一个onclick事件
+        给body中的div中的span设置一个onclik事件
+        此时点击只有body元素对象的区域，会回调body的点击事件函数
+        此时点击有body元素对象和div元素对象的区域，先后回调div和body的点击事件函数
+        此时点击有body元素对象、div元素对象和span元素对象的区域，先后回调span、div和body的点击事件函数
+
+
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+        div {
+            border: black 1px solid;
+        }
+        span {
+            background-color: wheat;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span>hello</span>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementsByTagName("body")[0].onclick = function() {
+            alert("我是body");
+        }
+        document.getElementsByTagName("div")[0].onclick = function() {
+            alert("我是div");
+        }
+        document.getElementsByTagName("span")[0].onclick = function() {
+            alert("我是span");
+        }
+
+        
+        
+    </script>
+
+</body>
+
+</html>
