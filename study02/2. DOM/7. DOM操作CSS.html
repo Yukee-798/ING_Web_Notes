@@ -64,7 +64,43 @@
 
     2. 注意：这些属性为只读，不能修改数值
 
+六、获取绝对定位元素的参考元素 (设置了relative的元素)
+    1. 回顾一下position: absolute
+        (1) 可以使用top、bottom、left、right、z-index进行绝对，初始状态为其最近的relative的父容器左上角(left:0,top:0)，如果设置right:0则移到到右上角
+        (2) 设置了绝对定位的子元素其宽高的百分比是根据最近的relative父容器而定，无relative则相对于body
+        (3) 如果其父容器均没有设置relative，则默认初始位置为body的左上角，参照物为body
+        (4) 当没有给绝对定位的元素设置宽高时，若把lrtb设置为0则其会填充整个父容器
 
+    2. 语法：
+        元素对象.offsetParent
+
+七、获取绝对定位元素设置的偏移量
+    1. 元素对象.offsetLeft
+        获取元素相对于参照父元素的水平偏移量
+
+    2. 元素对象.offsetTop
+        获取元素相对于参照父元素的垂直偏移量
+
+
+八、
+    1. 了解一下滚动条用法
+        <div class="container">
+            <div class="content"></div>
+        </div>
+
+        让内部 content 的 div 高度溢出 container
+        对 container 设置overflow: auto;
+        此时，content就会在contianer里面出现滚动条，不会再溢出
+
+
+        
+        
+
+    2. 语法
+        (1) element.scrollHeight
+        (2) element.scrollWidth
+        (3) element.scrollLeft
+        (4) element.scrollTop
 
 
  -->
@@ -78,20 +114,14 @@
      <title>DOM操作CSS</title>
      <style type="text/css">
         div {
-            box-sizing: border-box;
-            width: 100px;
-            height: 200px;
-            border: black 1px solid;
-            padding: 20px;
-            /* margin: 10px; */
+            
         }
     </style>
  </head>
  <body>
      <div></div>
      <script>
-        var div = document.getElementsByTagName("div")[0];
-        console.log(div.offsetParent);
+
 
 
 
