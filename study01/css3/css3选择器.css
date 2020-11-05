@@ -113,6 +113,8 @@
 
     2. :disabled，表示输入字段(input or textarea) 为不可编辑状态时的样式设置
         <intput type="text" disabled="disabled">
+        
+        注意：这里还可以设置按钮是否为可点击状态，用于用户阅读协议时是否阅读完后点击
     
     3. :checked
 

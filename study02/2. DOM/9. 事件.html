@@ -1,0 +1,46 @@
+<!-- 
+1. onscroll
+    该事件会在元素的滚动条滚动的时候触发
+    滚动条滚动一帧，就会触发一次
+
+2. onmousemove
+    该事件会在鼠标在指定元素中移动的时候触发
+
+    当事件的响应函数被触发时，浏览器会将一个事件对象作为参数传入响应函数中去
+    这个事件对象可以干嘛？
+    事件对象中封装了当前事件的一切信息
+    比如：鼠标的坐标、键盘的哪个键被按下，鼠标滚轮的滚动方向等等...
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        div {
+            width: 300px;
+            height: 300px;
+            border: black 1px solid;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div></div>
+
+    <script>
+        var div = document.getElementsByTagName("div")[0];
+        div.onmousemove = function(event) {
+            
+        }
+
+    </script>
+</body>
+
+</html>

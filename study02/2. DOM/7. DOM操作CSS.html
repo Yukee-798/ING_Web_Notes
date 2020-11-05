@@ -82,7 +82,7 @@
         获取元素相对于参照父元素的垂直偏移量
 
 
-八、
+八、获取父元素的滚动子元素区域高度宽度和偏移量 (详见P110,30:00左右进度条)
     1. 了解一下滚动条用法
         <div class="container">
             <div class="content"></div>
@@ -92,15 +92,19 @@
         对 container 设置overflow: auto;
         此时，content就会在contianer里面出现滚动条，不会再溢出
 
-
-        
-        
-
     2. 语法
         (1) element.scrollHeight
         (2) element.scrollWidth
         (3) element.scrollLeft
         (4) element.scrollTop
+
+
+        任何关于scroll的属性都是设置在父容器上，
+        scrollHeight：获取的是父容器内部的滚动元素的高度
+        scrollTop：父容器的顶部与其内部滚动子元素顶部的距离
+
+        那么 父元素对象.scrollTop + 父元素对象.clientHeight = 父元素对象.scrollHeight 的时候
+        滚动条就滚动到底部了
 
 
  -->
@@ -113,14 +117,30 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>DOM操作CSS</title>
      <style type="text/css">
-        div {
-            
+        .container {
+            width: 300px;
+            height: 300px;
+            background-color: cadetblue;
+            overflow: hidden;
         }
+
+        .content {
+            width: 200px;
+            height: 600px;
+            background-color: thistle;
+            border: black 10px dotted;
+        }
+
     </style>
  </head>
  <body>
-     <div></div>
+     <div class="container">
+         <div class="content"></div>
+     </div>
      <script>
+         var div_contaienr = document.querySelector(".container");
+         var div_content = document.querySelector(".content");
+         console.log(div_content.clientHeight);
 
 
 
