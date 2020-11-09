@@ -1,0 +1,29 @@
+<!-- 
+一、回顾一下之前我们事件绑定的形式
+    元素对象.事件 = function() {}
+
+    这种绑定事件的缺点：在为同一个事件绑定多个响应函数的时候，后绑定的会覆盖掉前面绑定的
+
+二、新的绑定形式 - addEventListener()
+    使用方式：
+        元素对象.addEventListener(参数1, 参数2, 参数3);
+        参数1：事件的字符串名称，不需要加on，例如"click"
+        参数2：响应函数
+        参数3：是否在捕获阶段触发事件，一般会都填false，下面会解释
+
+        例子：
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", function() {
+                alert("hello");
+            }, flase);
+
+    优点：会根据addEvent的顺序，在事件触发的时候依次调用响应函数
+
+
+
+
+
+
+
+
+ -->

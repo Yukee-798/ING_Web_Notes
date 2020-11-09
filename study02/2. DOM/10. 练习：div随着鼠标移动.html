@@ -11,33 +11,43 @@
             padding: 0;
         }
 
-        div {
+        .div_one {
             width: 100px;
             height: 100px;
             background-color: brown;
             position: absolute;
         }
+
+        .div_two {
+            border: black 1px solid;
+            width: 500px;
+            height: 500px;
+        }
     </style>
 </head>
 
 <body>
-    <div></div>
+    <div class="div_one"></div>
+    <div class="div_two"></div>
 
     <script type="text/javascript">
         // 思路：
         // 在body中获取鼠标实时坐标
         // 给div对象设置绝对定位的偏移量
         var div = document.getElementsByTagName("div")[0];
+        var div1 = document.getElementsByTagName("div")[1];
         var body = document.body;
         var x, y;
         document.onmousemove = function (event) {
             x = event.clientX;
             y = event.clientY;
-            if (event.altKey) {
-                div.style.left = String(x) + "px";
-                div.style.top = String(y) + "px";
-            }
 
+            div.style.left = String(x) + "px";
+            div.style.top = String(y) + "px";
+        }
+
+        div1.onmousemove = function (event) {
+            event.cancelBubble = true;
         }
     </script>
 </body>
