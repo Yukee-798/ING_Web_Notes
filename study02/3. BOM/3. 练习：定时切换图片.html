@@ -29,11 +29,8 @@
             width: 100%;
             height: 100%;
         }
-        .btn-container {
-            width:500px;
-            
-            margin: 20px auto;
-        }
+
+        
     </style>
 </head>
 
@@ -52,12 +49,30 @@
 
 
 <script>
+    var img = document.getElementsByTagName("img")[0];
     var btn_play = document.getElementById("play");
     var btn_stop = document.getElementById("stop");
-    var timer = setInterval();
+    var arr_pics = ["img1.gif", "img2.gif", "img3.gif", "img10.PNG", "img5.jpeg"];
+    var index = 0;
+    var timer;
 
+    // 点击播放的时候，图片开始轮回播放
+    btn_play.onclick = () => {
+        if (timer == undefined)
+            timer = setInterval(() => {
+                // 当index等于5的时候就更新为0
+                index %= (arr_pics.length);
+                img.src = "../../pictures/" + arr_pics[index++];
+            }, 1 * 1000);
 
+        console.log(timer);
+    }
 
+    // 点击停止后，停止定时器
+    btn_stop.onclick = () => {
+        clearInterval(timer);
+        timer = undefined;
+    }
 </script>
 
 </html>

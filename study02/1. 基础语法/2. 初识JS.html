@@ -1,5 +1,20 @@
 <!-- 
-一、script 的引入
+一、JS 代码编写位置
+    1. 直接写到 html 标签内
+        例子：
+            <div onclick="var a = 123; alert('你点我干嘛？'); console.log(a);"></div>
+
+    2. 可以写到超链接的 href 属性中
+        例子：
+            <a href="javascript:alert('让你点你就点？'); console.log(123);">你点我一下嘛</a>
+
+    3. 写到script标签内
+
+    4. 外部引入js文件
+        <script src="输入js文件的地址"></script> 引入之后就不能在script中写代码了
+
+    
+
 
 二、变量的声明与赋值
     var name = "momo";
