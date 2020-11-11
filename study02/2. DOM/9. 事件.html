@@ -12,17 +12,46 @@
     该事件会在父元素的子元素滚动的时候触发
     滚动条滚动一帧，就会触发一次
 
-2. onmousemove
-    该事件会在鼠标在指定元素中移动的时候触发
+2. 鼠标事件     
+
+
+    onclick：鼠标被点击时触发
+    ondblclick：鼠标被双击时触发
+    onmousemove：该事件会在鼠标在指定元素中移动的时候触发
+    onmousedown：鼠标在指定元素中被按下瞬间触发，只触发一次
+    onmouseup：鼠标在指定元素中被松开时触发
+    onmouseenter：鼠标移入元素上时被触发
+    onmouseleave：鼠标移出元素时被触发
+    oncontextmenu：点击右键打开上下文菜单时被触发
+
+    
 
 3. 滚轮事件
 
+    onwheel：在滚轮滚动的时候触发
+    结合事件对象的wheelDelta属性使用，当wheelDelta小于0时滚轮向上滚动，wheelDelta大于0时滚轮向下滚动
+
 
 4. 键盘事件
+    onkeydown：键盘按键处于按下状态时就会一直触发，第一次会卡一下，然后再连续触发
+    onkeyup：键盘按键被松开瞬间触发一次
 
-三、事件对象的属性
+    注意：普通的元素一般不能绑定键盘事件，键盘事件只能绑定在一些可以获取焦点的对象上面
+
+    通过键盘事件对象来获取按下的哪一个键
+    (1) altKey / ctrlKey / shiftKey：判断键盘的 alt 或 ctrl 或 shift 键是否被按下
+    (2) keyCode：返回键盘按下的键的编码
+
+
+5. 补充一下在事件回调函数中return false的作用
+    可以取消事件的默认行为，比如对input:text的 onkeydown 事件中，对回调函数 return false，那么就无法在输入框内输入文字了
+
+
+
+三、鼠标 or 键盘事件对象的属性
     1. clientX / clientY：获取鼠标的x轴与y轴坐标 (在当前视口下的坐标，即视口的左上角始终为(0, 0) )
     2. altKey / ctrlKey：判断键盘的 alt 或 ctrl 键是否被按下
+    3. wheelDelta：判断滚轮的滚动方向
 
  -->
 
@@ -37,7 +66,7 @@
         div {
             width: 300px;
             height: 300px;
-            border: black 1px solid;
+            border: black 10px dotted;
         }
     </style>
 
@@ -49,12 +78,17 @@
 
     <script>
         var div = document.getElementsByTagName("div")[0];
-        div.onmousemove = function(event) {
-            var x = event.clientX;
-            var y = event.clientY;
-            div.innerText = "(" + x + " ," + y + ")";
+        var height = parseInt((window.getComputedStyle(div, null).height));
+        div.onwheel = function (event) {
+            if (event.wheelDelta < 0) {
+                height-=10;
+                div.style.height = height + 'px';
+            } else {
+                height+=10;
+                div.style.height = height + 'px';
+            }
+            console.log(height);
         }
-
     </script>
 </body>
 

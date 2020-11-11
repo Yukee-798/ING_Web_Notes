@@ -70,7 +70,7 @@
         (2) 设置了绝对定位的子元素其宽高的百分比是根据最近的relative父容器而定，无relative则相对于body
         (3) 如果其父容器均没有设置relative，则默认初始位置为body的左上角，参照物为body
         (4) 当没有给绝对定位的元素设置宽高时，若把lrtb设置为0则其会填充整个父容器
-
+ 
     2. 语法：
         元素对象.offsetParent
 
@@ -117,7 +117,8 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>DOM操作CSS</title>
      <style type="text/css">
-        .container {
+
+        /* .container {
             width: 300px;
             height: 300px;
             background-color: cadetblue;
@@ -129,22 +130,31 @@
             height: 600px;
             background-color: thistle;
             border: black 10px dotted;
+        } */
+
+        div {
+            width: 100px;
+            height: 100px;
+            border: black 10px solid;
+            box-sizing: border-box;
         }
 
     </style>
  </head>
+
+
+
  <body>
-     <div class="container">
-         <div class="content"></div>
+     <div>
+
      </div>
+
+
+
      <script>
-         var div_contaienr = document.querySelector(".container");
-         var div_content = document.querySelector(".content");
-         console.log(div_content.clientHeight);
-
-
-
-
+        //  var div_contaienr = document.querySelector(".container");
+        //  var div_content = document.querySelector(".content");
+        //  console.log(div_content.clientHeight);
 
      </script>
      

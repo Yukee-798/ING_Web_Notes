@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            position: relative;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            position: absolute;
+            left: 500px;
+            top: 300px;
+        }
+
+        body::after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        form input {
+            float: left;
+        }
+
+
+        form::after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        #add_radius {
+            width: 20px;
+        }
+
+        #sub_radius {
+            width: 20px;
+        }
+
+        div {
+            border-radius: 25%;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: black 1px solid;
+            box-sizing: border-box;
+        }
+    </style>
+
+
+</head>
+
+
+
+
+<body>
+    <p>我是一段文章</p>
+    <div class="mover"></div>
+    <form>
+        <input type="text" id="inputColor" />
+        <input type="button" id="btn" value="添加一个" />
+    </form>
+
+</body>
+
+<script type="text/javascript">
+    var div_target;
+    var input;
+    var btn;
+    // 鼠标坐标
+    var x, y;
+    // 鼠标长按的位置与mover左上角偏移量
+    var offX, offY;
+    // 判断鼠标是长按还是松开
+    var isMousedown;
+
+    initElement();
+    initEvent();
+
+
+
+    function initElement() {
+        input = document.getElementById("inputColor");
+        btn = document.getElementById("btn");
+    }
+
+    function initEvent() {
+
+
+
+        btn.onclick = function () {
+            var div = document.createElement("div");
+            var color = input.value == "" ? "rgb(0, 0, 0)" : input.value;
+            div.style.backgroundColor = color;
+            div.className = "mover";
+
+
+            document.body.appendChild(div);
+        }
+
+        document.body.onmousedown = function (event) {
+            if (event.target.className == "mover") {
+                isMousedown = true;
+
+                div_target = event.target;
+                // 获取mover左上角坐标，用于找到点击位置与元素左上角的偏移量
+                var mltX = event.target.offsetLeft;
+                var mltY = event.target.offsetTop;
+                offX = x - mltX;
+                offY = y - mltY;
+
+                // 把当前移动的元素index-z设置为最大
+                event.target.style.zIndex = "999";
+
+                event.target.style.border = "orange 5px solid";
+                // console.log(window.getComputedStyle(event.target, null).border);
+                return false;
+            }
+        }
+
+        document.body.onmouseup = function (event) {
+            isMousedown = false;
+            if (event.target.className == "mover") {
+                // 把当前移动的元素index-z设置为最大
+                event.target.style.zIndex = "1";
+                event.target.style.border = "black 1px solid";
+            }
+        }
+
+        document.body.onmousemove = function (event) {
+            // 获取鼠标坐标
+            x = event.clientX;
+            y = event.clientY;
+
+            if (isMousedown) {
+                // 修改mover的定位
+                div_target.style.left = (x - offX) + 'px';
+                div_target.style.top = (y - offY) + 'px';
+            }
+        }
+
+        // 获取键盘方向键 左上右下分别为 37 38 39 40
+        document.onkeydown = function (event) {
+            if (event.keyCode === 37) {
+                div_target.style.left = (parseInt(window.getComputedStyle(div_target, null).left) - 5) + 'px';
+            } else if (event.keyCode === 38) {
+                div_target.style.top = (parseInt(window.getComputedStyle(div_target, null).top) - 5) + 'px';
+            } else if (event.keyCode === 39) {
+                div_target.style.left = (parseInt(window.getComputedStyle(div_target, null).left) + 5) + 'px';
+            } else if (event.keyCode === 40) {
+                div_target.style.top = (parseInt(window.getComputedStyle(div_target, null).top) + 5) + 'px';
+            }
+        }
+
+
+    }
+</script>
+
+</html>

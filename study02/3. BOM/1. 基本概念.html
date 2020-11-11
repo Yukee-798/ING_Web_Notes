@@ -1,0 +1,83 @@
+<!-- 
+一、回顾一下什么是DOM
+    DOM就是文档对象模型，通过JS来操作网页的
+
+二、什么是BOM?
+    BOM就是浏览器对象模型，通过JS来操作浏览器
+
+三、有哪些BOM对象
+    Window
+        - 代表的是当前浏览器的窗口，同时window也是网页中的全局对象
+    Navigator
+        - 代表当前浏览器的信息，通过该对象可以来识别不同的浏览器
+    Location
+        - 代表当前浏览器的地址栏信息，可以操作浏览器跳转页面
+    History
+        - 代表浏览器的历史记录，可以通过该对象来操作浏览器历史记录，只能操作浏览器向前或向后翻页
+    Screen
+        - 代表用户的屏幕信息，通过该对象可以获取到用户显示器相关信息
+
+    
+    注意：后面4个BOM对象都是Window对象的属性，可以通过Window对象来访问，也可以直接使用
+
+
+四、Navigator
+    只有一个userAgent属性有用，可以用它来判断当前使用的是哪个浏览器
+    /chrome/i.test(navigator.userAgent);
+    /MSIE 8.0/i.test(navigator.userAgent);
+    /MSIE 9.0/i.test(navigator.userAgent);
+
+    不能通过该方式来判断IE 11
+
+
+五、History
+    属性：length，返回浏览器打开过的网页数量
+    方法：
+        back()，向后跳转
+        forward()，向前跳转
+        go()，传入一个参数跳转，传入1则向前跳转1个页面，传入2跳2个，传入-1向后跳转1个
+
+
+六、Location
+    作用：获取地址栏的信息(当前页面完整路径)，如果直接打印location对象则会打印该路径信息
+         如果直接修改location的取值则会跳转到路径页面，并且会生成历史记录
+
+         如：
+         btn.onclick = function () {
+         location = "https://www.baidu.com"
+         }
+
+    常用方法：
+         reload()，刷新页面，可以传入一个true 用来强制清空页面缓存刷新
+
+
+
+
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button>点我一下</button>
+
+
+</body>
+
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    btn.onclick = function () {
+        location = "https://www.baidu.com"
+    }
+</script>
+
+</html>
