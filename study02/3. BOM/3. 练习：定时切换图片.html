@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .img-container {
+            width: 500px;
+            height: 300px;
+            border: black 1px solid;
+            margin: 100px auto;
+            margin-bottom: 0;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .btn-container {
+            width:500px;
+            
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-container">
+        <img src="../../pictures/img1.gif" alt="pic" />
+    </div>
+    <div class="btn-container">
+        <button type="button" id="play">开始播放</button>
+        <button type="button" id="stop">停止</button>
+    </div>
+
+
+
+</body>
+
+
+<script>
+    var btn_play = document.getElementById("play");
+    var btn_stop = document.getElementById("stop");
+    var timer = setInterval();
+
+
+
+</script>
+
+</html>
