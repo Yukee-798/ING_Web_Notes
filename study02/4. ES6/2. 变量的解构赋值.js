@@ -192,36 +192,42 @@
             }
 
             // 现在要来获取用户信息
-            let 
+            let { name, age, gender = 'boy' } = obj;
 
-            
-            
+            // 定义了三个变量，前两个变量匹配 obj 对象相关属性
+                如果没有匹配且没有设置默认值则为undefined，如果设置了默认值且没有匹配则为默认值
+                
+    2. 应用
+        使用对象传参来实现传入乱序参数
+        
+        // 实现 a - b + c 的计算，如果没传入对应参数则默认为0
+        function count ({ a = 0, b = 0, c = 0 }) {
+            return a - b + c;
+        }
+
+        count({ a: 3, b: 10 });
+
+    3. 一次性获取一个函数的多个返回值 (返回一个对象)
+        功能类似于数组解构赋值
 
 
+                
+                
+                
+                
         
         
 */
 
 
 
-
-var obj1 = {
-    name: 'kl',
-    age: 18,
-    gender: 'boy'
-};
-
-var obj2 = {
-    name: 'momo',
-    age: 20,
-    gender: 'girl'
-};
-
-var couple = {
-    hansband: {
-        ...obj1
-    },
-    wife: {
-        ...obj2
-    }
-};
+function count({
+    a = 0,
+    b = 0,
+    c = 0
+}) {
+    return a - b + c;
+}
+console.log(count({
+    c: 10
+}));

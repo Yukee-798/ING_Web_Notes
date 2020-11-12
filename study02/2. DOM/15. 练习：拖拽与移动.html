@@ -165,26 +165,26 @@
             keyCode = event.keyCode;
         }
         speed = 3;
-
+        shadow_length = 20;
         timer = setInterval(() => {
             if (keyCode === 37) {
                 // 左
                 div_target.style.left = (div_target.offsetLeft - speed) + 'px';
-                div_target.style.boxShadow = shadow_length + "px 0 0 0 " + shadow_color;
+                div_target.style.boxShadow = shadow_length + "px 0 10px -3px " + shadow_color;
             } else if (keyCode === 38) {
                 // 上
                 div_target.style.top = (div_target.offsetTop - speed) + 'px';
-                div_target.style.boxShadow = "0 " + shadow_length + "px 0 0 " + shadow_color;
+                div_target.style.boxShadow = "0 " + shadow_length + "px 10px -3px " + shadow_color;
 
             } else if (keyCode === 39) {
                 // 右
                 div_target.style.left = (div_target.offsetLeft + speed) + 'px';
-                div_target.style.boxShadow = (-shadow_length) + "px 0 0 0 " + shadow_color;
+                div_target.style.boxShadow = (-shadow_length) + "px 0 10px -3px " + shadow_color;
 
             } else if (keyCode === 40) {
                 // 下
                 div_target.style.top = (div_target.offsetTop + speed) + 'px';
-                div_target.style.boxShadow = "0 " + (-shadow_length) +  "px 0 0 " + shadow_color;
+                div_target.style.boxShadow = "0 " + (-shadow_length) +  "px 10px -3px " + shadow_color;
 
             }
         }, 1);
