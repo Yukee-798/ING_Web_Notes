@@ -91,6 +91,9 @@
     var isMousedown;
     var timer;
     var keyCode;
+    var speed = 10
+    var shadow_length = 10;
+    var shadow_color = "gray";
 
     initElement();
     initEvent();
@@ -161,23 +164,34 @@
         document.onkeydown = function (event) {
             keyCode = event.keyCode;
         }
+        speed = 3;
 
         timer = setInterval(() => {
             if (keyCode === 37) {
-                div_target.style.left = (parseInt(window.getComputedStyle(div_target, null).left) - 10) + 'px';
+                // 左
+                div_target.style.left = (div_target.offsetLeft - speed) + 'px';
+                div_target.style.boxShadow = shadow_length + "px 0 0 0 " + shadow_color;
             } else if (keyCode === 38) {
-                div_target.style.top = (parseInt(window.getComputedStyle(div_target, null).top) - 10) + 'px';
-            } else if (keyCode === 39) {
-                div_target.style.left = (parseInt(window.getComputedStyle(div_target, null).left) + 10) + 'px';
-            } else if (keyCode === 40) {
-                div_target.style.top = (parseInt(window.getComputedStyle(div_target, null).top) + 10) + 'px';
-            }
-        }, 50);
+                // 上
+                div_target.style.top = (div_target.offsetTop - speed) + 'px';
+                div_target.style.boxShadow = "0 " + shadow_length + "px 0 0 " + shadow_color;
 
+            } else if (keyCode === 39) {
+                // 右
+                div_target.style.left = (div_target.offsetLeft + speed) + 'px';
+                div_target.style.boxShadow = (-shadow_length) + "px 0 0 0 " + shadow_color;
+
+            } else if (keyCode === 40) {
+                // 下
+                div_target.style.top = (div_target.offsetTop + speed) + 'px';
+                div_target.style.boxShadow = "0 " + (-shadow_length) +  "px 0 0 " + shadow_color;
+
+            }
+        }, 1);
         document.onkeyup = (event) => {
             keyCode = 0;
+            div_target.style.boxShadow = null;
         }
-
 
     }
 </script>
