@@ -248,5 +248,23 @@
         
 */
 
-var [a, ...b] = "bilibili";
-console.log(b);
+// let sum = ([...numArr]) => {
+//     // let sum = 0;
+//     // numArr.forEach((element) => {
+//     //     sum += element;
+//     // });
+//     // return sum;
+//     console.log(mumArr);
+// };
+
+// var sum = ([...numArr]) => {
+//     console.log(numArr);
+// }
+// sum([1, 2, 3, 4]);
+
+
+// var sum = function (...numArr)  {
+//     console.log(numArr);
+// }
+// sum(1, 2, 3, 4);
+
