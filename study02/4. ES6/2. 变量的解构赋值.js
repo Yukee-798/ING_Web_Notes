@@ -210,6 +210,35 @@
     3. 一次性获取一个函数的多个返回值 (返回一个对象)
         功能类似于数组解构赋值
 
+五、字符串的解构赋值
+    1. 基本内容
+        (1) 基本用法
+            var [ a, b, c ] = "hello";
+            // 这里按照字符串的索引，用 hel 依次给 a、b、c 赋值了
+
+        (2) 结合扩展运算符
+            var [ a, ...b ]  = "bilibili";
+            // 这里将b字符后面的每一个字符封装为字符数组赋值给了变量b
+
+    2. 应用
+        将一个字符串分解为字符数组
+        var str = "hello";
+        var [ ...charArr1 ] = str;
+        var charArr2 = str.split("");
+        var charArr3 = [ ...str ];
+
+六、数值与布尔值的解构赋值(了解)
+
+
+七、函数参数的解构赋值
+    
+    // 交换数组中liang g
+    function swap() {
+
+    }
+
+
+
 
                 
                 
@@ -219,15 +248,5 @@
         
 */
 
-
-
-function count({
-    a = 0,
-    b = 0,
-    c = 0
-}) {
-    return a - b + c;
-}
-console.log(count({
-    c: 10
-}));
+var [a, ...b] = "bilibili";
+console.log(b);
