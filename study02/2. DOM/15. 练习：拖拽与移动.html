@@ -60,6 +60,8 @@
             height: 100px;
             border: black 1px solid;
             box-sizing: border-box;
+            top: 0;
+            left: 0;
         }
     </style>
 
@@ -70,7 +72,6 @@
 
 
 <body>
-    <p>我是一段文章</p>
     <div class="mover"></div>
     <form>
         <input type="text" id="inputColor" />
@@ -80,7 +81,7 @@
 </body>
 
 <script type="text/javascript">
-    var div_target;
+    var div_target = document.getElementsByTagName('div')[0];
     var input;
     var btn;
     // 鼠标坐标
@@ -160,38 +161,68 @@
             }
         }
 
+
+        speed = 3;
+        shadow_length = 20;
+
+
         // 获取键盘方向键 左上右下分别为 37 38 39 40
         document.onkeydown = function (event) {
             keyCode = event.keyCode;
+
+            // 如果timer为null，并且按下的键盘为方向键时再开启定时器
+            if (timer == null && (keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40))
+                timer = setInterval(() => {
+                    if (keyCode === 37) {
+                        // 左
+                        div_target.style.left = (div_target.offsetLeft - speed) <= 0 ? 0 : (div_target
+                            .offsetLeft -
+                            speed) + 'px';
+                        div_target.style.boxShadow = shadow_length + "px 0 10px -3px " + shadow_color;
+                    } else if (keyCode === 38) {
+                        // 上
+                        div_target.style.top = (div_target.offsetTop - speed) <= 0 ? 0 : (div_target.offsetTop -
+                            speed) + 'px';
+                        div_target.style.boxShadow = "0 " + shadow_length + "px 10px -3px " + shadow_color;
+
+                    } else if (keyCode === 39) {
+                        // 右
+                        div_target.style.left = (div_target.offsetLeft + speed) + 'px';
+                        div_target.style.boxShadow = (-shadow_length) + "px 0 10px -3px " + shadow_color;
+
+                        console.log();
+                        // 如果方块移动到当前视口的边缘则延展 body
+                        if (parseInt(getComputedStyle(div_target).right) - 50 <= 0) {
+                            let bodyWidth = parseInt(parseInt(getComputedStyle(document.body).width));
+                            bodyWidth += 1000;
+                            document.body.style.width = bodyWidth + 'px';
+                        }
+
+
+                    } else if (keyCode === 40) {
+                        // 下
+                        div_target.style.top = (div_target.offsetTop + speed) + 'px';
+                        div_target.style.boxShadow = "0 " + (-shadow_length) + "px 10px -3px " + shadow_color;
+                    }
+
+                    // 如果方块移动到当前视口的边缘，则 html 和 body 开始扩展
+                    console.log(`(${ div_target.offsetLeft } ,${ div_target.offsetTop }) body:{ width=${
+                document.body.clientWidth } height=${ document.body.clientHeight }  }`);
+                }, 1);
         }
-        speed = 3;
-        shadow_length = 20;
-        timer = setInterval(() => {
-            if (keyCode === 37) {
-                // 左
-                div_target.style.left = (div_target.offsetLeft - speed) + 'px';
-                div_target.style.boxShadow = shadow_length + "px 0 10px -3px " + shadow_color;
-            } else if (keyCode === 38) {
-                // 上
-                div_target.style.top = (div_target.offsetTop - speed) + 'px';
-                div_target.style.boxShadow = "0 " + shadow_length + "px 10px -3px " + shadow_color;
 
-            } else if (keyCode === 39) {
-                // 右
-                div_target.style.left = (div_target.offsetLeft + speed) + 'px';
-                div_target.style.boxShadow = (-shadow_length) + "px 0 10px -3px " + shadow_color;
 
-            } else if (keyCode === 40) {
-                // 下
-                div_target.style.top = (div_target.offsetTop + speed) + 'px';
-                div_target.style.boxShadow = "0 " + (-shadow_length) +  "px 10px -3px " + shadow_color;
 
-            }
-        }, 1);
         document.onkeyup = (event) => {
+            // 关闭定时器
+            clearInterval(timer);
+            // 给timer赋值为null
+            timer = null;
             keyCode = 0;
             div_target.style.boxShadow = null;
         }
+
+
 
     }
 </script>

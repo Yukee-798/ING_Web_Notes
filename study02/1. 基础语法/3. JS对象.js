@@ -78,7 +78,3 @@
 
 */
 
-var obj = new Object();
-obj.name = 798;
-var n = "name";
-console.log("name" in obj);
