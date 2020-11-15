@@ -56,6 +56,18 @@
         (7) in 运算符
                 作用：可以检查一个对象中是否包含某个属性
                 语法："属性名" in 对象
+
+
+        (8) 补充一下，关于对象的属性名加引号与不加引号
+                var person = {
+                    'name': 123,
+                    'age': 456,
+                    gender: 1
+                };
+
+                属性的调用：person.name 和 person['name']均可
+                          person.age 和 person['gender']均可
+
         
         3. 对象字面量
             (1) 作用：另一种创建对象的方式
@@ -78,3 +90,12 @@
 
 */
 
+var person = {
+    'name': "莫莫",
+    'age': 20,
+    gender: 0
+};
+var arr = Object.keys(person);
+arr.forEach(element => void console.log(`${ element }：${ person[element] }`));
+
+// console.log(typeof (arr[0]));

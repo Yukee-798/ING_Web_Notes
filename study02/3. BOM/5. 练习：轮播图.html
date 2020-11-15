@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            border: black 1px solid;
+            width: 450px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            margin: 100px auto 0 auto;
+        }
+
+        #img-list {
+            position: absolute;
+            width: 2300px;
+        }
+
+
+        #img-list li {
+            width: 450px;
+            height: 300px;
+            float: left;
+            list-style: none;
+            border: black 1px solid;
+        }
+
+        #img-list>li:not(:last-of-type) {
+            margin-right: 10px;
+        }
+
+        #img-list img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 在 div 中放一个 ul，ul 里面的每个 li 就放 banner -->
+
+    <div id="container">
+        <ul id="img-list">
+            <li>
+                <img src="/pictures/img1.gif" alt="pic">
+            </li>
+            <li>
+                <img src="/pictures/img2.gif" alt="pic">
+            </li>
+            <li>
+                <img src="/pictures/img3.gif" alt="pic">
+            </li>
+            <li>
+                <img src="/pictures/img14.PNG" alt="pic">
+            </li>
+            <li>
+                <img src="/pictures/img16.PNG" alt="pic">
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+<script>
+    var timer;
+    var imgList = document.getElementById('img-list');
+
+    // 每间隔2秒 ul 向左移动 460px
+    timer = setInterval(() => {
+        // 获取当前 offsetLeft
+        let offsetLeft = imgList.offsetLeft;
+
+        // console.log(offsetLeft);
+
+        // 更新 offsetLeft，当 offsetLeft 等于 ul 的宽度的时候重制 offsetLeft
+        offsetLeft -= (1);
+        offsetLeft %= -imgList.clientWidth;
+
+        console.log(`${ offsetLeft }, ${ imgList.clientWidth } `);
+
+        // 让 ul 的 left 偏移量为 offsetLeft
+        imgList.style.left = offsetLeft + 'px';
+
+
+    }, 1000000);
+</script>
+
+</html>
