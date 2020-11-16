@@ -25,7 +25,6 @@ function initEvent() {
         if (!getInput()) {
             return;
         }
-
         // 输入成功则插入元素
         let element = document.createElement('div');
         element.innerHTML = input;

@@ -41,14 +41,13 @@ function renderAqiList() {
     var table = document.getElementById('aqi-table');
     var trs = [];
     var dataList = Object.keys(aqiData);
-    if (dataList.length != 0) {
-        trs[0] = `<tr><td>城市</td><td>空气质量</td><td>操作</td></tr>`;
-        dataList.forEach(element => {
-            trs.push(`<tr><td>${ element }</td><td>${ aqiData[element] }</td><td><button>删除</button></td></tr>`);
-        });
+    trs[0] = `<tr><td>城市</td><td>空气质量</td><td>操作</td></tr>`;
+    dataList.forEach(element => {
+        trs.push(`<tr><td>${ element }</td><td>${ aqiData[element] }</td><td><button>删除</button></td></tr>`);
+    });
 
-        table.innerHTML = trs.join('');
-    }
+    table.innerHTML = trs.join('');
+
 }
 
 /**
@@ -65,6 +64,7 @@ function addBtnHandle() {
  * 获取哪个城市数据被删，删除数据，更新表格显示
  */
 function delBtnHandle(btn) {
+
     delete aqiData[btn.parentElement.parentElement.firstElementChild.innerHTML];
     renderAqiList();
 }
