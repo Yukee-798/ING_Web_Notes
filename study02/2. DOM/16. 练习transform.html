@@ -30,7 +30,6 @@
 
 <body>
     <button id="btn-transform">transform</button>
-    <button id="btn-stop">stop</button>
     <div id="element"></div>
     <div id="target"></div>
 
@@ -39,70 +38,68 @@
     <script>
         var element = document.getElementById('element');
         var btn_transform = document.getElementById('btn-transform');
-        var btn_stop = document.getElementById('btn-stop');
 
-        // 向右移动
         btn_transform.onclick = () => {
-            transform(element, 'width', 600, 10, 3, function () {
-                transform(element, 'top', 500, 10, 3, () => {
-                    transform(element, 'left', 400, 10, 3, () => {
-                        transform(element, 'top', 0, 10, 3, () => {
-                            transform(element, 'height', 500, 10, 3)
-                        });
-                    });
-                });
-            });
-        }
 
+            // transform(element, 'width', 600, 10, 3);
+            // transform(element, 'height', 500, 10, 3);
+            // transform(element, 'left', 1000, 10, 3, () => {
+            //     transform(element, 'left', 0, 10, 3);
+            // });
+            // transform(element, 'top', 500, 10, 3);
 
-        // 停止移动
-        btn_stop.onclick = () => {
-            clearInterval(element.timer);
-            element.timer = null;
         }
 
         /*
-            obj: 元素对象
-            attr: 需要修改的属性名称
-            targetStatus: 属性的目标取值
-            interval: 动画速度
-            speed: 动画速度
-            callback: 回调函数，在当前动画执行完毕后执行
+            参数：
+                obj: 元素对象
+                attr: 需要修改的属性名称
+                targetStatus: 属性的目标取值
+                interval: 动画速度
+                speed: 动画速度
+                callback: 回调函数，在当前动画执行完毕后执行
 
+            功能：用于元素的宽高变化、绝对定位变化等动画操作
         */
 
-        function transform(obj, attr, targetStaus, interval, speed, callback = () => {}) {
+        function transform(obj, attr, targetStatus, interval, speed, callback = () => {}) {
 
-            clearInterval(obj.timer);
 
-            obj.timer = setInterval(() => {
+            // 如果该attr在timer中已存在
+            if (obj.timer == null) obj.timer = {};
+            // console.log(attr in obj.timer);
+            if (attr in obj.timer) {
+                clearInterval(obj.timer[attr]);
+                // console.log(1);
+            }
+
+            obj.timer[attr] = setInterval(() => {
 
                 // 实时获取当前属性的取值
                 let currentValue = parseInt(getComputedStyle(obj)[attr]);
                 // console.log(currentValue);
 
-
                 // 如果目标属性的取值小于当前属性取值则 speed 取负
-                if (speed > 0 && currentValue > targetStaus) speed = -speed;
+                if (speed > 0 && currentValue > targetStatus) speed = -speed;
 
                 // 更新属性取值
                 let newValue = currentValue + speed;
 
                 // 左移时 newValue 小于目标值 或者 右移时 newValue 大于目标值 则把 newValue 设置为目标值
                 // 目的是让动画结束后元素能准确处于目标属性取值
-                if ((speed < 0 && newValue < targetStaus) || (speed > 0 && newValue > targetStaus)) {
-                    newValue = targetStaus;
+                if ((speed < 0 && newValue < targetStatus) || (speed > 0 && newValue > targetStatus)) {
+                    newValue = targetStatus;
                 }
 
                 obj.style[attr] = newValue + 'px';
-                // 当前属性取值处于目标状态时停止动画 
-                if (currentValue == targetStaus) {
-                    clearInterval(obj.timer);
+                // 当前属性取值处于目标状态时停止动画
+                if (currentValue === targetStatus) {
+                    clearInterval(obj.timer[attr]);
 
                     // 动画执行完毕后执行回调函数
                     callback();
                 }
-            }, interval);
+            }, interval)
         }
     </script>
 </body>

@@ -69,14 +69,12 @@
 </head>
 
 
-
-
 <body>
-    <div class="mover"></div>
-    <form>
-        <input type="text" id="inputColor" />
-        <input type="button" id="btn" value="添加一个" />
-    </form>
+<div class="mover"></div>
+<form>
+    <input type="text" id="inputColor"/>
+    <input type="button" id="btn" value="添加一个"/>
+</form>
 
 </body>
 
@@ -100,14 +98,12 @@
     initEvent();
 
 
-
     function initElement() {
         input = document.getElementById("inputColor");
         btn = document.getElementById("btn");
     }
 
     function initEvent() {
-
 
 
         btn.onclick = function () {
@@ -178,7 +174,7 @@
                     if (keyCode === 37) {
                         // 左
                         div_target.style.left = (div_target.offsetLeft - speed) <= 0 ? 0 : (div_target
-                            .offsetLeft -
+                                .offsetLeft -
                             speed) + 'px';
                         div_target.style.boxShadow = shadow_length + "px 0 10px -3px " + shadow_color;
                     } else if (keyCode === 38) {
@@ -208,12 +204,10 @@
                     }
 
                     // 如果方块移动到当前视口的边缘，则 html 和 body 开始扩展
-                    console.log(`(${ div_target.offsetLeft } ,${ div_target.offsetTop }) body:{ width=${
-                document.body.clientWidth } height=${ document.body.clientHeight }  }`);
+                    console.log(`(${div_target.offsetLeft} ,${div_target.offsetTop}) body:{ width=${
+                        document.body.clientWidth} height=${document.body.clientHeight}  }`);
                 }, 1);
         }
-
-
 
         document.onkeyup = (event) => {
             // 关闭定时器
@@ -223,7 +217,6 @@
             keyCode = 0;
             div_target.style.boxShadow = null;
         }
-
 
 
     }

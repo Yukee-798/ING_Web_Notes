@@ -95,7 +95,6 @@ var person = {
     'age': 20,
     gender: 0
 };
-var arr = Object.keys(person);
-arr.forEach(element => void console.log(`${ element }：${ person[element] }`));
-
-// console.log(typeof (arr[0]));
+person.timer = {}
+person.timer["attr"] = 12;
+console.log("attr" in person.timer);

@@ -20,17 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d09b3a4b-7111-4b5e-baa4-b2b8cfe9433a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/web_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TASK_stage2/零基础/必做练习/TASK1/Task1.html" beforeDir="false" afterPath="$PROJECT_DIR$/TASK_stage2/零基础/必做练习/TASK1/Task1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/study02/4. JS高级/基础总结深入/1. 数据类型.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/Task2.html" beforeDir="false" afterPath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/Task2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/task.js" beforeDir="false" afterPath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/1. 基础语法/3. JS对象.js" beforeDir="false" afterPath="$PROJECT_DIR$/study02/1. 基础语法/3. JS对象.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/study02/2. DOM/15. 练习：拖拽与移动.html" beforeDir="false" afterPath="$PROJECT_DIR$/study02/2. DOM/15. 练习：拖拽与移动.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/2. DOM/16. 练习transform.html" beforeDir="false" afterPath="$PROJECT_DIR$/study02/2. DOM/16. 练习transform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/4. ES6/1. let 与 const.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/4. ES6/2. 变量的解构赋值.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/4. ES6/3. ES6扩展.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,6 +71,7 @@
       <updated>1605323684209</updated>
       <workItem from="1605323687032" duration="317000" />
       <workItem from="1605324062806" duration="6000" />
+      <workItem from="1605612579513" duration="757000" />
     </task>
     <servers />
   </component>
