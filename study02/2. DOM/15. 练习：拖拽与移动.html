@@ -162,7 +162,7 @@
         }
 
 
-        speed = 3;
+        speed = 2;
         shadow_length = 20;
 
 
@@ -173,6 +173,8 @@
             // 如果timer为null，并且按下的键盘为方向键时再开启定时器
             if (timer == null && (keyCode == 37 || keyCode == 38 || keyCode == 39 || keyCode == 40))
                 timer = setInterval(() => {
+                    shadow_color = getComputedStyle(div_target).backgroundColor;
+
                     if (keyCode === 37) {
                         // 左
                         div_target.style.left = (div_target.offsetLeft - speed) <= 0 ? 0 : (div_target

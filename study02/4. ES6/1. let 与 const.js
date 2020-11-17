@@ -161,3 +161,14 @@
 */
 
 
+
+
+{
+    let i = 32;
+
+    function print() {
+        console.log(i);
+        
+    }
+    print();
+}

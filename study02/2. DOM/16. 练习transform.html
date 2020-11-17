@@ -1,35 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
- 
-        div {
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #element {
             margin: 20px 0 0 0;
             width: 100px;
             height: 100px;
             background-color: coral;
+            position: absolute;
         }
-        
+
+        #target {
+            position: absolute;
+            border-left: 1px solid black;
+            height: 1000px;
+            left: 700px;
+        }
     </style>
 </head>
+
 <body>
-    <button id="btn-transform" type="button">transform</button>
+    <button id="btn-transform">transform</button>
+    <button id="btn-stop">stop</button>
     <div id="element"></div>
-    
+    <div id="target"></div>
+
+
 
     <script>
         var element = document.getElementById('element');
-        var timer;
-        var btn_transform = getElementById('btn-tansform');
+        var btn_transform = document.getElementById('btn-transform');
+        var btn_stop = document.getElementById('btn-stop');
 
-        function transform(obj, attr, targetPosition, speed) {
-
+        // 向右移动
+        btn_transform.onclick = () => {
+            transform(element, 'width', 600, 10, 3, function () {
+                transform(element, 'top', 500, 10, 3, () => {
+                    transform(element, 'left', 400, 10, 3, () => {
+                        transform(element, 'top', 0, 10, 3, () => {
+                            transform(element, 'height', 500, 10, 3)
+                        });
+                    });
+                });
+            });
         }
 
 
+        // 停止移动
+        btn_stop.onclick = () => {
+            clearInterval(element.timer);
+            element.timer = null;
+        }
+
+        /*
+            obj: 元素对象
+            attr: 需要修改的属性名称
+            targetStatus: 属性的目标取值
+            interval: 动画速度
+            speed: 动画速度
+            callback: 回调函数，在当前动画执行完毕后执行
+
+        */
+
+        function transform(obj, attr, targetStaus, interval, speed, callback = () => {}) {
+
+            clearInterval(obj.timer);
+
+            obj.timer = setInterval(() => {
+
+                // 实时获取当前属性的取值
+                let currentValue = parseInt(getComputedStyle(obj)[attr]);
+                // console.log(currentValue);
+
+
+                // 如果目标属性的取值小于当前属性取值则 speed 取负
+                if (speed > 0 && currentValue > targetStaus) speed = -speed;
+
+                // 更新属性取值
+                let newValue = currentValue + speed;
+
+                // 左移时 newValue 小于目标值 或者 右移时 newValue 大于目标值 则把 newValue 设置为目标值
+                // 目的是让动画结束后元素能准确处于目标属性取值
+                if ((speed < 0 && newValue < targetStaus) || (speed > 0 && newValue > targetStaus)) {
+                    newValue = targetStaus;
+                }
+
+                obj.style[attr] = newValue + 'px';
+                // 当前属性取值处于目标状态时停止动画 
+                if (currentValue == targetStaus) {
+                    clearInterval(obj.timer);
+
+                    // 动画执行完毕后执行回调函数
+                    callback();
+                }
+            }, interval);
+        }
     </script>
 </body>
+
 </html>
