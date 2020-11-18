@@ -7,11 +7,11 @@ var btn_random = document.getElementById('btn-random');
 var input_interval = document.getElementById('input-interval');
 var input_data = document.getElementById('input-data');
 var div_queue = document.getElementById('div-queue');
-
-
 var queue = [];
+var elements = div_queue.children;
 var input = '';
 var reg = /^[0-9]{1,}$/;
+var isRandom = false;
 
 initEvent();
 
@@ -35,19 +35,26 @@ function initEvent() {
         push('right', element);
     }
     btn_left_pop.onclick = () => {
+        isRandom = false;
         pop('left');
     }
     btn_right_pop.onclick = () => {
+        isRandom = false;
         pop('right');
     }
     btn_sort.onclick = () => {
-
+        sort();
     }
 
     // 随机生成50组数据(取值在10-100)
     btn_random.onclick = () => {
+
+        isRandom = true;
+
         // 如果队列中有元素存在则清空队列
-        if (queue.length > 0) clear();
+        if (elements.length > 0) {
+            clear();
+        }
 
         for (let i = 0; i < 50; i++) {
             let element = document.createElement('div');
@@ -59,7 +66,7 @@ function initEvent() {
 
 // 清空队列中的所有元素
 function clear() {
-    let elementCounts = queue.length;
+    let elementCounts = elements.length;
     for (let i = 0; i < elementCounts; i++) {
         pop('left');
     }
@@ -81,7 +88,7 @@ function getInput() {
 
 function push(direction, element) {
 
-    if (queue.length <= 50) {
+    if (elements.length <= 50) {
         if (direction === 'left') {
 
             // 先让原来的所有元素向右移动 15px
@@ -93,7 +100,6 @@ function push(direction, element) {
 
             // 插入新元素
             div_queue.insertBefore(element, div_queue.firstElementChild);
-            queue.unshift(Number(input));
 
         } else if (direction === 'right') {
             // 找到栈顶元素
@@ -109,7 +115,6 @@ function push(direction, element) {
                 // 获取栈顶元素的left， left + 15 即为压栈元素的偏移量
                 element.style.left = (parseInt(getComputedStyle(temp).left) + 15) + 'px';
                 div_queue.appendChild(element);
-                queue.push(Number(input));
             }
         }
     } else {
@@ -120,25 +125,94 @@ function push(direction, element) {
 
 function pop(direction) {
     // 如果queue长度为0
-    if (queue.length == 0) {
+    if (elements.length == 0) {
         alert('队列为空，无法再弹出元素！');
     } else {
         if (direction === 'left') {
 
+            let data = div_queue.firstElementChild.clientHeight;
 
+            // 先移除最左边的元素
+            div_queue.removeChild(div_queue.firstElementChild);
 
+            if (!isRandom) alert(data / 2);
 
-            // div_queue.removeChild(div_queue.firstElementChild);
-            // queue.shift();
+            // 后面的每一个元素向左移 15px
+            let temp = div_queue.firstElementChild;
+            while (temp != null) {
+                temp.style.left = (parseInt(getComputedStyle(temp).left) - 15) + 'px';
+                temp = temp.nextElementSibling;
+            }
 
         } else if (direction === 'right') {
+            let data = div_queue.lastElementChild.clientHeight;
 
+            if (!isRandom) alert(data / 2);
 
+            // 直接移除最右边的元素
+            div_queue.removeChild(div_queue.lastElementChild);
 
-            // div_queue.removeChild(div_queue.lastElementChild);
-            // queue.pop();
         }
     }
+}
+
+
+function sort() {
+    // console.log(elements);
+    for (let i = elements.length - 1; i >= 0; i--) {
+        for (let j = 1; j <= i; j++) {
+            // 获取元素的数据
+            let elementData1 = elements[j - 1].clientHeight / 2;
+            let elementData2 = elements[j].clientHeight / 2;
+            if (elementData1 > elementData2) {
+                swap(elements, j - 1, j);
+            }
+        }
+    }
+    // let [...arr] = elements;
+    // arr.forEach((element) => {
+    //     console.log(element);
+    // });
+}
+// 对出现的一些问题的想法
+// 1. 首先就是
+// 
+function swap(arr, index1, index2) {
+    // index1 和 index2 分别为待交换的两个元素在数组中的下标
+    // 先获取两个元素
+    let element1 = arr[index1];
+    let element2 = arr[index2];
+
+    // 再获取两个元素的 left 偏移量
+    let offLeft1 = parseInt(getComputedStyle(element1).left);
+    let offLeft2 = parseInt(getComputedStyle(element2).left);
+
+    // console.log(arr[0]);
+    // 在 elements 数组中交换这两个节点的顺序
+    arr[index1] = element2;
+    element1.style.left = offLeft2 + 'px';
+
+    arr[index2] = element1;
+    element2.style.left = offLeft1 + 'px';
+
+
+
+    // 重新渲染 div-queue
+
+
+
+    // 交换这两个元素的 left 偏移量
+    transform(element1, 'left', offLeft2, 10, 3, () => {});
+    transform(element2, 'left', offLeft1, 10, 3, () => {});
+
+
+
+    // console.log(offLeft1, offLeft2);
+
+    // let temp = arr[index1];
+    // arr[index1] = arr[index2];
+    // arr[index2] = temp;
+
 }
 
 
@@ -154,7 +228,7 @@ function pop(direction) {
     功能：用于元素的宽高变化、绝对定位变化等动画操作
 */
 
-function transform(obj, attr, targetStaus, interval, speed, callback = () => {}) {
+function transform(obj, attr, targetStaus, interval = 10, speed = 3, callback = () => {}) {
 
 
     // 如果该attr在timer中已存在

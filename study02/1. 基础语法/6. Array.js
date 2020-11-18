@@ -149,13 +149,24 @@
 
 */
 
-var cnt = 0;
-var arr2 = [1, 2, 33, 11, 0, -1, 100];
-arr2.sort(function(a, b) {
-    cnt++;
-});
+console.log(sort([1, 3,0, -1, -5, 8, 2]));
 
-console.log(cnt);
+function sort(queue) {
+    for (let i = queue.length - 1; i >= 0; i--) {
+        for (let j = 0; j <= i; j++) {
+            if (j + 1 < queue.length && queue[j] > queue[j + 1]) {
+                swap(queue, j + 1, j);
+            }
+        }
+    }
+    return queue;
+}
+
+function swap(arr, index1, index2) {
+    let temp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = temp;
+}
 
 
 
