@@ -110,14 +110,14 @@
  -->
 
 
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>DOM操作CSS</title>
-     <style type="text/css">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作CSS</title>
+    <style type="text/css">
         /* .container {
             width: 300px;
             height: 300px;
@@ -132,31 +132,56 @@
             border: black 10px dotted;
         } */
 
+        body {
+            padding: 100px;
+        }
+
         div {
+            position: absolute;
             width: 100px;
             height: 100px;
             border: black 10px solid;
-            box-sizing: border-box;
+            background: orange;
+            padding: 10px;
+            /* box-sizing: border-box; */
+            /* left: 200px; */
         }
-
     </style>
- </head>
+</head>
 
 
 
- <body>
-     <div>
+<body>
+    <div style="left: 100px;">
 
-     </div>
+    </div>
 
 
 
-     <script>
+    <script>
         //  var div_contaienr = document.querySelector(".container");
         //  var div_content = document.querySelector(".content");
         //  console.log(div_content.clientHeight);
 
-     </script>
-     
- </body>
- </html>
+        var div = document.getElementsByTagName('div')[0];
+
+        var left1 = div.offsetLeft;
+        var left2 = div.style.left;
+        var left3 = getComputedStyle(div).left;
+
+        var height1 = div.clientHeight;
+        var height2 = div.style.height;
+        var height3 = getComputedStyle(div).height;
+
+        var width1 = div.clientWidth;
+        var width2 = div.style.width;
+        var width3 = getComputedStyle(div).width;
+
+        console.log(left1, left2, left3);
+        console.log(height1, height2, height3);
+        console.log(width1, width2, width3);
+    </script>
+
+</body>
+
+</html>

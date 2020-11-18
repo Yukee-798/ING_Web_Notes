@@ -149,24 +149,48 @@
 
 */
 
-console.log(sort([1, 3,0, -1, -5, 8, 2]));
 
-function sort(queue) {
-    for (let i = queue.length - 1; i >= 0; i--) {
-        for (let j = 0; j <= i; j++) {
-            if (j + 1 < queue.length && queue[j] > queue[j + 1]) {
-                swap(queue, j + 1, j);
-            }
-        }
-    }
-    return queue;
-}
+var objs = [{
+    num: 1
+}, {
+    num: 2
+}];
+
+console.log(objs);
+
+swap(objs, 0, 1);
 
 function swap(arr, index1, index2) {
-    let temp = arr[index1];
-    arr[index1] = arr[index2];
-    arr[index2] = temp;
+    let temp1 = arr[index1];
+    let temp2 = arr[index2];
+
+    arr[index1] = temp2;
+    arr[index2] = temp1;
 }
+
+
+
+console.log(objs);
+
+
+// console.log(sort([1, 3, 0, -1, -5, 8, 2]));
+
+// function sort(queue) {
+//     for (let i = queue.length - 1; i >= 0; i--) {
+//         for (let j = 0; j <= i; j++) {
+//             if (j + 1 < queue.length && queue[j] > queue[j + 1]) {
+//                 swap(queue, j + 1, j);
+//             }
+//         }
+//     }
+//     return queue;
+// }
+
+// function swap(arr, index1, index2) {
+//     let temp = arr[index1];
+//     arr[index1] = arr[index2];
+//     arr[index2] = temp;
+// }
 
 
 

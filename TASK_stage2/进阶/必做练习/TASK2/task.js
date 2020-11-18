@@ -7,8 +7,8 @@ var btn_random = document.getElementById('btn-random');
 var input_interval = document.getElementById('input-interval');
 var input_data = document.getElementById('input-data');
 var div_queue = document.getElementById('div-queue');
-var queue = [];
 var elements = div_queue.children;
+var backup = [];
 var input = '';
 var reg = /^[0-9]{1,}$/;
 var isRandom = false;
@@ -156,9 +156,18 @@ function pop(direction) {
     }
 }
 
+/*
+    思路：
+        1. 先
+
+
+
+
+*/
+
 
 function sort() {
-    // console.log(elements);
+
     for (let i = elements.length - 1; i >= 0; i--) {
         for (let j = 1; j <= i; j++) {
             // 获取元素的数据
@@ -169,49 +178,60 @@ function sort() {
             }
         }
     }
-    // let [...arr] = elements;
-    // arr.forEach((element) => {
-    //     console.log(element);
-    // });
+
+
+
 }
-// 对出现的一些问题的想法
-// 1. 首先就是
+// 现在的问题是：
+// 1. elements 数组内存放的是元素对象
+// 2. 如何在这个数组中交换两个对象的值？
+// 
 // 
 function swap(arr, index1, index2) {
+    // 拷贝原数组
+    backup = [];
+    for (let i = 0; i < elements.length; i++) {
+        backup[i] = elements[i];
+    }
+
+
     // index1 和 index2 分别为待交换的两个元素在数组中的下标
     // 先获取两个元素
-    let element1 = arr[index1];
-    let element2 = arr[index2];
+    let element1 = backup[index1];
+    let element2 = backup[index2];
+
 
     // 再获取两个元素的 left 偏移量
-    let offLeft1 = parseInt(getComputedStyle(element1).left);
-    let offLeft2 = parseInt(getComputedStyle(element2).left);
+    let offLeft1 = element1.offsetLeft;
+    let offLeft2 = element2.offsetLeft;
 
-    // console.log(arr[0]);
-    // 在 elements 数组中交换这两个节点的顺序
-    arr[index1] = element2;
-    element1.style.left = offLeft2 + 'px';
+    // 在 backup 数组中交换这两个节点的顺序
+    backup[index1] = element2;
+    backup[index2] = element1;
 
-    arr[index2] = element1;
-    element2.style.left = offLeft1 + 'px';
+    console.log(
+        '================='
+    );
+    backup.forEach((element) => {
+        console.log(element);
+    });
+
+    elements = backup;
+
+    // 动画平移
+    transform(element1, 'left', offLeft2, 10, 3, () => {
+        element1.style.left = offLeft2 + 'px';
+    });
+    transform(element2, 'left', offLeft1, 10, 3, () => {
+        element2.style.left = offLeft1 + 'px'; // // 重新渲染 div-queue
+        let newHTML = [];
+        for (let i = 0; i < backup.length; i++) {
+            newHTML.push(`<div style="height: ${ backup[i].clientHeight }px; left: ${ backup[i].offsetLeft }px;"></div>`);
+        }
+        div_queue.innerHTML = newHTML.join('');
+    });
 
 
-
-    // 重新渲染 div-queue
-
-
-
-    // 交换这两个元素的 left 偏移量
-    transform(element1, 'left', offLeft2, 10, 3, () => {});
-    transform(element2, 'left', offLeft1, 10, 3, () => {});
-
-
-
-    // console.log(offLeft1, offLeft2);
-
-    // let temp = arr[index1];
-    // arr[index1] = arr[index2];
-    // arr[index2] = temp;
 
 }
 
@@ -229,41 +249,57 @@ function swap(arr, index1, index2) {
 */
 
 function transform(obj, attr, targetStaus, interval = 10, speed = 3, callback = () => {}) {
+    let isFinished = false;
 
-
-    // 如果该attr在timer中已存在
-    if (obj.timer == null) obj.timer = {};
-    // console.log(attr in obj.timer);
-    if (attr in obj.timer) {
-        clearInterval(obj.timer[attr]);
-        // console.log(1);
-    }
-
-    obj.timer[attr] = setInterval(() => {
-
-        // 实时获取当前属性的取值
-        let currentValue = parseInt(getComputedStyle(obj)[attr]);
-        // console.log(currentValue);
-
-        // 如果目标属性的取值小于当前属性取值则 speed 取负
-        if (speed > 0 && currentValue > targetStaus) speed = -speed;
-
-        // 更新属性取值
-        let newValue = currentValue + speed;
-
-        // 左移时 newValue 小于目标值 或者 右移时 newValue 大于目标值 则把 newValue 设置为目标值
-        // 目的是让动画结束后元素能准确处于目标属性取值
-        if ((speed < 0 && newValue < targetStaus) || (speed > 0 && newValue > targetStaus)) {
-            newValue = targetStaus;
-        }
-
-        obj.style[attr] = newValue + 'px';
-        // 当前属性取值处于目标状态时停止动画
-        if (currentValue == targetStaus) {
+  
+        // 如果该attr在timer中已存在
+        if (obj.timer == null) obj.timer = {};
+        // console.log(attr in obj.timer);
+        if (attr in obj.timer) {
             clearInterval(obj.timer[attr]);
-
-            // 动画执行完毕后执行回调函数
-            callback();
+            // console.log(1);
         }
-    }, interval)
+
+        obj.timer[attr] = setInterval(() => {
+
+            // 实时获取当前属性的取值
+            let currentValue = parseInt(getComputedStyle(obj)[attr]);
+            // console.log(currentValue);
+
+            // 如果目标属性的取值小于当前属性取值则 speed 取负
+            if (speed > 0 && currentValue > targetStaus) speed = -speed;
+
+            // 更新属性取值
+            let newValue = currentValue + speed;
+
+            // 左移时 newValue 小于目标值 或者 右移时 newValue 大于目标值 则把 newValue 设置为目标值
+            // 目的是让动画结束后元素能准确处于目标属性取值
+            if ((speed < 0 && newValue < targetStaus) || (speed > 0 && newValue > targetStaus)) {
+                newValue = targetStaus;
+            }
+
+            obj.style[attr] = newValue + 'px';
+            // 当前属性取值处于目标状态时停止动画
+            if (currentValue == targetStaus) {
+                clearInterval(obj.timer[attr]);
+
+                // 动画执行完毕后执行回调函数
+                callback();
+                isFinished = true;
+            }
+        }, interval)
+    
 }
+
+
+// //参数n为休眠时间，单位为毫秒:
+// function sleep(n) {
+//     var start = new Date().getTime();
+//     //  console.log('休眠前：' + start);
+//     while (true) {
+//         if (new Date().getTime() - start > n) {
+//             break;
+//         }
+//     }
+//     // console.log('休眠后：' + new Date().getTime());
+// }
