@@ -1,305 +1,198 @@
-var btn_left_push = document.getElementById('btn-left-push');
-var btn_right_push = document.getElementById('btn-right-push');
-var btn_left_pop = document.getElementById('btn-left-pop');
-var btn_right_pop = document.getElementById('btn-right-pop');
-var btn_sort = document.getElementById('btn-sort');
-var btn_random = document.getElementById('btn-random');
-var input_interval = document.getElementById('input-interval');
-var input_data = document.getElementById('input-data');
-var div_queue = document.getElementById('div-queue');
-var elements = div_queue.children;
-var backup = [];
-var input = '';
-var reg = /^[0-9]{1,}$/;
-var isRandom = false;
+var data = [];
+var $ = function (id) {
+    return document.getElementById(id);
+}
+$('widget').addEventListener('click', e => {
+    // 获取输入的数据
+    let input = Number($('input-data').value.trim());
 
-initEvent();
+    switch (e.target.id) {
+        case "btn-left-push":
+            // 检测输入，如果输入不合法则break
+            if (!checkInput(input)) break;
+            // 如果输入的数据超过50则break
+            if (data.length > 50) {
+                alert('队列已满，无法继续添加数据！')
+                break;
+            }
+            // 向左插入元素
+            data.unshift(input);
+            $('input-data').value = '';
+
+            // 重新渲染div-queue
+            render();
+
+            break;
+        case "btn-right-push":
+            if (!checkInput(input)) break;
+            if (data.length > 50) {
+                alert('队列已满，无法继续添加数据！')
+                break;
+            }
+            data.push(input);
+            $('input-data').value = '';
+
+            render();
+
+            break;
+        case "btn-left-pop":
+            if (data.length == 0) {
+                alert('队列为空，无法弹出数据！');
+                break;
+            }
+            alert(data.shift());
+            render();
+
+            break;
+        case "btn-right-pop":
+            if (data.length == 0) {
+                alert('队列为空，无法弹出数据！');
+                break;
+            }
+            alert(data.pop());
+            render();
+            break;
+        case "btn-sort":
+            let i = data.length - 1,
+                j = 1,
+                timer = null;
+
+            let inerval = $('input-interval').value;
+            // 用定时器模拟循环结构，在里面实现冒泡排序！！！想了好久！！！！！
+            timer = setInterval(() => {
+                if (i >= 0) {
+                    if (j <= data.length - 1) {
+                        if (data[j - 1] > data[j]) {
+                            [data[j], data[j - 1]] = [data[j - 1], data[j]];
+                            render(j - 1, j);
+                        }
+                        j++;
+                    } else {
+                        i--;
+                        j = 0;
+                    }
+                } else {
+                    clearInterval(timer);
+                }
+            }, inerval);
+
+            break;
+        case "btn-random":
+            for (let i = 0; i < 50; i++) {
+                data[i] = Math.round(Math.random() * 90 + 10);
+            }
+            render();
+            break;
+    }
+});
+
+
+// 渲染的时候让指定交换的元素的高度缓慢上升
+function render(...arr) {
+
+    if (arr.length != 0) {
+        // 先获取两个待交换的元素
+        let element1 = $(`${ arr[0] }`);
+        let element2 = $(`${ arr[1] }`);
+
+
+        element1.style.background = 'blue';
+        element2.style.background = 'blue';
+
+        setTimeout(() => {
+            element1.style.background = 'red';
+            element2.style.background = 'red';
+        }, Number($('input-interval').value) * 2);
 
 
 
-function initEvent() {
-    btn_left_push.onclick = () => {
-        if (!getInput()) {
-            return;
+        // 同时设置高度变化的动画
+        transform(element1, 'height', data[arr[0]] * 2, (Number($('input-interval').value) / 2) - 5, 5);
+        transform(element2, 'height', data[arr[1]] * 2, (Number($('input-interval').value) / 2) - 5, 5);
+
+
+    } else {
+        let content = '';
+        for (let i = 0; i < data.length; i++) {
+            content += `<div id="${ i }", style="height:${ data[i] * 2 }px;"></div>`
         }
-        var element = document.createElement('div');
-        element.style.height = `${ Number(input) * 2 }px`;
-        push('left', element);
-    }
-    btn_right_push.onclick = () => {
-        if (!getInput()) {
-            return;
-        }
-        var element = document.createElement('div');
-        element.style.height = `${ Number(input) * 2 }px`;
-        push('right', element);
-    }
-    btn_left_pop.onclick = () => {
-        isRandom = false;
-        pop('left');
-    }
-    btn_right_pop.onclick = () => {
-        isRandom = false;
-        pop('right');
-    }
-    btn_sort.onclick = () => {
-        sort();
-    }
-
-    // 随机生成50组数据(取值在10-100)
-    btn_random.onclick = () => {
-
-        isRandom = true;
-
-        // 如果队列中有元素存在则清空队列
-        if (elements.length > 0) {
-            clear();
-        }
-
-        for (let i = 0; i < 50; i++) {
-            let element = document.createElement('div');
-            element.style.height = `${ Math.round((Math.random() * 90 + 10)) * 2 }px`;
-            push('left', element);
-        }
+        $('div-queue').innerHTML = content;
     }
 }
 
-// 清空队列中的所有元素
-function clear() {
-    let elementCounts = elements.length;
-    for (let i = 0; i < elementCounts; i++) {
-        pop('left');
-    }
-}
 
-// 获取输入的数字到input中
-function getInput() {
-    input = input_data.value.trim();
-    // 输入有误
-    if (!reg.test(input) || Number(input) > 100 || Number(input) < 10) {
-        alert('输入数据有误，请重新输入！');
-        input_data.value = '';
+function checkInput(input) {
+    if (isNaN(input) || input < 10 || input > 100) {
+        alert('输入的数据不合法，请重新输入！');
+        $('input-data').value = '';
         return false;
     }
-    input_data.value = '';
     return true;
 }
 
 
-function push(direction, element) {
-
-    if (elements.length <= 50) {
-        if (direction === 'left') {
-
-            // 先让原来的所有元素向右移动 15px
-            let temp = div_queue.firstElementChild;
-            while (temp != null) {
-                temp.style.left = (parseInt(getComputedStyle(temp).left) + 15) + 'px';
-                temp = temp.nextElementSibling;
-            }
-
-            // 插入新元素
-            div_queue.insertBefore(element, div_queue.firstElementChild);
-
-        } else if (direction === 'right') {
-            // 找到栈顶元素
-            let temp = div_queue.firstElementChild;
-            while (temp != null && temp.nextElementSibling != null) {
-                temp = temp.nextElementSibling;
-            }
-
-            // 如果 temp 为 null 则说明栈为空，否则其为栈顶元素
-            if (temp == null) {
-                div_queue.append(element);
-            } else {
-                // 获取栈顶元素的left， left + 15 即为压栈元素的偏移量
-                element.style.left = (parseInt(getComputedStyle(temp).left) + 15) + 'px';
-                div_queue.appendChild(element);
-            }
-        }
-    } else {
-        alert('队列中已经无法再添加元素！');
-    }
-
-}
-
-function pop(direction) {
-    // 如果queue长度为0
-    if (elements.length == 0) {
-        alert('队列为空，无法再弹出元素！');
-    } else {
-        if (direction === 'left') {
-
-            let data = div_queue.firstElementChild.clientHeight;
-
-            // 先移除最左边的元素
-            div_queue.removeChild(div_queue.firstElementChild);
-
-            if (!isRandom) alert(data / 2);
-
-            // 后面的每一个元素向左移 15px
-            let temp = div_queue.firstElementChild;
-            while (temp != null) {
-                temp.style.left = (parseInt(getComputedStyle(temp).left) - 15) + 'px';
-                temp = temp.nextElementSibling;
-            }
-
-        } else if (direction === 'right') {
-            let data = div_queue.lastElementChild.clientHeight;
-
-            if (!isRandom) alert(data / 2);
-
-            // 直接移除最右边的元素
-            div_queue.removeChild(div_queue.lastElementChild);
-
-        }
-    }
-}
-
-/*
-    思路：
-        1. 先
+function transform(obj, attr, targetStatus, interval, speed, callback = () => {}) {
 
 
+    // 如果第一次为这个元素开启定时器
+    if (obj.animation == undefined) obj.animation = {};
 
+    // 防止开启多个同一个定时器，导致动画加速， BUG:如果在上一个动画结束之前，这样无法在同级设置同一个属性的动画了！！
+    // 在上一个同级同属性动画执行完毕后，再为该定时器设置新的同级属性动画
+    // 动画结束后，就会在obj.animation中删除相关的属性
+    if (obj.animation[attr] == undefined) {
+        obj.animation[attr] = {};
 
-*/
-
-
-function sort() {
-
-    for (let i = elements.length - 1; i >= 0; i--) {
-        for (let j = 1; j <= i; j++) {
-            // 获取元素的数据
-            let elementData1 = elements[j - 1].clientHeight / 2;
-            let elementData2 = elements[j].clientHeight / 2;
-            if (elementData1 > elementData2) {
-                swap(elements, j - 1, j);
-            }
-        }
-    }
-
-
-
-}
-// 现在的问题是：
-// 1. elements 数组内存放的是元素对象
-// 2. 如何在这个数组中交换两个对象的值？
-// 
-// 
-function swap(arr, index1, index2) {
-    // 拷贝原数组
-    backup = [];
-    for (let i = 0; i < elements.length; i++) {
-        backup[i] = elements[i];
-    }
-
-
-    // index1 和 index2 分别为待交换的两个元素在数组中的下标
-    // 先获取两个元素
-    let element1 = backup[index1];
-    let element2 = backup[index2];
-
-
-    // 再获取两个元素的 left 偏移量
-    let offLeft1 = element1.offsetLeft;
-    let offLeft2 = element2.offsetLeft;
-
-    // 在 backup 数组中交换这两个节点的顺序
-    backup[index1] = element2;
-    backup[index2] = element1;
-
-    console.log(
-        '================='
-    );
-    backup.forEach((element) => {
-        console.log(element);
-    });
-
-    elements = backup;
-
-    // 动画平移
-    transform(element1, 'left', offLeft2, 10, 3, () => {
-        element1.style.left = offLeft2 + 'px';
-    });
-    transform(element2, 'left', offLeft1, 10, 3, () => {
-        element2.style.left = offLeft1 + 'px'; // // 重新渲染 div-queue
-        let newHTML = [];
-        for (let i = 0; i < backup.length; i++) {
-            newHTML.push(`<div style="height: ${ backup[i].clientHeight }px; left: ${ backup[i].offsetLeft }px;"></div>`);
-        }
-        div_queue.innerHTML = newHTML.join('');
-    });
-
-
-
-}
-
-
-/*
-    参数：
-        obj: 元素对象
-        attr: 需要修改的属性名称
-        targetStatus: 属性的目标取值
-        interval: 动画速度
-        speed: 动画速度
-        callback: 回调函数，在当前动画执行完毕后执行
-
-    功能：用于元素的宽高变化、绝对定位变化等动画操作
-*/
-
-function transform(obj, attr, targetStaus, interval = 10, speed = 3, callback = () => {}) {
-    let isFinished = false;
-
-  
-        // 如果该attr在timer中已存在
-        if (obj.timer == null) obj.timer = {};
-        // console.log(attr in obj.timer);
-        if (attr in obj.timer) {
-            clearInterval(obj.timer[attr]);
-            // console.log(1);
-        }
-
-        obj.timer[attr] = setInterval(() => {
+        obj.animation[attr].target = targetStatus;
+        obj.animation[attr].timer = setInterval(() => {
 
             // 实时获取当前属性的取值
             let currentValue = parseInt(getComputedStyle(obj)[attr]);
-            // console.log(currentValue);
 
             // 如果目标属性的取值小于当前属性取值则 speed 取负
-            if (speed > 0 && currentValue > targetStaus) speed = -speed;
+            if (speed > 0 && currentValue > targetStatus) speed = -speed;
 
             // 更新属性取值
             let newValue = currentValue + speed;
 
             // 左移时 newValue 小于目标值 或者 右移时 newValue 大于目标值 则把 newValue 设置为目标值
             // 目的是让动画结束后元素能准确处于目标属性取值
-            if ((speed < 0 && newValue < targetStaus) || (speed > 0 && newValue > targetStaus)) {
-                newValue = targetStaus;
+            if ((speed < 0 && newValue < targetStatus) || (speed > 0 && newValue > targetStatus)) {
+                newValue = targetStatus;
             }
 
             obj.style[attr] = newValue + 'px';
             // 当前属性取值处于目标状态时停止动画
-            if (currentValue == targetStaus) {
-                clearInterval(obj.timer[attr]);
+            if (currentValue === targetStatus) {
+                clearInterval(obj.animation[attr].timer);
 
+                // 删除定时器中的相关属性
+                delete obj.animation[attr];
                 // 动画执行完毕后执行回调函数
                 callback();
-                isFinished = true;
             }
         }, interval)
-    
+    } else {
+
+        // 第二次使用同一个属性设置动画：
+        // 如果该属性动画仍存在说明还没有执行完
+
+        // 如果当前设置的属性值与上一个设置的属性值相同则没必要再开启定时器来判断
+        if (targetStatus != obj.animation[attr].target) {
+
+            // 开一个定时器，每隔 10ms 来判断上一个同类动画是否执行完
+            let tempTimer = setInterval(() => {
+
+                // 如果属性已经不存在animation对象中，说明已经执行完该动画
+                if (!(attr in obj.animation)) {
+                    // 开启新动画
+                    transform(obj, attr, targetStatus, interval, speed, callback);
+
+                    // 停止判断
+                    clearInterval(tempTimer);
+                    tempTimer = null;
+                }
+            }, 10);
+        }
+    }
 }
-
-
-// //参数n为休眠时间，单位为毫秒:
-// function sleep(n) {
-//     var start = new Date().getTime();
-//     //  console.log('休眠前：' + start);
-//     while (true) {
-//         if (new Date().getTime() - start > n) {
-//             break;
-//         }
-//     }
-//     // console.log('休眠后：' + new Date().getTime());
-// }

@@ -78,7 +78,9 @@
                 'x'.padEnd(5, 'ab') // 'xabab'
                 'x'.padEnd(4, 'ab') // 'xaba'
 
-            注意：指定的补齐
+        (2) repeat() 赋值一个字符串
+
+        
 
             
         

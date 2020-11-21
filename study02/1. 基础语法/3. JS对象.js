@@ -55,7 +55,7 @@
 
         (7) in 运算符
                 作用：可以检查一个对象中是否包含某个属性
-                语法："属性名" in 对象
+                语法：属性名字符串 in 对象
 
 
         (8) 补充一下，关于对象的属性名加引号与不加引号
@@ -95,6 +95,5 @@ var person = {
     'age': 20,
     gender: 0
 };
-person.timer = {}
-person.timer["attr"] = 12;
-console.log("attr" in person.timer);
+
+console.log('name' in person);

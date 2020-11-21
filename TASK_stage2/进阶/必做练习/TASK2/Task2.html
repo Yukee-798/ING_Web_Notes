@@ -9,9 +9,11 @@
         #div-queue>div {
             width: 10px;
             background-color: red;
-            /* float: left; */
-            /* margin: 0px 5px 0 0; */
-            position: absolute;
+
+            float: left;
+            margin: 0px 5px 0 0;
+
+            /* position: absolute; */
         }
 
         #div-queue::after {
@@ -28,7 +30,7 @@
             margin: 20px 0 0 0;
             display: flex;
             align-items: flex-end;
-            position: relative;
+            /* position: relative; */
         }
 
         button {
@@ -37,7 +39,7 @@
     </style>
 </head>
 <body>
-    <label>
+    <label id="widget">
         <input type="text" id="input-data">
         <button type="button" id="btn-left-push">左侧入</button>
         <button type="button" id="btn-right-push">右侧入</button>
@@ -45,13 +47,13 @@
         <button type="button" id="btn-right-pop">右侧出</button>
         <button type="button" id="btn-sort">排序</button>
         <button type="button" id="btn-random">随机50</button>
-        interval(ms)：<input type="text" id="input-interval" value="10" />
+        interval(ms)：<input type="text" id="input-interval" value="50" />
     </label>
-    <div id="div-queue" style="position: relative;">
-        <div style="height: 200px; left: 0;"></div>
-        <div style="height: 100px; left: 15px;"></div>
-        <div style="height: 50px; left: 30px;"></div>
-        <!-- <div style="height: 25px; left: 45px;"></div> -->
+    <div id="div-queue">
+<!-- 
+        <div id="0" style="height: 200px;"></div>
+        <div id="1" style="height: 150px;"></div>
+        <div id="2" style="height: 100px;"></div> -->
     </div>
 
 

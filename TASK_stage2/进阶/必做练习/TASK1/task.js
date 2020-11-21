@@ -14,7 +14,8 @@ initEvent();
 function initEvent() {
     // 给div_queue绑定一个委托事件，点击其子元素则删除
     div_queue.onclick = (event) => {
-        if (event.target.toString() === '[object HTMLDivElement]') {
+        if (event.target.toString() === '[object HTMLSpanElement]') {
+            alert(event.target.innerHTML);
             div_queue.removeChild(event.target);
         }
     };
@@ -26,7 +27,7 @@ function initEvent() {
             return;
         }
         // 输入成功则插入元素
-        let element = document.createElement('div');
+        let element = document.createElement('span');
         element.innerHTML = input;
         push('left', element);
     }
@@ -37,7 +38,7 @@ function initEvent() {
         }
 
         // 输入成功则插入元素
-        let element = document.createElement('div');
+        let element = document.createElement('span');
         element.innerHTML = input;
         push('right', element);
 
@@ -70,9 +71,11 @@ function initEvent() {
             alert('队列为空，无法取出元素！');
         } else {
             if (direction === 'left') {
+                alert(div_queue.firstElementChild.innerHTML);
                 div_queue.removeChild(div_queue.firstElementChild);
                 queue.shift();
             } else if (direction === 'right') {
+                alert(div_queue.firstElementChild.innerHTML);
                 div_queue.removeChild(div_queue.lastElementChild);
                 queue.pop();
             }
@@ -83,8 +86,12 @@ function initEvent() {
         // 先接受输入的数字
         input = input_text.value.trim();
 
+        // 清除多余的0
+        let [...charArr] = input;
+        while (charArr[0] == '0') charArr.shift();
+        input = charArr.join('');
         if (!reg.test(input)) {
-            alert('输入有误，请输入数字！');
+            alert('输入有误，请输入有效的数字！');
             input_text.value = '';
             // 输入失败
             return false;

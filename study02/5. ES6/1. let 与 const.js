@@ -162,13 +162,6 @@
 
 
 
-
-{
-    let i = 32;
-
-    function print() {
-        console.log(i);
-        
-    }
-    print();
-}
+const arr = [1, 2, 3, 4];
+[arr[1], arr[2]] = [arr[2], arr[1]];
+console.log(arr);

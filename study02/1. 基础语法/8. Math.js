@@ -18,7 +18,7 @@
     Math.ceil(x) 向上取整
     Math.round(x) 四舍五入为整数
     Math.floor(x) 向下取整
-    Math.random(x) 返回 0 ～ 1 之间的随机数
+    Math.random() 返回 0 ～ 1 之间的随机数
     Math.sqrt(x) 开二次方根
     Math.pow(a, b) a的b次方
     Math.max(a, b, c...) 获取多个数中的最大值
