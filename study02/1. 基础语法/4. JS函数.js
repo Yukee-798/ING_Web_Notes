@@ -240,7 +240,7 @@
             例子：
             function fn2(a, b) {};
             var obj2 = {};
-            fn2.call(obj1, [2, 3]);
+            fn2.apply(obj1, [2, 3]);
 
 十五、arguments
     1. 基本概念：在调用函数时，浏览器每次都会传入两个隐含的参数
@@ -284,10 +284,10 @@
 
 function add(a , b) {
     console.log(a + b);
-    add(a + 1, b + 1);
 }
 
-add(1, 2);
+add.call(null,1, 2);
+add.apply(null,[1, 2]);
 
 
 

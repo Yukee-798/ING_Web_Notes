@@ -96,4 +96,12 @@ var person = {
     gender: 0
 };
 
-console.log('name' in person);
+var person2 = {
+    'name': "kl",
+    'age': 20,
+    gender: 1
+};
+
+let str = '123';
+
+console.log([...str]);

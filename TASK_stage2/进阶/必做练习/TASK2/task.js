@@ -1,4 +1,5 @@
 var data = [];
+var sort_timer;
 var $ = function (id) {
     return document.getElementById(id);
 }
@@ -55,26 +56,39 @@ $('widget').addEventListener('click', e => {
         case "btn-sort":
             let i = data.length - 1,
                 j = 1,
-                timer = null;
+                inerval = $('input-interval').value;
 
-            let inerval = $('input-interval').value;
-            // 用定时器模拟循环结构，在里面实现冒泡排序！！！想了好久！！！！！
-            timer = setInterval(() => {
-                if (i >= 0) {
-                    if (j <= data.length - 1) {
-                        if (data[j - 1] > data[j]) {
-                            [data[j], data[j - 1]] = [data[j - 1], data[j]];
-                            render(j - 1, j);
+            // 判断一下定时器是否开启，防止开启多个定时器
+            if (sort_timer == undefined)
+                // 用定时器模拟循环结构，在里面实现冒泡排序！！！想了好久！！！！！
+                sort_timer = setInterval(() => {
+                    if (i >= 0) {
+                        if (j <= i) {
+                            let element1 = $(`${j - 1}`);
+                            let element2 = $(`${j}`);
+
+                            element1.style.background = 'green';
+                            element2.style.background = 'green';
+
+                            setTimeout(() => {
+                                element1.style.background = 'red';
+                                element2.style.background = 'red';
+                            }, Number($('input-interval').value) * 2);
+
+                            if (data[j - 1] > data[j]) {
+                                [data[j], data[j - 1]] = [data[j - 1], data[j]];
+                                render(j - 1, j);
+                            }
+                            j++;
+                        } else {
+                            i--;
+                            j = 1;
                         }
-                        j++;
                     } else {
-                        i--;
-                        j = 0;
+                        clearInterval(sort_timer);
+                        sort_timer = undefined;
                     }
-                } else {
-                    clearInterval(timer);
-                }
-            }, inerval);
+                }, inerval);
 
             break;
         case "btn-random":
@@ -86,7 +100,6 @@ $('widget').addEventListener('click', e => {
     }
 });
 
-
 // 渲染的时候让指定交换的元素的高度缓慢上升
 function render(...arr) {
 
@@ -94,7 +107,6 @@ function render(...arr) {
         // 先获取两个待交换的元素
         let element1 = $(`${ arr[0] }`);
         let element2 = $(`${ arr[1] }`);
-
 
         element1.style.background = 'blue';
         element2.style.background = 'blue';
@@ -104,12 +116,9 @@ function render(...arr) {
             element2.style.background = 'red';
         }, Number($('input-interval').value) * 2);
 
-
-
         // 同时设置高度变化的动画
         transform(element1, 'height', data[arr[0]] * 2, (Number($('input-interval').value) / 2) - 5, 5);
         transform(element2, 'height', data[arr[1]] * 2, (Number($('input-interval').value) / 2) - 5, 5);
-
 
     } else {
         let content = '';
@@ -120,7 +129,6 @@ function render(...arr) {
     }
 }
 
-
 function checkInput(input) {
     if (isNaN(input) || input < 10 || input > 100) {
         alert('输入的数据不合法，请重新输入！');
@@ -130,9 +138,7 @@ function checkInput(input) {
     return true;
 }
 
-
 function transform(obj, attr, targetStatus, interval, speed, callback = () => {}) {
-
 
     // 如果第一次为这个元素开启定时器
     if (obj.animation == undefined) obj.animation = {};
@@ -173,7 +179,6 @@ function transform(obj, attr, targetStatus, interval, speed, callback = () => {}
             }
         }, interval)
     } else {
-
         // 第二次使用同一个属性设置动画：
         // 如果该属性动画仍存在说明还没有执行完
 
