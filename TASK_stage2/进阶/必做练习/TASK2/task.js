@@ -125,7 +125,7 @@ function render(...arr) {
         for (let i = 0; i < data.length; i++) {
             content += `<div id="${ i }", style="height:${ data[i] * 2 }px;"></div>`
         }
-        $('div-queue').innerHTML = content;
+        $('div-queue').innerHTML = content;     
     }
 }
 
