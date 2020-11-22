@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d09b3a4b-7111-4b5e-baa4-b2b8cfe9433a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/Task2.html" beforeDir="false" afterPath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/Task2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/task.js" beforeDir="false" afterPath="$PROJECT_DIR$/TASK_stage2/进阶/必做练习/TASK2/task.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/study02/1. 基础语法/6. Array.js" beforeDir="false" afterPath="$PROJECT_DIR$/study02/1. 基础语法/6. Array.js" afterDir="false" />
@@ -66,7 +67,7 @@
       <updated>1605323684209</updated>
       <workItem from="1605323687032" duration="317000" />
       <workItem from="1605324062806" duration="6000" />
-      <workItem from="1605612579513" duration="1527000" />
+      <workItem from="1605612579513" duration="2073000" />
     </task>
     <servers />
   </component>

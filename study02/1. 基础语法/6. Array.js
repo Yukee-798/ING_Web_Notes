@@ -150,27 +150,11 @@
 */
 
 
-var objs = [{
-    num: 1
-}, {
-    num: 2
-}];
+let arr = [];
+arr[0] = 1;
+arr[8] = 10;
 
-console.log(objs);
-
-swap(objs, 0, 1);
-
-function swap(arr, index1, index2) {
-    let temp1 = arr[index1];
-    let temp2 = arr[index2];
-
-    arr[index1] = temp2;
-    arr[index2] = temp1;
-}
-
-
-
-console.log(objs);
+console.log(arr[1]);
 
 
 // console.log(sort([1, 3, 0, -1, -5, 8, 2]));

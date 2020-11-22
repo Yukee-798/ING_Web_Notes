@@ -17,7 +17,6 @@
             line-height: 40px;
             float: left;
             margin: 5px 5px 0 0;
-            cursor: pointer;
         }
 
         #container::after {
@@ -47,43 +46,6 @@
     </div>
 </body>
 
-<script>
-    var $ = id => document.getElementById(id);
-    var data = [];
-    $('widgets').addEventListener('click', e => {
-        switch (e.target.id) {
-            case 'btn-insert':
-                data.push(...getData());
-                $('textarea-data').value = '';
-                render();
-                break;
-
-            case 'btn-search':
-                render($('input-search'));
-                break;
-
-        }
-    });
-
-    // 以 换行符、制表符、回车、逗号、空格、减号、/ 、* 、\ 、下划线 来分割字符串
-    function getData() {
-        let reg = /[\n\t\r,\s-/\*\\_]+/g;
-        let strArr = $('textarea-data').value.split(reg);
-        return strArr;
-    }
-
-    function render(...arr) {
-        if (arr.length == 0) {
-            let str = '';
-            for (let i = 0; i < data.length; i++) {
-                str += `<span>${data[i]}</span>`;
-            }
-            $('container').innerHTML = str;
-        } else {
-            // 模糊查询
-        }
-
-    }
-</script>
+<script src="task.js"></script>
 
 </html>
