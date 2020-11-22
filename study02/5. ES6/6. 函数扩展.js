@@ -3,7 +3,7 @@
 
     // 调用该函数的时候只传入一个参数，则 b 会设置为默认值
     function fn(a, b = 100) {
-        console.log(a + ' ' + b);
+        console.log(a + ' ' + b); 
     }
 
     // 还可以是一个表达式

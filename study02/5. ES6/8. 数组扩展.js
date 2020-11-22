@@ -9,7 +9,7 @@
     Math.max.apply(null, [4, 5, 0, 1, 9]); // 与上面的等价
 
     接受生成器函数的yield
-
+ 
     function* g() {
         console.log(1);
         yield 'hello';
