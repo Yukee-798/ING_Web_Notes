@@ -12,7 +12,7 @@ $('widget').addEventListener('click', e => {
             // 检测输入，如果输入不合法则break
             if (!checkInput(input)) break;
             // 如果输入的数据超过50则break
-            if (data.length > 50) {
+            if (data.length > 49) {
                 alert('队列已满，无法继续添加数据！')
                 break;
             }
@@ -26,7 +26,7 @@ $('widget').addEventListener('click', e => {
             break;
         case "btn-right-push":
             if (!checkInput(input)) break;
-            if (data.length > 50) {
+            if (data.length > 49) {
                 alert('队列已满，无法继续添加数据！')
                 break;
             }

@@ -25,7 +25,7 @@
             let [ , , , [ , , , [ , , h]]] = arr2;
 
         (2) 扩展运算符 ...
-            const arr1 = [1, 2, 3];
+            const arr1 = [1, 2, 3];  
             const arr2 = ['a', 'b', 'c'];
             const arr3 = [4, 5, 6];
 

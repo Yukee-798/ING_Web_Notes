@@ -5,6 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #container>span {
+            display: block;
+            width: 70px;
+            height: 40px;
+            background-color: pink;
+            font-size: 20px;
+            color: black;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            margin: 5px 5px 0 0;
+            cursor: pointer;
+        }
+
+        #container::after {
+            width: 0;
+            height: 0;
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,17 +41,49 @@
         <button type="button" id="btn-search">查询</button>
         <input type="text" id="input-search" />
     </label>
+    <div id="container">
+        <!-- <span>123</span>
+        <span>456</span> -->
+    </div>
 </body>
 
 <script>
     var $ = id => document.getElementById(id);
-    // $('textarea-data')
-    // $('btn-insert')
-    // $('btn-search')
-    // $('input-search')
+    var data = [];
     $('widgets').addEventListener('click', e => {
-        
+        switch (e.target.id) {
+            case 'btn-insert':
+                data.push(...getData());
+                $('textarea-data').value = '';
+                render();
+                break;
+
+            case 'btn-search':
+                render($('input-search'));
+                break;
+
+        }
     });
+
+    // 以 换行符、制表符、回车、逗号、空格、减号、/ 、* 、\ 、下划线 来分割字符串
+    function getData() {
+        let reg = /[\n\t\r,\s-/\*\\_]+/g;
+        let strArr = $('textarea-data').value.split(reg);
+        return strArr;
+    }
+
+    function render(...arr) {
+        if (arr.length == 0) {
+            let str = '';
+            for (let i = 0; i < data.length; i++) {
+                str += `<span>${data[i]}</span>`;
+            }
+            $('container').innerHTML = str;
+        } else {
+            // 模糊查询
+        }
+
+    }
 </script>
 
 </html>
