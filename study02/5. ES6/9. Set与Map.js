@@ -33,11 +33,10 @@
         (4) clear() 清空集合
 
     7. 遍历方法
-        (1) keys()
+        (1) keys()、values()、entries()
             
-        (2) values()
-        (3) entries()
-        (4) forEach()
+ 
+        (2) forEach()
 
 
 
