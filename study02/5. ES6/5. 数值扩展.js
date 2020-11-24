@@ -12,13 +12,15 @@
 2. 新的方法
     Number.isFinite(), Number.isNaN()
     Number.parseInt(), Number.parseFloat()
+    
     Number.isInteger()
+    Number.isSafeInteger()
 
 
 3. 安全数
-    Number.MAX_SAFE_INTEGER
-    Number.MIN_SAFE_INTEGER
-    Number.isSafeInteger()
+    Number.MAX_SAFE_INTEGER: 表示在 JavaScript 中最大的安全整数（ 253 - 1）。
+    Number.MIN_SAFE_INTEGER: 表示在 JavaScript中最小的安全的 integer 型数字(-(253 - 1))。
+    Number.EPSILON: 表示 1 和比最接近 1 且大于 1 的最小 Number 之间的差别
 
 4. 幂运算符 **
     2 ** 3 // 表示2的3次方
@@ -27,3 +29,7 @@
 
 6. BigInt
 */
+
+
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(Number.MAX_VALUE);
