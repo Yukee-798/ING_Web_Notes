@@ -70,11 +70,11 @@
 
 
 <body>
-<div class="mover"></div>
-<form>
-    <input type="text" id="inputColor"/>
-    <input type="button" id="btn" value="添加一个"/>
-</form>
+    <div class="mover"></div>
+    <form>
+        <input type="text" id="inputColor" />
+        <input type="button" id="btn" value="添加一个" />
+    </form>
 
 </body>
 
@@ -116,46 +116,8 @@
             document.body.appendChild(div);
         }
 
-        document.body.onmousedown = function (event) {
-            if (event.target.className == "mover") {
-                isMousedown = true;
+        move();
 
-                div_target = event.target;
-                // 获取mover左上角坐标，用于找到点击位置与元素左上角的偏移量
-                var mltX = event.target.offsetLeft;
-                var mltY = event.target.offsetTop;
-                offX = x - mltX;
-                offY = y - mltY;
-
-                // 把当前移动的元素index-z设置为最大
-                event.target.style.zIndex = "999";
-
-                event.target.style.border = "orange 5px solid";
-                // console.log(window.getComputedStyle(event.target, null).border);
-                return false;
-            }
-        }
-
-        document.body.onmouseup = function (event) {
-            isMousedown = false;
-            if (event.target.className == "mover") {
-                // 把当前移动的元素index-z设置为最大
-                event.target.style.zIndex = "1";
-                event.target.style.border = "black 1px solid";
-            }
-        }
-
-        document.body.onmousemove = function (event) {
-            // 获取鼠标坐标
-            x = event.clientX;
-            y = event.clientY;
-
-            if (isMousedown) {
-                // 修改mover的定位
-                div_target.style.left = (x - offX) + 'px';
-                div_target.style.top = (y - offY) + 'px';
-            }
-        }
 
 
         speed = 2;
@@ -174,7 +136,7 @@
                     if (keyCode === 37) {
                         // 左
                         div_target.style.left = (div_target.offsetLeft - speed) <= 0 ? 0 : (div_target
-                                .offsetLeft -
+                            .offsetLeft -
                             speed) + 'px';
                         div_target.style.boxShadow = shadow_length + "px 0 10px -3px " + shadow_color;
                     } else if (keyCode === 38) {
@@ -217,8 +179,51 @@
             keyCode = 0;
             div_target.style.boxShadow = null;
         }
+    }
 
 
+
+    function move() {
+        document.body.onmousedown = function (event) {
+            if (event.target.className == "mover") {
+                isMousedown = true;
+
+                div_target = event.target;
+                // 获取mover左上角坐标，用于找到点击位置与元素左上角的偏移量
+                let mltX = event.target.offsetLeft;
+                let mltY = event.target.offsetTop;
+                offX = x - mltX;
+                offY = y - mltY;
+
+                // 把当前移动的元素index-z设置为最大
+                event.target.style.zIndex = "999";
+
+                event.target.style.border = "orange 5px solid";
+                // console.log(window.getComputedStyle(event.target, null).border);
+                return false;
+            }
+        }
+
+        document.body.onmouseup = function (event) {
+            isMousedown = false;
+            if (event.target.className == "mover") {
+                // 把当前移动的元素index-z设置为最大
+                event.target.style.zIndex = "1";
+                event.target.style.border = "black 1px solid";
+            }
+        }
+
+        document.body.onmousemove = function (event) {
+            // 获取鼠标坐标
+            x = event.clientX;
+            y = event.clientY;
+
+            if (isMousedown) {
+                // 修改mover的定位
+                div_target.style.left = (x - offX) + 'px';
+                div_target.style.top = (y - offY) + 'px';
+            }
+        }
     }
 </script>
 
