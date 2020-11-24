@@ -17,9 +17,9 @@
 
         （4） 不断调用指针对象的 next 方法， 直到它指向数据结构的结束位置。
 
-            每一次调用 next 方法， 都会返回数据结构的当前成员的信息。 
-            具体来说， 就是返回一个包含 value 和 done 两个属性的对象。 
-            其中， value 属性是当前成员的值， done 属性是一个布尔值， 表示遍历是否结束。
+        每一次调用 next 方法， 都会返回数据结构的当前成员的信息。 
+        具体来说， 就是返回一个包含 value 和 done 两个属性的对象。 
+        其中， value 属性是当前成员的值， done 属性是一个布尔值， 表示遍历是否结束。
 
 二、默认的 Iterator 接口
     1. 概念：
@@ -35,8 +35,10 @@
         Set
         String
         TypedArray
+
+
         函数的 arguments 对象
-        NodeList 对象
+        DOM的 NodeList 对象
 
     3. 数组使用遍历器
         let arr = ['a', 'b', 'c'];
@@ -63,7 +65,35 @@
         一个数据结构只要部署了Symbol.iterator 属性， 就被视为具有 iterator 接口， 就可以用 for... of 循环遍历它的成员。 
         也就是说，for... of 循环内部调用的是数据结构的 Symbol.iterator 方法。
 
-        (1) 数组的遍历：
+        (1) entries()、 keys()、 values()
+            上面的方法是用来获取 数组、 Set、 Map 的键值遍历器、 键遍历器、 值遍历器的
+
+            对于 Array、 Set、 Map 我们都可以把其中的元素看作键值对
+            Array: 索引就是键名， 元素值就是值， 使用
+            for of 的时候默认调用 values()
+            Set: 键名和键值一样， 使用
+            for of 的时候默认调用的 keys()
+            Map: 本身就是键值对， 使用
+            for of 的时候默认调用的 entries()
+
+            let arr = [1, 2, 3];
+
+            // 遍历数组下标
+            for (e of arr.keys()) {
+                console.log(e);
+            }
+
+            // 遍历数组元素值
+            for (e of arr.values()) {
+                console.log(e);
+            }
+
+            // 以 [数组下标, 元素值] 形式遍历数组
+            for (e of arr.entries()) {
+                console.log(e);
+            }
+
+        (2) 数组的遍历：
             const arr = [1, 'green', 'blue'];
 
             // 这里的 e 就表示 arr 中的每个元素，数组中有几个元素那么 for 循环就会执行几次 
@@ -76,9 +106,10 @@
                 (2) for in 和 for of 的区别
                         for... in 循环读取键名，for... of 循环读取键值。 
                         如果要通过for... of 循环， 获取数组的索引， 可以借助数组实例的 entries 方法和 keys 方法
+                (3) 这里默认使用的是 arr.values() 遍历器
 
 
-        (2) Set 的遍历：
+        (3) Set 的遍历：
 
             var engines = new Set(["Gecko", "Trident", "Webkit", "Webkit"]);
             // e 就是每次遍历从 Set 集合中取出的元素
@@ -89,9 +120,10 @@
             注意：
                 (1) 遍历元素顺序会按照存入元素的顺序依次遍历出来
                 (2) 每次拿到的元素是一个是一个值
+                (3) 这里默认调用的是 set.keys() / set.values()
 
 
-        (3) Map 的遍历
+        (4) Map 的遍历
 
             var map = new Map();
             map.set(1001, { name: 'momo', age: 18});
@@ -105,6 +137,11 @@
             注意：
                 (1) 遍历元素顺序会按照存入元素的顺序依次遍历出来
                 (2) 每次拿到的元素是一个数组，其中包含 key 和 value 两个元素
+                (3) 这里默认调用的是 set.entries()
+
+
+
 
 
 */
+

@@ -122,19 +122,38 @@
                 });
 
 
+    11. filter() 过滤数组
+
+    array.filter(function (currentValue, index, arr), thisValue)
+    如果回调函数返回true则会保留传入的value到一个新到数组中
+
+    let arr = [19, 18, 3, 2, 19, 20, 16];
+
+    // x 表示arr数组中的每个元素，回调函数返回true则保留x
+    let newArr = arr.filter(x => x >= 18);
+
+
+
+    12. map() 映射数组
+
+    array.map(function (currentValue, index, arr), thisValue)
+    将回调函数的返回值传给新数组
+
+    let arr = [1, 3, 6, 10];
+    // 将原数组中每个元素乘2放入新数组中
+    let newArr = arr.map(e => e * 2);
+
+
             
-
-
-
 八、forEach()
     1. 作用：可以用来遍历数组
     2. 需要传入一个函数对象，通常直接使用匿名函数
     3. 这种由我们创建，而不由我们调用的称为回调函数，通常由浏览器自己调用
 
     4. 数组中有几个元素，该方法就会执行几次，每次执行时，浏览器会传入三个实参到匿名函数中
-        第一个参数：数组中的元素
-        第二个参数：元素对应的下标
-        第三个参数：数组对象本身
+        第一个参数：键名
+        第二个参数：键值
+        第三个参数：集合本身
 
         arr.forEach(
             function(element, index, arr) {

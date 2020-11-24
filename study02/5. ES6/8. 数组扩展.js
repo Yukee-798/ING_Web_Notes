@@ -34,9 +34,9 @@
 
         参数1： 传入一个类数组对象、 Iterable对象
         参数2：
-        传入一个回调函数， 在调用 Array.from() 方法时会自动调用回调函数
-        会依次传入对象的每个属性的取值， 然后在函数体内可以操作这个参数并返回到新数组中
-        注意！！！ 这个回调函数一定要有返回值， 否则新数组中的元素全为 undefined
+            传入一个回调函数， 在调用 Array.from() 方法时会自动调用回调函数
+            会依次传入对象的每个属性的取值， 然后在函数体内可以操作这个参数并返回到新数组中
+            注意！！！ 这个回调函数一定要有返回值， 否则新数组中的元素全为 undefined
 
         例子：
         let obj = {
@@ -61,11 +61,31 @@
 
     (4) Array.includes() 判断数组中是否含有某个元素
 
-    (5) keys() 返回数组的迭代器对象
+    (5) keys()、values()、entries()
+        详见 Iterator 章节
 
-    (6)
+    (6) find() 返回符合测试条件的第一个数组元素值
 
-    (7)
+        array.find(function (currentValue, index, arr), thisValue)
+        回调函数返回true则找到第一个符合条件的值
+
+        let arr = [1, 2, 3, 4];
+
+        // 返回数组中第一个偶数
+        let num = arr.find(x => x % 2 == 0);
 
 
+    (7) findIndex() 返回数组符合测试条件的第一个元素位置
+
+        array.findIndex(function (currentValue, index, arr), thisValue)
+        回调函数返回true则找到第一个符合条件的值的下标
+
+
+        let arr = [1, 2, 3, 4];
+
+        // 返回数组中第一个偶数的下标
+        let index = arr.findIndex(x => x % 2 == 0);
 */
+
+
+console.log(num);

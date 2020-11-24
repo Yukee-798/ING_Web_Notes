@@ -34,21 +34,57 @@
 
     7. 遍历方法
         (1) keys()、values()、entries()
+
+            Set.prototype.keys()： 返回键名的遍历器
+            Set.prototype.values()： 返回键值的遍历器
+            Set.prototype.entries()： 返回键值对的遍历器
+
+            详见Iterator章节
             
  
         (2) forEach()
 
+            let set = new Set([1, 4, 9]);
+            set.forEach((value, key) => console.log(key + ' : ' + value))
+            // 1 : 1
+            // 4 : 4
+            // 9 : 9
+
+    8. 将Set转为数组
+
+        let set = new Set(['red', 'green', 'blue']);
+        let arr1 = [...set];
+        let arr2 = Array.from(set);
+
+        // ['red', 'green', 'blue']
+
+    9. 数组中的 map 和 filter 方法间接用于 Set
+
+        let set = new Set([1, 2, 3]);
+        set = new Set([...set].map(x => x * 2));
+        // 返回Set结构：{2, 4, 6}
+
+        let set = new Set([1, 2, 3, 4, 5]);
+        set = new Set([...set].filter(x => (x % 2) == 0));
+        // 返回Set结构：{2, 4}
+
+        应用：实现集合的并集、交集、差集
+            let a = new Set([1, 2, 3]);
+            let b = new Set([4, 3, 2]);
+
+            // 并集
+            let union = new Set([...a, ...b]);
+            // Set {1, 2, 3, 4}
+
+            // 交集
+            let intersect = new Set([...a].filter(x => b.has(x)));
+            // set {2, 3}
+
+            // （a 与 b 的）差集
+            let difference = new Set([...a].filter(x => !b.has(x)));
+            // Set {1}
 
 
 
 
 */
-// let person1 = {};
-// let person2 = {}
-// let set = new Set();
-// set.add(person1);
-// set.add(person2);
-// console.log(set);
-
-
-console.log(new Set().add(1).add(2)); // {1, 2}
