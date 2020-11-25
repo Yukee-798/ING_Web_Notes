@@ -1,3 +1,21 @@
+div:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    border: black 1px solid;
+    margin: 100px auto 0 auto;
+    transform: scale(0.5, 0.3) translate(10px, 30px) skew(10deg, 20deg);
+}
+
+div:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    border: black 1px solid;
+    /* transform: rotate3d(1, 0, 0, 20deg); */
+    /* transform: rotate3d(1, 1, 0, 20deg); 沿着主对角线旋转 */
+    /* transform: rotate3d(1, -1, 0, 20deg);  沿着副对角线旋转*/
+    transform: rotate3d(1, 0, 0, 20deg) translate3d(30px, 50px, 0) scale3d(2, 1.5, 1);
+}
+
 /* 
 一、概览
     1. Transform
@@ -15,7 +33,7 @@
     让元素在一个坐标系统中变形，这个属性包含一系列变形函数，可以移动、旋转和缩放元素。
 
 二、语法
-    transform: none | <transform-function> 可以无限制放多个函数
+    transform: ratate(20deg) scale(0.5, 0.3) translate(10px, 30px) skew(10deg, 20deg);
 
  ======================== 2D转换 ======================
 
@@ -53,7 +71,7 @@
         (2) 语法：
             transformX(数值)
             transformY(数值)
-            transform(数值,数值)
+            transform(10px,30px)
 
             注意：这里的数值单位可以用所有单位如: px % em vh vw
 
@@ -62,7 +80,7 @@
         (2) 语法：
             transform: skewX(角度) 使元素在水平方向扭曲变形
             transform: skewY(角度) 使元素在垂直方向扭曲变形
-            transform: skew(x, y)
+            transform: skew(20deg, 30deg)
 
     ====================== 3D转换 =====================
     1. 三维参考系：
@@ -113,21 +131,6 @@
             transform-origin: left top;
             transform-orgin: 50% 50%; 表示基准点在元素的中心(默认情况)
 
-*/
-
-
-/* ====================== CSS3 矩阵 =================== (了解) */
-/* 
-    一、写在前面
-        CSS3中的矩阵指的是一个方法，matrix()和matrix3d()
-
-    二、matrix()和matrix3d()
-        1. matrix() 指的是2d变化矩阵，是一个3x3矩阵
-            (1) 语法：transform: matrix()
-
-
-
-        2. matrix3d() 指的是3d变化矩阵，是一个4x4矩阵
 */
 
 
