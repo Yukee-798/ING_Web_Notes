@@ -33,7 +33,12 @@ div:nth-child(2) {
     让元素在一个坐标系统中变形，这个属性包含一系列变形函数，可以移动、旋转和缩放元素。
 
 二、语法
+    2d 转换
     transform: ratate(20deg) scale(0.5, 0.3) translate(10px, 30px) skew(10deg, 20deg);
+
+    3d转换
+    transform: ratate3d(1, 1, 1, 20deg) scale3d(0.5, 0.3, 0.5) translate3d(10px, 30px, 20px);
+
 
  ======================== 2D转换 ======================
 
