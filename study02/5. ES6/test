@@ -1,0 +1,9 @@
+select 职工号 from emp where 仓库号 in (select 仓库号 from warehouse where 城市='上海') and 职工号 in (select 职工号 from ord where 供应商号='S6')
+select 订购单号 from ord where 职工号 in (select 职工号 from emp where 工资>1230) and 供应商号 in (select 供应商号 from spl where 地址='北京')
+select count(*) from warehouse
+select * from warehouse where 面积=(select max(面积) from warehouse)
+select avg(面积) from warehouse
+select avg(面积) from warehouse where 仓库号 in (select 仓库号 from emp where 职工号 in (select 职工号 from ord where 供应商号='S4'))
+select 地址,count(*) from spl group by 地址
+select 仓库号,count(*) from emp where 工资>1220 group by 仓库号
+select count(*) from spl where 供应商号 in (select 供应商号 from ord where 职工号 in (select 职工号 from emp where 仓库号 in (select 仓库号 from warehouse where 面积=(select min(面积) from warehouse))))

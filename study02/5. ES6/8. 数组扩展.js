@@ -52,14 +52,14 @@
     (2) Array.of() 将传入的所有参数转为数组
             let arr = Array.of(1, 2, 3, 'momo');
 
-    (3) fill() 填充数组
+    (3) fill(newElement) 填充数组
             作用： 用于指定元素来 填充一个只有长度的空数组 / 覆盖原有的数组元素
             例子：
             const arr = new Array(10).fill(0); // 用 0 来初始化这个数组
             [1, 2, 3].fill(-1); // 原来的数组会被 -1 覆盖
             [1, 2, 3, 4, 5].fill(0, 1, 3); // 从下标 1 ～ 3 用 0 填充数组
 
-    (4) Array.includes() 判断数组中是否含有某个元素
+    (4) includes(searchElement, ?fromIndex) 判断数组中是否含有某个元素
 
     (5) keys()、values()、entries()
         详见 Iterator 章节

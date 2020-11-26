@@ -223,9 +223,9 @@
     2. 应用
         将一个字符串分解为字符数组
         var str = "hello";
-        var [ ...charArr1 ] = str;
-        var charArr2 = str.split("");
-        var charArr3 = [ ...str ];
+var [ ...charArr1 ] = str;
+var charArr2 = str.split("");
+var charArr3 = [ ...str ];
 
 六、数值与布尔值的解构赋值(了解)
 
