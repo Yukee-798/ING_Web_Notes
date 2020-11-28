@@ -168,12 +168,9 @@
 
 */
 
-
-let arr = [];
-arr[0] = 1;
-arr[8] = 10;
-
-console.log(arr[1]);
+let arr = [1, 2, 3];
+arr.splice(1, 2);
+console.log(arr);
 
 
 // console.log(sort([1, 3, 0, -1, -5, 8, 2]));

@@ -12,7 +12,7 @@
         }
 
         .container {
-            margin: 100px auto 0 auto;
+            margin: 20px auto 0 auto;
             font-size: 0;
             width: 500px;
             height: 500px;
@@ -26,12 +26,53 @@
             border: gray 1px solid;
             box-sizing: border-box;
         }
+
+        .console {
+            width: 300px;
+            height: 80px;
+            margin: 30px auto 0 auto;
+        }
+
+        .console div {
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            user-select: none;
+        }
+
+        .console div>button {
+            border: none;
+            width: 80px;
+            height: 40px;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .console div>button:focus { outline: none; }
+
+        button:nth-child(1) { background: rgb(29, 78, 118); }
+        button:nth-child(2) { background: rgb(230, 65, 44); }
+        button:nth-child(3) { background: rgb(195, 148, 7); }
+
+        .console button:nth-child(1):active { background: rgba(29, 78, 118, 0.73); }
+        .console button:nth-child(2):active { background: rgba(230, 65, 44, 0.73); }
+        .console button:nth-child(3):active { background: rgba(195, 148, 7, 0.73); }
+        
     </style>
 </head>
 
 <body>
+    <div class="console">
+        <div>
+            <button id="start-btn" type="button">开始</button>
+            <button id="pause-btn" type="button">暂停</button>
+            <button id="restart-btn" type="button">重制</button>
+        </div>
+    </div>
     <div class="container">
-
         <div></div>
         <div></div>
         <div></div>
@@ -2533,139 +2574,7 @@
         <div></div>
         <div></div>
     </div>
-    <script>
-        var $ = e => document.querySelector(e);
-        var nodeList = $('.container').children;
-        class Food {
-            // 记录食物存放过的位置
-            static foodArr = [];
-            // 记录当前食物存在的位置
-            postion = this.randomFood();
-
-            constructor() {
-                Food.foodArr.push(this.postion);
-                // 在页面中渲染
-                this.render();
-            }
-
-            // 无重复随机生成食物
-            randomFood() {
-                // 生成一个 0 ～ 2499 的随机数
-                let index = Math.round(Math.random() * 2499);
-                while (Food.foodArr.includes(index)) {
-                    index = Math.round(Math.random() * 2499);
-                }
-                return index;
-            }
-            render() {
-                nodeList[this.postion].style.background = 'red';
-            }
-        }
-
-
-
-
-
-        class Snack {
-            length = 1;
-            birthPosition = this.randomBirth();
-            main = null;
-            // 默认向右
-            direction = 39;
-
-
-            constructor() {
-
-                this.main = {
-                    // 蛇的头部下标
-                    head: this.birthPosition,
-                    // 蛇的身体
-                    body: [this.birthPosition],
-                    // 接受方向键的时候蛇身体的转折处
-                    turn: undefined
-                }
-            }
-            eat() {
-                this.length++;
-            }
-
-            move(direction) {
-                switch (direction) {
-                    // 左
-                    case 37:
-                        this.main.head--;
-
-                        break;
-                        // 上
-                    case 38:
-                        break;
-
-                        // 右
-                    case 39:
-                        break;
-
-                        // 下
-                    case 40:
-                        break;
-
-                }
-            }
-
-            // 判断蛇是否死亡
-            isDead() {
-                
-                let overTop = this.main.head < 0;
-                let overBottom = this.main.head > 2499;
-                
-                // 运动方向为左且头部处于左边界
-                let overLeft = 
-
-                // 运动方向为右且头部处于右边界
-                let overRight
-
-                // 如果蛇头超出了边界则死亡
-
-                // 如果蛇头重叠了蛇身则死亡
-            }
-
-            randomBirth() {
-                let birthPosition = Math.round(Math.random() * 2499);
-                // 不能与食物的出生点重叠
-                while (birthPosition == Food.foodArr[0]) {
-                    birthPosition = Math.round(Math.random() * 2499);
-                }
-                return birthPosition;
-            }
-        }
-
-
-
-
-        document.addEventListener('keydown', e => {
-
-            switch (e.keyCode) {
-                // 左
-                case 37:
-
-                    break;
-
-                    // 上
-                case 38:
-
-                    break;
-
-                    // 右
-                case 39:
-
-                    break;
-
-                    // 下
-                case 40:
-
-                    break;
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

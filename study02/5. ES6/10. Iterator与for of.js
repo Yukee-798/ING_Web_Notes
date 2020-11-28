@@ -145,3 +145,9 @@
 
 */
 
+
+
+let arr = [1, 2, 3];
+for (e of arr) {
+    console.log(typeof e);
+}
