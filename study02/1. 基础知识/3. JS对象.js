@@ -102,6 +102,5 @@ var person2 = {
     gender: 1
 };
 
-let str = '123';
-
-console.log([...str]);
+delete person2['name'];
+console.log(Object.keys(person2))

@@ -31,10 +31,11 @@
 </body>
 
 <script>
-    const [...arr] = document.getElementsByTagName('div');
-    const arr2 = Array.prototype.slice.call(document.getElementsByTagName('div'));
-    console.log(arr);
-    console.log(arr2);
+   function Person() {
+
+   }
+   console.log(Person.prototype.__proto__ === Object.prototype);
+   console.log(new Person().__proto__.__proto__);
 
 </script>
 

@@ -11,29 +11,29 @@
     2. 语法：父元素 > 子元素
     3. 例子：
         结构：div>article>div+div
-        子选择器使用：div > div，表示的是最外层div的下一层直接子元素div，不会选择article下的div
+        子选择器使用：div>div，表示的是最外层div的下一层直接子元素div，不会选择article下的div
 
 三、相邻兄弟元素选择器(相邻下一个)
     1. 概念：选择元素相邻的下一个兄弟元素
     2. 语法：元素 + 兄弟相邻元素
     3. 例子：
         结构：div>div+article>div+article>div
-        相邻兄弟元素选择器的使用：div > div + article，表示的是选择最外层div的直接子元素div的相邻下一个兄弟元素article
+        相邻兄弟元素选择器的使用：div>div+article，表示的是选择最外层div的直接子元素div的相邻下一个兄弟元素article
 
 四、通用兄弟选择器(相邻后面所有)
     1. 概念：选择元素后面的所有兄弟元素
     2. 语法：元素 ~ 其后面的所有兄弟元素
     3. 例子：
         结构：div>div+article>div+article>div
-        通用兄弟选择器的使用：div > div ~ article，表示的选择最外层div的直接子元素div后面的所有article兄弟元素
+        通用兄弟选择器的使用：div>div~article，表示的选择最外层div的直接子元素div后面的所有article兄弟元素
 
 五、群组选择器
     很简单，看下例子就好
     语法：..,..,..
     例子：
-        div > div,
-        div > article,
-        div > p {
+        div>div,
+        div>article,
+        div>p {
             color: #0ff;
         }
 
@@ -119,6 +119,20 @@
     3. :checked
 
 四、结构选择器
+    使用场景：
+        <div>
+            <button></button>
+            <button></button>
+            <span></span>
+            <span></span>
+            <button></button>
+        </div>
+
+        button:nth-child(1) 就表示第一个按钮
+        button:nth-child(2) 就表示第二个按钮
+        button:nth-child(3) 无表示，因为div的第三个子元素不是button
+        span:nth-child(3) 表示第一个span
+
     1. Element:first-child
          选择Element是其父容器中的第一个子元素的元素 
 
@@ -173,7 +187,7 @@
 
 使用场景：
     在nav中每个导航中间有一根短线，但是对每个li都设置右边框的话，最后会多个边框出来
-    nav > li:not(:last-of-type) {
+    nav>li:not(:last-of-type) {
         border-right: black 1px solid;
     }
     这句话的意思就是nav下的所有子元素li中除了最后一个不设置右边框外，其余的要设置
