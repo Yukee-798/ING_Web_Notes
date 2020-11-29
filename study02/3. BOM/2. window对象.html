@@ -1,19 +1,34 @@
 <!-- 
-一、常用方法
-    三个弹窗：alert() / confirm() / prompt()
-    ... 其余的查文档
-
-    还有几个关于定时器的方法，下面会详细介绍
 
 
-二、定时器
+一、基本概念
+    1. window 是浏览器的实例，它是通过JS访问浏览器窗口的一个接口，也是ES规定的全局对象
+    2. 所有的全局变量和方法都是 window 的属性
+
+二、常用方法
+    (1) 三个弹窗：
+        - alert(msg) 弹出带有msg消息和确定按钮待警告窗
+        - confirm(msg) 弹出带有指定msg消息和确定按钮还有取消按钮的对话窗口，返回 true / false 
+        - prompt('text', 'defaultText')  弹出具text提示消息和默认值的输入框，点击取消返回null，点击确认返回输入的文本
+    (2) 定时器：循环定时器 ，延时定时器
+    (3) window.open(pageURL, name, parameters) 打开一个新的窗口 
+         pageURL: 子窗口路径
+         name: 子窗口句柄
+         parameters: 窗口参数
+
+    (4) window.close() 关闭当前窗口对象
+         
+         详见备忘录
+
+
+三、定时器
     通过window的4个方法来实现
         - setInterval()
         - setTimeout()
         - clearInterval()
         - clearTimeout()
 
-三、定时器的定时调用与关闭定时器
+四、定时器的定时调用与关闭定时器
     1. setInterval()
 
         作用：执行完该方法后就会开启一个定时器，会按照设置的间隔时间来调用回调函数
@@ -39,7 +54,7 @@
         参数：传入一个定时器序号(Number)
 
 
-四、延时调用
+五、延时调用
     1. setTimeout()
         
         作用：延迟指定时间后调用一次该方法

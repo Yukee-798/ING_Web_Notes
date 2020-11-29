@@ -63,6 +63,11 @@
 
 七、练习题：见备忘录
 
+八、原型链继承
+    让子类型的原型指向父类型的一个实例对象
+    Sub.prototype = new Supper();
+
+
 */
 
 console.log({}.__proto__ === Object.prototype);

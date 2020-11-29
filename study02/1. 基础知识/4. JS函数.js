@@ -282,14 +282,7 @@
 
 
 
-
-function add(a , b) {
-    console.log(a + b);
-}
-
-add.call(null,1, 2);
-add.apply(null,[1, 2]);
-
+console.log(Object.prototype.__proto__);
 
 
 
