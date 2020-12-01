@@ -51,6 +51,97 @@
 
 
 四、getter 与 setter
+    1. 作用：给属性提供一个钩子，在获取属性值和设置属性值的时候可以做一些额外的事情
+       形如：
+        get name() {} // 此时只要是访问 this.name 就会执行一次 get name() 方法
+            这里调用 this.name 就相当于 Java中 this.getName()
+
+        set age(val) {} // 此时只要是修改 this.age 的值就会执行一次 set age() 方法
+            这里调用 this.name = 'kl' 就相当于 Java中 this.setName('kl')
+
+        注意：set 和 get 后面是这两个方法的名字，并不是我们要访问的属性名，与 Java 不同的地方就是
+            调用该方法的形式改变了！！ 
+
+    2. ES5中的 getter / setter
+        (1) 在对象字面量中直接设置 get 和 set 方法
+            var obj = {
+                _name: 'momo',
+                get name() {
+                    return this._name;
+                },
+
+                set name(val) {
+                    this._name = val;
+                }
+            };
+        
+        (2) 使用 Object.defineProperty(对象, 属性名字符串, {关于属性的描述} (传入的是一个对象))
+            
+            使用例子：
+
+                // 给对象设置一个 age 属性 取值为 Number 类型的 18 ，并且可枚举
+                Object.defineProperty(obj, 'age', {
+                    value: 18,
+                    enumerable: true // 不设置则不可枚举
+                }); 
+
+                // 为对象的 _name属性 设置 get 和 set 方法
+                // 
+                Object.defineProperty(obj, 'name', {
+                    get: function() {
+                        return this._name;
+                    }
+                    set: function(val) {
+                        this._name = val;
+                    }
+                });
+
+    3. ES6 中 set 和 get 方法的使用
+            class Person {
+
+                _name;
+                _age;
+
+                constructor(name, age) {
+                    this._name = name;
+                    this._age = age;
+                }
+
+                get name() {
+                    return this._name;
+                }
+
+                set name(val) {
+                    this._name = val;
+                }
+
+                get age() {
+                    return this._age;
+                }
+
+                set age(val) {
+                    this._age = val;
+                }
+            }
+
+    4. 关于 get 和 set 方法的使用场景
+            对于贪吃蛇的 _status 状态我们给其设置 get status 和 set status 方法  
+            set status(val) {
+                switch(val) {
+                    case UserAction.PAUSE: 
+                        // 这里就写让蛇暂停的方法
+                    break;
+
+                    case UserAction.RUNNING:
+                        // 这里就写让蛇运动的方法
+                    break;
+
+                    case UserAction.RESTART:
+                        // 这里刷新页面
+
+                    break;
+                }
+            }
 
 五、类表达式
     const Person = class P {
@@ -80,6 +171,8 @@
     
 
 */
+
+
 
 
 
@@ -143,4 +236,3 @@ class AudioPlayer {
         this.container.appendChild(this.dom);
     }
 }
-
