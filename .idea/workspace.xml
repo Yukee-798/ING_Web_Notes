@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d09b3a4b-7111-4b5e-baa4-b2b8cfe9433a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/study02/5. ES6/10. Iterator与for of.js" beforeDir="false" afterPath="$PROJECT_DIR$/study02/5. ES6/10. Iterator与for of.js" afterDir="false" />
-    </list>
+    <list default="true" id="d09b3a4b-7111-4b5e-baa4-b2b8cfe9433a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,6 +62,7 @@
       <workItem from="1605324062806" duration="6000" />
       <workItem from="1605612579513" duration="2255000" />
       <workItem from="1606094438155" duration="200000" />
+      <workItem from="1606645545675" duration="16000" />
     </task>
     <servers />
   </component>
