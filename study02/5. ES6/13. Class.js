@@ -5,7 +5,7 @@
 二、ES6中的类
     
     (1) 类的数据类型就是函数， 类本身就指向构造函数。
-    (2) 类的所有方法都定义在类的 prototype 属性上面
+    (2) 类的所有方法都定义在类的 prototype 属性上面，除非用显示定义属性在实例上，如：this.name = 'momo'
     (3) 类相当于实例对象的原型， 所有在类中定义的方法， 都会被实例继承
     (4) prototype 对象的 constructor 属性， 直接指向“ 类” 的本身
     (5) 枚举类中的方法属性只能使用 Object.getOwnPropertyNames(类名)，Object.keys(类名)不可用
@@ -151,6 +151,9 @@
         }
     }
 
+    // 类也可以不用名称
+    const Person = class {}
+
     注意：
         (1) 类名 P 只能在class的内部可用
         (2) 在class外部只能用 Person这个引用
@@ -166,8 +169,45 @@
     }('momo', 18);
 
 六、name 属性中的 new.target 属性
+    1. name 属性：用于获取类名
+        const Human = class {}
+        console.log(Human.name); // Human
 
-七、在 ES5 中模拟类 
+        const Human = class P {}
+        console.log(Human.name); // P
+
+
+
+
+七、在 ES5 中模拟类(了解)
+
+八、ES6中的继承
+    1. 作用：让子类获得父类的方法、属性，可以扩充新的方法和属性
+    2. 语法：
+        class Sup {}
+        class Sub extends Sup {}
+    3. super 关键字
+
+        作为函数调用：
+            (1) 在子类的构造器中必须先通过 super() 调用父类构造去塑造出自己的 this 对象，得到与父类同样的实例属性和方法
+            (2) 调用 super() 时，会创建一个 当前类的 this 对象并且包含了其父类的所有方法和属性！注意父类的方法属性都是绑定在this上的
+        
+        作为对象使用：
+            (1) super 在子类的非静态方法中表示父类的 prototype
+                    - 此时通过 super 调用父类的方法的时候，父类方法中的 this 指向的是当前子类的实例
+                    - super.x = 3 == this.x = 3
+
+            (2) super 在子类的静态方法中表示其父类
+                    - 此时调用通过 super 调用父类方法，方法中的 this 指向子类(不是子类实例)
+            
+九、类中的 proto 与 prototype
+    1. 子类本身
+
+        （1）子类的 proto 属性，表示构造函数的继承，总是指向父类。
+        （2）子类 prototype 属性的 proto 属性，表示方法的继承，总是指向父类的 prototype 属性。
+
+    2. 子类实例的 proto 
+        子类实例的 proto 属性的 proto 属性，指向父类实例的 proto 属性。也就是说，子类的原型的原型，是父类的原型。
     
 
 */
