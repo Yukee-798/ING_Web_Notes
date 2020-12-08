@@ -1,0 +1,60 @@
+<!-- 
+一、基本概念
+    全称：hypertext transport protocol 协议 「超文本传输协议」
+    该协议详细规定了浏览器和万维网服务器之间相互通信的规则
+
+二、请求报文
+    1. 概念：浏览器发送给服务器的内容就是请求
+    2. 格式：
+        ==================================================================
+         请求行：包含 请求类型(比如GET、POST) / URL 路径 / HTTP协议版本(HTTP/1.1)
+
+         请求头： Host: danermo.com
+                Cookie: name=danermo
+                Content-type: application/x-www-form-urlencoded
+                User-Agent: chrome 83
+                (记住这种格式：名字、冒号、空格、内容)
+
+         请求空行
+         请求体：GET 请求的请求体为空 ，POST 请求的请求体可以不为空
+        ===================================================================
+
+        例子：
+            POST /s?ie=utf-8 HTTP/1.1 (请求行)
+            HOST: atguigu.com (请求头)
+            Cookie: name=guigu
+            Content-type: application/x-www-form-urlencoded
+            User-Agent: chrome 83
+
+            username=admin&password=admin (请求体)
+
+三、响应报文
+    1. 概念：服务器给浏览器返回的结果就是响应
+    2. 格式：
+        ==================================================================
+        响应行：协议版本(HTTP/1.1) 响应状态码(200) 响应状态字符串(OK)
+
+        响应头： Content-type: text/html;charset=utf-8
+                Content-length: 2048
+                Content-encoding: gzip 
+
+        响应空行
+        响应体：从服务器的主要返回结果，比如返回一个HTML结构，这样在解析完后就可以显示到页面中了
+        ===================================================================
+
+    3. 例子：
+        HTTP/1.1    200     OK
+        Content-type: text/html;charset=utf-8
+        Content-length: 2048
+        Content-encoding: gzip
+
+        <html>
+            <head>
+
+            </head>
+            <body>
+                <h1>hello momo</h1>
+            </body>
+        </html>
+
+ --> 

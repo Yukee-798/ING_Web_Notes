@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX GET 请求</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            border: black 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 移动到边框中就会发送POST请求并返回请求结果到div中 -->
+    <div id="result">
+
+    </div>
+    <script>
+        const result = document.getElementById('result');
+
+        result.addEventListener('mouseover', () => {
+            // 1. 创建对象
+            const xhr = new XMLHttpRequest();
+
+            // 2. 请求初始化设置
+            xhr.open('POST', 'http://127.0.0.1:8000/server');
+
+            // 3. 发送请求
+            xhr.send();
+
+            // 4. 事件绑定
+            xhr.onreadystatechange = () => {
+                // 如果服务端已经返回了所有内容
+                if (xhr.readyState === 4) {
+                    // 如果请求成功
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // 处理服务端返回的结果
+                        result.innerHTML = xhr.response;
+                    }
+
+                } else {
+                    console.log('请求失败');
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

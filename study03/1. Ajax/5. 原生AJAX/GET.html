@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX GET 请求</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 100px;
+            border: black 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击发送请求</button>
+    <!-- 服务端返回的内容显示在div中 -->
+    <div id="result"></div>
+
+
+    <script>
+        const btn = document.getElementsByTagName('button')[0];
+        btn.onclick = () => {
+            // =============== AJAX 操作步骤 ================
+            // 1. 创建对象
+            const xhr = new XMLHttpRequest();
+
+            // 2. 初始化：设置请求方法和 URL
+            // xhr.open('GET', 'http://127.0.0.1:8000/server');
+            // 补充：设置请求参数
+            xhr.open('GET', 'http://127.0.0.1:8000/server?a=100&b=200&c=300');
+
+            // 3. 发送请求
+            xhr.send();
+
+            // 4. 处理服务端返回的内容
+            // 解释一下 onreadystatechange
+            // on: 当...时候
+            // readyState: 是 xhr 中的属性，表示状态 0 1 2 3 4
+            //      0 表示还未初始化设置 (open 方法还未调用)
+            //      1 表示初始化设置完毕 (open 方法已调用) 
+            //      2 表示已经向服务端发送了请求 (send 方法已调用完毕)
+            //      3 表示服务端返回了部分的内容 
+            //      4 表示服务端已经返回了所有的内容
+
+
+            xhr.onreadystatechange = () => {
+                // 如果服务端已经返回了所有内容 
+                if (xhr.readyState === 4) {
+                    // 判断响应状态码 (200 404 403 401 500)
+                    // 2xx 开头的响应状态码均表示请求成功
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // 处理服务端返回的内容 (行、头、空行、体)
+                        /*
+                        console.log(xhr.status); // 响应行中的响应状态码
+                        console.log(xhr.statusText); // 响应行中的响应状态字符串
+                        console.log(xhr.getAllResponseHeaders()); // 获取所有响应头 
+                        console.log(xhr.response); // 获取服务端返回的响应体
+                        */
+
+                        // 将相应体的所有结果呈现在div中
+                        document.getElementById('result').innerHTML = xhr.response;
+                        
+
+                    }
+                }
+            }
+        };
+    </script>
+
+</body>
+
+</html>
