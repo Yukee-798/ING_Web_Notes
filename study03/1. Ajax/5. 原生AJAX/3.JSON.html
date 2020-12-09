@@ -1,0 +1,43 @@
+<!-- 服务端响应JSON数据案例 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            border: black 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script>
+        const result = document.getElementById('result');
+        result.addEventListener('mouseover', () => {
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+            xhr.open('POST', 'http://127.0.0.1:8000/server-json');
+            xhr.send();
+            
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // 手动转换服务端传输过来的JSON字符串
+                        // const obj = JSON.parse(xhr.response);
+                        // 还有自动转换的方式：在上面代码中设置xhr.responseType = 'json';
+                        // 则传输过来的 xhr.response 就会自动将 json 字符串转化为 js对象
+                        const obj = xhr.response;
+                        result.innerHTML = `姓名：${obj.name}，性别：${obj.gender == 0 ? '女' : '男'}`;
+                    }
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX GET 请求</title>
+    <title>AJAX POST 请求</title>
     <style>
         div {
             width: 200px;
@@ -29,8 +29,23 @@
             // 2. 请求初始化设置
             xhr.open('POST', 'http://127.0.0.1:8000/server');
 
+            // 补充：设置请求头信息
+            // 传入请求头的名字和取值
+            // Content-Type 是用来设置请求体内容类型
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // 这是自定义的请求头信息，浏览器出于安全考虑会进行报错提醒，'Content-Type' 是预定义的请求头信息
+            // 解决方式就是在服务端代码中设置
+            // response.setHeader("Access-Control-Allow-Headers", "*" );
+            // 并且 app 使用 all 接受
+            xhr.setRequestHeader('name', 'hellomomo');
+
             // 3. 发送请求
-            xhr.send();
+            // xhr.send();
+            // 补充：POST请求发送参数的方式和GET请求发送参数的方式不同哦！
+            // 实际上这里是设置 POST 请求的请求体
+            xhr.send('a=100&b=200&c=300'); // POST 请求发送的参数外部不可见
+            // xhr.send('1234678912'); 格式不唯一，可以随意
 
             // 4. 事件绑定
             xhr.onreadystatechange = () => {
@@ -43,7 +58,7 @@
                     }
 
                 } else {
-                    console.log('请求失败');
+                    
                 }
             }
         });
