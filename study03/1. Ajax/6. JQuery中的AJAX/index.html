@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery发送AJAX请求</title>
+    <!-- 加上 crossorigin 可以在向链接发送请求的时候会匿名当前域名下的cookie -->
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>JQuery发送请求</h1>
+    <hr>
+    <button>GET</button>
+    <button>POST</button>
+    <button>通用型方法</button>
+    <script>
+        const btns = document.getElementsByTagName('button');
+        // 发送 GET 请求
+        // 参数1：服务端 url API
+        // 参数2：请求参数，传递一个对象
+        // 参数3：是一个回调函数，当服务端返回内容的时候调用，其中 data 是服务端响应体的封装
+        // 参数4：表示响应体类型
+        btns[0].onclick = () => {
+            $.get('http://127.0.0.1:8000/server-JQuery', { a: 100, b: 200 }, (data) => {
+                console.log(data.name);
+            }, 'json');
+        }
+        btns[1].onclick = () => {
+             $.post('http://127.0.0.1:8000/server-JQuery', { a: 100, b: 200 }, (data) => {
+             console.log(data);
+             }, 'json');
+        }
+
+        // JQuery 中通用方法发送请求
+        btns[2].onclick = () => {
+            $.ajax({
+                // url
+                url: 'http://127.0.0.1:8000/server-JQuery',
+                // 请求参数
+                data: {a: 100, b: 200},
+                // 请求类型
+                type: 'GET',
+                // 响应体类型
+                dataType: 'json',
+                // 成功的回调
+                success: function(data) {
+                    console.log(data);
+                },
+                // 超时实际
+                timeout: 2000,
+                // 请求失败回调：超时、网络异常...等情况都会回调该方法
+                error: function() {
+                    alert('出错啦！');
+                },
+                // 设置请求头信息
+                headers: {
+                    name: 'momo'
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -50,7 +50,50 @@ app.all('/server-json', (request, response) => {
     response.send(JSON.stringify(person));
 });
 
+// 模拟服务端响应延时
+app.get('/server-delay', (request, response) => {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Headers", "*");
+
+    // 延时3s再响应请求
+    setTimeout(()=>{
+        const a = 'hello';
+        response.send(a);
+    },3000);
+});
+
+// JQuery 服务
+app.get('/server-JQuery', (request, response) => {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Headers", "*");
+
+    // 延时3s再响应请求
+    // setTimeout(() => {
+        const a = {
+            name: 'momo',
+            age: 18
+        };
+        response.send(JSON.stringify(a));
+    // }, 3000);
+});
+
+app.all('/server-JQuery', (request, response) => {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Headers", "*");
+
+    // 延时3s再响应请求
+    // setTimeout(() => {
+    const a = { name: 'momo', age: 18};
+    response.send(JSON.stringify(a));
+    // }, 3000);
+});
+
 // 4. 监听端口启动服务 
 app.listen(8000, () => {
     console.log("服务已经启动，8000 端口监听中....");
 });
+
+
+
+
+// 终端中当前文件夹下 nodemon server.js 开启服务

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>取消请求</title>
+</head>
+<body>
+    <button id="send">发送请求</button>
+    <button id="cancel">取消请求</button>
+    <script>
+        const send = document.getElementById('send');
+        const cancel = document.getElementById('cancel');
+        let xhr = null;
+        send.onclick = () => {
+            xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://127.0.0.1:8000/server-delay');
+            xhr.send();
+        }
+        cancel.onclick = () => {
+            if (xhr != null) {
+                // 通过 abort 方法取消请求
+                xhr.abort();
+            }
+        }
+
+    </script>
+</body>
+</html>

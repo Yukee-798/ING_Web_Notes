@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复请求问题</title>
+</head>
+
+<!-- 
+    场景：
+        如果用户一直点击发送请求按钮，则会一直重复的向服务端发送相同的请求，
+        服务端也会依次去处理这些请求，导致服务端压力增大，效率降低
+
+
+ -->
+<body>
+    <button id="send">发送请求</button>
+    <button id="cancel">取消请求</button>
+    <script>
+        const send = document.getElementById('send');
+        const cancel = document.getElementById('cancel');
+        let xhr = null;
+        let isSending = false;
+
+        send.onclick = () => {
+            // 如果上一个请求正在发送，则停止上一个请求，开启新的请求
+            if (isSending) xhr.abort();
+            
+            xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://127.0.0.1:8000/server-delay');
+            xhr.send();
+            isSending = true;
+            
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    // 当响应结果完全返回的时候修改 isSending 状态
+                    isSending = false;
+                }
+            };
+        };
+        cancel.onclick = () => {
+            if (xhr != null) {
+                // 通过 abort 方法取消请求
+                xhr.abort();
+            }
+        };
+
+    </script>
+</body>
+</html>

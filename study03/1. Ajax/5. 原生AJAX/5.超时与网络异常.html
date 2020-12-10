@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            border: black 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击发送请求</button>
+    <div id="result"></div>
+    <script>
+        const btn = document.getElementsByTagName('button')[0];
+        const result = document.getElementById('result');
+        btn.addEventListener('click', () => {
+            const xhr = new XMLHttpRequest();
+
+            // 超时设置：如果2s内服务端还没有结果返回则会取消请求
+            xhr.timeout = 2000;
+            // 超时回调：当请求因为超时被取消后就会回调该方法
+            xhr.ontimeout = () => {
+                alert('网络异常，请稍后重试！')
+            };
+            // 网络异常回调：当前页面无法连接网络的时候会回调该方法
+            xhr.onerror = () => {
+                alert('您的网络似乎出了一点问题！');
+            };
+
+            xhr.open('GET', 'http://127.0.0.1:8000/server-delay');
+            xhr.send();
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        result.innerHTML = xhr.response;
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
