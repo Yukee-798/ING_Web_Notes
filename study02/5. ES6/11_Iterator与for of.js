@@ -139,15 +139,66 @@
                 (2) 每次拿到的元素是一个数组，其中包含 key 和 value 两个元素
                 (3) 这里默认调用的是 set.entries()
 
+四、自定义遍历数据
+    const banji = {
+        name: '13061903',
+        stus: [
+            'xiaoming',
+            'xiaoning',
+            'xiaotian',
+            'knight'
+        ],
+        [Symbol.iterator]: function() {
+            let index = 0;
+            let that = this;
+            return {
+                next: function() {
+                    if (index < that.stus.length)
+                        return { value: that.stus[index++], done: false };
+                    else return { value: undefined, done: true };
+                }
+            }
+        }
+    };
+
+    // 需求：通过 for of 遍历该对象中的 stus 数组
 
 
 
 
 */
 
+const banji = {
+    name: '13061903',
+    stus: [
+        'xiaoming',
+        'xiaoning',
+        'xiaotian',
+        'knight'
+    ],
+    [Symbol.iterator]: function () {
+        let index = 0;
+        let that = this;
 
+        return {
+            next: function () {
 
-let arr = [1, 2, 3];
-for (e of arr) {
-    console.log(typeof e);
+                if (index < that.stus.length) {
+                    return {
+                        value: that.stus[index++],
+                        done: false
+                    };
+                } else {
+                    return {
+                        value: undefined,
+                        done: true
+                    };
+                }
+            }
+        }
+    }
+};
+
+for (let e of banji) {
+    console.log(e);
 }
