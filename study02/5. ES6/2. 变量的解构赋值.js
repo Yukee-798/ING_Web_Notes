@@ -242,4 +242,28 @@ var charArr3 = [ ...str ];
         
 */
 
+const { fsync } = require("fs/promises");
 
+
+function fn(target) {
+    let res = [];
+    let arr = [];
+    let sum = 0;
+    for (let i = 1; i <= target; i++) {
+        arr.push(i);
+        sum += i;
+        while (sum > target) {
+            sum -= arr[0];
+            arr.shift();
+        }
+        if (sum == target) {
+            if (arr.length >= 2) {
+                res.push([...arr]);
+            }
+        }
+    }
+    return res;
+}
+
+
+console.log(fn(9));

@@ -160,7 +160,33 @@
         (3) 以构造函数方式调用，如 new People()，则 this 就是调用构造函数时创建的对象
         (4) 使用call() 或 apply() 调用函数，如 fun.call()，则 this 就是 call 或 apply 方法中指定的那个对象
 
+*/
 
+// var person = {
+//     name: 'momo',
+//     age: 18,
+//     gender: '男',
+
+//     say: function () {
+//         console.log('我的名字是' + this.name + '，今年' + this.age + '岁');
+//     }
+// };
+
+// function say() {
+//     console.log(this.toString());
+// }
+
+// person.say();
+// say();
+
+
+
+
+
+
+
+
+/*
 九、构造函数
     1. 构造函数的定义：JS中的构造函数就是一个普通的函数，创建方式与普通函数没有区别
     2. 构造函数的调用：
@@ -282,7 +308,7 @@
 
 
 
-console.log(Object.prototype.__proto__);
+// console.log(Object.prototype.__proto__);
 
 
 

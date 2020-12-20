@@ -88,6 +88,20 @@ app.all('/server-JQuery', (request, response) => {
     // }, 3000);
 });
 
+app.all('/server-axios', (request, response) => {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Headers", "*");
+
+    // 延时3s再响应请求
+    // setTimeout(() => {
+    const a = {
+        name: 'momo',
+        age: 18
+    };
+    response.send(JSON.stringify(a));
+    // }, 3000);
+});
+
 // 4. 监听端口启动服务 
 app.listen(8000, () => {
     console.log("服务已经启动，8000 端口监听中....");

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        const data = ['Angular', 'React', 'Vue'];
+
+        const VDOM = (
+            <div>
+                <h1>TODO List</h1>
+                <ul>
+                    {
+                        data.map((str, index)=>{
+                            // 每一个 li 必须有一个唯一的 key属性来对应，否则会报错(React 中的 diff算法就是依据的这个 key)
+                            return <li key={index}>{str}</li>;
+                        })
+                    }    
+                </ul>
+            </div>
+        );
+
+        ReactDOM.render(VDOM, document.getElementById('container'));
+
+    </script>
+    
+</body>
+</html>

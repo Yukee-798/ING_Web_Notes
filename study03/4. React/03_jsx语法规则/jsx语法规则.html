@@ -1,0 +1,62 @@
+<!-- 
+一、jsx基本概念
+    1. 全称：JavaScript XML
+    2. 是 React 定义的一种类似于 XML 的 JS 扩展语法：JS + XML
+    3. 本质上是 React.createElement() 的语法糖
+    4. 作用：用来简化创建虚拟 DOM
+        (1) 写法：var VDOM = <h1>hello</h1>;
+        (2) 注意：它不是 XML 也不是 HTML，本质上是一个JS对象
+
+二、语法规则
+    1. 定义虚拟 DOM 时，不要加引号
+    2. 标签中混入 JS 表达式时要用 {}
+        (1) 一个表达式可以产生一个值，可以放在任何一个需要值的地方
+            例如：a、a + b、demo(1)、function test() {}
+    3. 标签的类名使用 className
+    4. 标签的内联样式要用 style={{color: 'orange', fontSize='12px'}} 的形式去写
+    5. 虚拟DOM 中只能有一个根标签
+    6. 标签必须闭合
+    7. 标签首字母
+        (1) 若以小写字母开头，那么将该标签转为 html 中同名的元素，如果 html 中没有对应的同名元素，则报错
+        (2) 若以大写字母开头，React 就会去渲染对应的组件，如果组件没有定义则报错
+
+
+
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>JSX 语法规则</title>
+     <style>
+         .title{
+             background: orange;
+         }
+     </style>
+ </head>
+ <body>
+     <div id="container"></div>
+     
+     <script src="../js/react.development.js"></script>
+     <script src="../js/react-dom.development.js"></script>
+     <script src="../js/babel.min.js"></script>
+
+     <script type="text/babel">
+         const myId = 'tExt';
+         const myData = 'jsx 语法规则';
+        
+         const VDOM = (
+            <h1  id={myId.toLowerCase()}>
+                <span className='title' style={{color: 'white'}}>{myData}</span>
+            </h1>
+
+         );
+
+         ReactDOM.render(VDOM, document.getElementById('container'));
+
+     </script>
+     
+ </body>
+ </html>

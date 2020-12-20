@@ -19,7 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d09b3a4b-7111-4b5e-baa4-b2b8cfe9433a" name="Default Changelist" comment="" />
+    <list default="true" id="d09b3a4b-7111-4b5e-baa4-b2b8cfe9433a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/study03/4. React/05_模块与组件/01模块与组件定义.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/study03/4. React/05_模块与组件/02定义函数式组件.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/study03/4. React/05_模块与组件/03定义类式组件.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/1. 基础知识/1. hello_world.html" beforeDir="false" afterPath="$PROJECT_DIR$/study02/1. 基础知识/1. hello_world.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/1. 基础知识/4. JS函数.js" beforeDir="false" afterPath="$PROJECT_DIR$/study02/1. 基础知识/4. JS函数.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/4. JS高级/函数高级/4. 闭包.js" beforeDir="false" afterPath="$PROJECT_DIR$/study02/4. JS高级/函数高级/4. 闭包.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study02/5. ES6/2. 变量的解构赋值.js" beforeDir="false" afterPath="$PROJECT_DIR$/study02/5. ES6/2. 变量的解构赋值.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study03/1. Ajax/7. axios/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/study03/1. Ajax/7. axios/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/study03/1. Ajax/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/study03/1. Ajax/server.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -63,6 +75,11 @@
       <workItem from="1605612579513" duration="2255000" />
       <workItem from="1606094438155" duration="200000" />
       <workItem from="1606645545675" duration="16000" />
+      <workItem from="1608368932793" duration="179000" />
+      <workItem from="1608369152312" duration="2000" />
+      <workItem from="1608369206231" duration="1514000" />
+      <workItem from="1608380296606" duration="467000" />
+      <workItem from="1608380815748" duration="576000" />
     </task>
     <servers />
   </component>
@@ -83,11 +100,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="259" y="111" width="800" height="600" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog" timestamp="1605324000596">
-      <screen x="38" y="23" width="1242" height="777" />
-    </state>
-    <state x="259" y="111" width="800" height="600" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog/38.23.1242.777@38.23.1242.777" timestamp="1605324000596" />
   </component>
 </project>
