@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container1"></div>
+    <div id="container2"></div>
+    <div id="container3"></div>
+    <div id="container4"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+            /*
+                组件实例中的 props 属性接受了来自外部传入的数据
+                在组件标签 <Person 键值对 /> 传入数据
+
+            */
+
+
+            // 创建组件
+            class Person extends React.Component {
+                render() {
+                    const {name, age, gender} = this.props;
+                    return (
+                        <ul>
+                            <li>姓名：{name}</li>    
+                            <li>性别：{gender}</li>    
+                            <li>年龄：{age}</li>    
+                        </ul>
+                    );
+                }
+            }
+
+            // 渲染组件到三个容器中
+            ReactDOM.render(<Person name="莫莫" age={18} gender="女"/>, document.getElementById('container1'));
+            ReactDOM.render(<Person name="与可" age={19} gender="男"/>, document.getElementById('container2'));
+            ReactDOM.render(<Person name="KLL" age={28} gender="男"/>, document.getElementById('container3'));
+
+
+            // 在实际开发中由 AJAX 获取的对象数据批量传值
+            const p = {'name': 'Jack', 'gender': '男', 'age': 18};
+            // 使用扩展运算符
+            ReactDOM.render(<Person {...p}/>, document.getElementById('container4'));
+        </script>
+
+</body>
+
+</html>

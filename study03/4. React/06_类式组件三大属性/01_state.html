@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+        // 1. 创建组件
+        class Weather extends React.Component {
+            constructor(props) {
+                super(props);
+
+                // 初始化组件状态
+                this.state = {isHot: false};
+                // 修改成员方法中的 this 为 Weather 的实例
+                this.change = this.change.bind(this);
+
+            }
+
+            // 组件的状态每改变一次，底层就会调用一次 render 方法
+            render() {
+                // 给h1绑定事件
+                return <h1 onClick={this.change}>今天天气很{this.state.isHot ? '炎热' : '凉爽'}</h1>;
+            }
+
+            // 该回调函数在 h1 标签被点击时会被浏览器调用
+            // 但是在严格模式下的自定义函数中 this 如果在非严格模式下指向的是 window
+            // 那么在严格模式下 this 指向的是 undefined 
+            // 另外！！在类中定义的所有方法已经在局部默认开启了严格模式，此时的 this 指向的就不是 window，而是 undefined
+            change() {
+                // react 不认可以这种直接方式改变组件状态
+                // this.state.isHot = !this.state.isHot;
+
+                // 组件的状态必须由内置方法 setState 来更新，且这种更新是一种合并
+                // 传入的对象，只会修改之前状态对象中同名的属性值，不会覆盖掉原来的状态对象
+                this.setState({isHot: !this.state.isHot});
+            }
+        }
+
+        // 2. 渲染组件到页面
+        ReactDOM.render(<Weather />, document.getElementById('container'));
+            
+    </script>
+
+</body>
+
+</html>

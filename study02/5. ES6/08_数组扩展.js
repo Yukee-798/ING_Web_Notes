@@ -85,7 +85,17 @@
 
         // 返回数组中第一个偶数的下标
         let index = arr.findIndex(x => x % 2 == 0);
+
+    (8) reduce()
+        // 数组求和
+        let arr = [1, 2, 3, 4];
+        let sum = arr.reduce((preValue, currentValue) => {
+            return preValue + currentValue;
+        })
 */
 
 
-console.log(num);
+let arr = [1, 2, 3, 4];
+console.log(arr.reduce((preValue, currentValue) => {
+    return preValue + currentValue;
+}));
