@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        什么是组件的生命周期？
+            1.组件从创建到死亡它会经历一些特定的阶段。
+            2.React组件中包含一系列勾子函数(生命周期回调函数), 会在特定的时刻调用。
+            3.我们在定义组件时，会在特定的生命周期回调函数中，做特定的工作。
+
+     -->
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Life extends React.Component {
+            state = {opacity: 1, time: null}
+
+            death = () => {
+                // 卸载容器节点中的组件
+                ReactDOM.unmountComponentAtNode(document.getElementById('container'));
+            }
+
+            // 组件完成挂载后调用
+            componentDidMount() {
+                // 开启一个定时器，动态改变文字透明度
+                let myTime = setInterval(() => {
+                    // 获取原状态
+                    let { opacity } = this.state;
+                    opacity = opacity <= 0 ? 1 : (opacity - 0.1); 
+                    this.setState({ opacity }); 
+                }, 200); 
+                
+                this.setState({ time: myTime });
+            }
+
+            // 组件将要被卸载时调用
+            componentWillUnmount() {
+                clearInterval(this.state.time);
+            }
+
+            // 初始化组件渲染到页面中调用，组件的状态更新的时候调用
+            render() {
+                return (
+                    <div>
+                        <h2 style={{opacity: this.state.opacity}}>React 学不会咋办啊？</h2>   
+                        <button onClick={ this.death }>不活了啊</button> 
+                    </div>
+                );
+            }
+        }
+
+        // 挂载组件到页面
+        ReactDOM.render(<Life />, document.getElementById('container'));
+    </script>
+
+</body>
+
+</html>
