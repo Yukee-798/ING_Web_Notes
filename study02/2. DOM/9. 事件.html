@@ -47,6 +47,11 @@
 5. 补充一下在事件回调函数中return false的作用
     可以取消事件的默认行为，比如对input:text的 onkeydown 事件中，对回调函数 return false，那么就无法在输入框内输入文字了
 
+6. 有关表单的事件
+    (1) onblur：input 失去焦点时触发
+    (2) onchange：只要 input 的状态改变就触发，比如 复选框打勾、输入框输入一个字符就触发一次
+    (3) onsubmit：表单提交的时候触发 (event.preventDefault() 可以阻止表单提交)
+
 
 
 三、鼠标 or 键盘事件对象的属性

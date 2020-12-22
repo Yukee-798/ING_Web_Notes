@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 需求：自定义组件
+    1. 点击按钮，提示第一个输入框中的值
+    2. 当第二个输入框失去焦点时，提示这个输入框中的值 -->
+
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+
+
+    
+
+    <script type="text/babel">
+    /*
+        一、ref 的基本使用
+            1. 组件中的标签可以使用 ref 来标识自己
+            1. refs 是组件实例的一个属性，其是一个对象，保存了 key,value
+            2. 组件实例的 refs 中的 key 就是 render 方法中返回的标签结点中所设置的 ref 属性取值
+            3. 组件实例的 refs 中的 value 就是 render 方法中返回的标签结点中设置了 ref 属性的结点对象
+        
+        二、这里展示的是 字符串类型的 ref，官方已经不推荐使用这种形式了，过度使用字符串类型的 ref 会出现效率问题
+
+
+    */
+
+
+        class Demo extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <input ref="input1" type="text" placeholder="点击按钮提示" />
+                        <button ref="button1" onClick={this.showData1} >点我提示左侧数据</button>
+                        <input ref="input2" onBlur={this.showData2} type="text" placeholder="失去焦点提示" />    
+                    </div>
+                );
+            }
+
+            showData1 = () => {
+                alert(this.refs.input1.value);
+            }
+            showData2 = () => {
+                alert(this.refs.input2.value);
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('container'));
+    </script>
+    
+</body>
+</html>

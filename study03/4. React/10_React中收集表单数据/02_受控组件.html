@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        需求：定义一个包含表单的组件，输入用户名和密码后，点击登陆提示输入信息
+     -->
+
+
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="../js/prop-types.js"></script>
+
+
+
+    <script type="text/babel">
+
+
+            // 下面是一个受控组件，组件的状态会随着输入的数据而改变
+            // 当我们需要数据的时候只需要在状态中取出来就行了
+            class MyForm extends React.Component {
+
+                // 初始化组件的状态
+                state = {
+                    username: '',
+                    password: ''
+                };
+
+                // 表单提交时触发该回调函数
+                handleSubmit = (e) => {
+                    e.preventDefault(); // 阻止默认事件发生：表单自动提交
+                    alert(`用户名：${ this.state.username } \n 密码：${ this.state.password }`);
+                   
+                };
+
+
+                // 更新表单时的回调函数
+                update = (e) => {
+                    let node = e.target;
+                    switch(node.name) {
+                        case "username": 
+                            this.setState({username: node.value});
+                        break;
+
+                        case "password": 
+                             this.setState({password: node.value});
+                        break;
+                    }
+                }
+
+                render() {
+                    return (
+                        <form action="http://www.baidu.com" onSubmit={this.handleSubmit}>
+                            用户名：<input onChange={ this.update } type="text" name="username"/>    
+                            密码：<input onChange={ this.update } type="password" name="password" />
+                            <br />
+                            <button>登陆</button>    
+                        </form>
+                    );
+                }
+            }
+
+            ReactDOM.render(<MyForm />, document.getElementById('container'));
+        </script>
+</body>
+
+</html>

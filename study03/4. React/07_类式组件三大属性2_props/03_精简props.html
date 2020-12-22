@@ -16,10 +16,14 @@
     <script src="../js/react-dom.development.js"></script>
     <script src="../js/babel.min.js"></script>
 
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
     <script type="text/babel">
-            /*
-                组件实例中的 props 属性接受了来自外部传入的数据
-                在组件标签 <Person 键值对 /> 传入数据
+        /*
+                1. 组件实例中的 props 属性接受了来自外部传入的数据
+                2. 在组件标签 <Person 键值对 /> 传入数据
+                3. props 为只读，不能通过它来改变标签属性
 
             */
 
@@ -32,22 +36,48 @@
                         <ul>
                             <li>姓名：{name}</li>    
                             <li>性别：{gender}</li>    
-                            <li>年龄：{age}</li>    
+                            <li>年龄：{age + 1}</li>    
                         </ul>
                     );
                 }
+
+                // 给组件标签添加限制
+                static propTypes = {
+                    // name 属性必须为字符串，而且必须有 name 属性
+                    name: PropTypes.string.isRequired,
+                    // gender 属性必须为字符串
+                    gender: PropTypes.string,
+                    // age 属性必须为数值
+                    age: PropTypes.number,
+
+                    // speak 属性必须是函数
+                    speak: PropTypes.func
+                }
+
+                // 给标签属性设置默认值
+                static defaultProps = {
+                    gender: '男',
+                    age: 18
+                };
             }
+
+
+
 
             // 渲染组件到三个容器中
             ReactDOM.render(<Person name="莫莫" age={18} gender="女"/>, document.getElementById('container1'));
             ReactDOM.render(<Person name="与可" age={19} gender="男"/>, document.getElementById('container2'));
             ReactDOM.render(<Person name="KLL" age={28} gender="男"/>, document.getElementById('container3'));
+            // ReactDOM.render(<Person name={123} age={28} gender="男"/>, document.getElementById('container3'));
 
 
             // 在实际开发中由 AJAX 获取的对象数据批量传值
             const p = {'name': 'Jack', 'gender': '男', 'age': 18};
             // 使用扩展运算符
             ReactDOM.render(<Person {...p}/>, document.getElementById('container4'));
+
+            
+
         </script>
 
 </body>

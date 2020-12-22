@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 
+        一、基本概念
+            1.通过onXxx属性指定事件处理函数(注意大小写)
+                1)React使用的是自定义(合成)事件, 而不是使用的原生DOM事件
+                2)React中的事件是通过事件委托方式处理的(委托给组件最外层的元素)
+
+            2.通过event.target得到发生事件的DOM元素对象 —— 不要过读使用 ref
+
+
+     -->
+
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+
+
+    <script type="text/babel">
+
+
+        class Demo extends React.Component {
+
+            myRef1 = React.createRef();
+            myRef2 = React.createRef();
+
+
+            render() {
+                return (
+                    <div>
+                        <input ref= { this.myRef1 } type="text" placeholder="点击按钮提示" />
+                        <button  onClick={this.showData1} >点我提示左侧数据</button>
+                        <input ref={ this.myRef2 } onBlur={ this.showData2 } type="text" placeholder="失去焦点提示" />
+                    </div>
+                );
+            }
+
+            showData1 = (e) => {
+                alert(this.myRef1.current.value)
+            }
+            showData2 = (e) => {
+                alert(e.target.value)
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('container'));
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        需求：定义一个包含表单的组件，输入用户名和密码后，点击登陆提示输入信息
+     -->
+
+
+        <div id="container"></div>
+        <script src="../js/react.development.js"></script>
+        <script src="../js/react-dom.development.js"></script>
+        <script src="../js/babel.min.js"></script>
+
+        <!-- 用于对组件标签属性进行限制 -->
+        <script src="../js/prop-types.js"></script>
+
+
+
+        <script type="text/babel">
+            // 下面的就是一个非受控组件：表单现用现取其中的值
+            class MyForm extends React.Component {
+                myRef1 = React.createRef();
+                myRef2 = React.createRef();
+
+                // 表单提交时触发该回调函数
+                handleSubmit = (e) => {
+                    e.preventDefault(); // 阻止默认事件发生：表单自动提交
+                    alert(`用户名：${ this.myRef1.current.value } \n 密码：${ this.myRef2.current.value }`);
+                };
+
+                render() {
+                    return (
+                        <form action="http://www.baidu.com" onSubmit={this.handleSubmit}>
+                            用户名：<input ref={ this.myRef1 } type="text" name="username"/>    
+                            密码：<input ref={ this.myRef2 } type="password" name="password" />
+                            <br />
+                            <button>登陆</button>    
+                        </form>
+                    );
+                }
+            }
+
+            ReactDOM.render(<MyForm />, document.getElementById('container'));
+        </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!-- 
+一、写在前面
+    在函数式组件中无法使用 state 和 rerfs 属性，但是可以使用 props 属性
+
+
+
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container1"></div>
+    <div id="container2"></div>
+    <div id="container3"></div>
+    <div id="container4"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        function Person(props) {
+            return (
+            <ul>
+                <li>姓名：{props.name}</li>
+                <li>性别：{props.gender}</li>
+                <li>年龄：{props.age + 1}</li>
+            </ul>
+            );
+        }
+
+        // 限制函数式组件中的 props
+        Person.propTypes = {
+            name: PropTypes.string.isRequired,
+            gender: PropTypes.string,
+            age: PropsType.number
+        }
+
+        // 调用函数式组件的时候会传入 props 对象到参数中
+        ReactDOM.render(<Person name="莫莫" gender="女" age={18}/>, document.getElementById('container1'));
+    </script>
+
+</body>
+
+</html>

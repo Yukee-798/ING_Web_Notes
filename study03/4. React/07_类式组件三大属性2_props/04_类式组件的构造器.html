@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container1"></div>
+    <div id="container2"></div>
+    <div id="container3"></div>
+    <div id="container4"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        /*
+                1. 组件实例中的 props 属性接受了来自外部传入的数据
+                2. 在组件标签 <Person 键值对 /> 传入数据
+                3. props 为只读，不能通过它来改变标签属性
+
+            */
+
+
+            // 创建组件
+            class Person extends React.Component {
+                // 通常在 React 中，构造器仅用于以下两种情况：
+                // 1. 通过给 this.state 赋值对象来初始化内部 state
+                // 2. 为事件处理函数绑定实例
+
+                // 但是上面的方式都可以精简方式省略不用构造器
+                // 如果要用构造器：请为 super 传入 props，否则在构造器中可能会出现 this.props 缺失的 BUG
+
+                constructor(props) {
+                    super(props);
+                }
+
+                render() {
+                    const {name, age, gender} = this.props;
+                    return (
+                        <ul>
+                            <li>姓名：{name}</li>    
+                            <li>性别：{gender}</li>    
+                            <li>年龄：{age + 1}</li>    
+                        </ul>
+                    );
+                }
+
+                // 给组件标签添加限制
+                static propTypes = {
+                    // name 属性必须为字符串，而且必须有 name 属性
+                    name: PropTypes.string.isRequired,
+                    // gender 属性必须为字符串
+                    gender: PropTypes.string,
+                    // age 属性必须为数值
+                    age: PropTypes.number,
+
+                    // speak 属性必须是函数
+                    speak: PropTypes.func
+                }
+
+                // 给标签属性设置默认值
+                static defaultProps = {
+                    gender: '男',
+                    age: 18
+                };
+            }
+
+
+            // 渲染组件到容器中
+            ReactDOM.render(<Person name="莫莫" age={18} gender="女"/>, document.getElementById('container1'));
+
+
+            
+
+        </script>
+
+</body>
+
+</html>

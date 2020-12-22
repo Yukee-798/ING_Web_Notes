@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 需求：自定义组件
+    1. 点击按钮，提示第一个输入框中的值
+    2. 当第二个输入框失去焦点时，提示这个输入框中的值 -->
+
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+
+
+
+
+
+    <script type="text/babel">
+        /*
+            一、回调形式的 refs 的基本使用
+                在组件内部标签中的 ref 属性设置一个回调函数
+                这个回调函数由该组件实例来调用，并且会传入一个参数，这个参数就是当前的标签结点对象
+
+            二、关于这个回调函数的调用次数
+                1. 如果这个回调函数是以内联函数的方式定义的 (如下)，那么创建组件实例时首次调用 render，组件实例会传入当前标签结点，首次回调一次该回调函数
+                2. 当该组件的状态每次发生更新的时候 (setState) ，该组件会调用 render，此时组件实例会回调两次该回调函数
+                    (1) 第一次会传入一个 null 进去 (为了初始化之前回调函数的行为，因为每一次 render 的调用都会重新生成一个回调函数)
+                    (2) 第二次会传入当前标签结点进去
+
+                3. 如果不想让它反复调用，则在标签内的 ref 中传入一个类绑定函数
+
+            
+
+
+
+        */
+
+
+        class Demo extends React.Component {
+
+            // createRef 调用后可以返回一个容器，该容器可以存储被 ref 所标识的节点
+            // 注意这个容器只能存放一个标识节点！！后标识的会挤掉前面表识的节点
+            myRef1 = React.createRef();
+            myRef2 = React.createRef();
+
+
+            render() {
+                return (
+                    <div>
+                        {/*用 ref 标记以后会将对应的节点对象存入 this.myRef1 容器中*/}
+                        <input ref= { this.myRef1 } type="text" placeholder="点击按钮提示" />
+                        <button  onClick={this.showData1} >点我提示左侧数据</button>
+                        <input ref={ this.myRef2 } onBlur={ this.showData2 } type="text" placeholder="失去焦点提示" />
+                    </div>
+                );
+            }
+
+            showData1 = () => {
+                alert(this.myRef1.current.value)
+            }
+            showData2 = () => {
+                alert(this.myRef2.current.value)
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('container'));
+    </script>
+
+</body>
+
+</html>
