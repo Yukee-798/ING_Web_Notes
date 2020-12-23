@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+        /*
+            面试题：
+                1. react 和 vue 中的 key 有什么用？
+                2. 为什么遍历列表时，key 最好不要用 index?
+
+            虚拟 DOM 中 key 的作用：
+                1. 简单的说：key 是虚拟 DOM 对象的标识，在更新显示 key 时有着极其重要的作用。
+                2. 详细的说：
+                    (1) 当组件状态发生改变时，React 会根据 「 新的数据 」 生成 「 新的虚拟 DOM 」
+                    (2) 随后 React 进行 「 新虚拟 DOM 」 与 「 旧虚拟 DOM 」 的 diff 比较，规则如下
+
+                            a. 新的虚拟 DOM 中找到了与旧的虚拟 DOM 中相同的 key
+                                1. 若虚拟 DOM 内容没有改变，则直接用之前的真实 DOM
+                                2. 若虚拟 DOM 内容改变了，则生成新的真实 DOM 替换掉原来旧的真实 DOM
+
+                            b. 新的虚拟 DOM 没有找到与旧的虚拟 DOM 中相同的 key
+                                根据新的虚拟 DOM 创建新的真实 DOM，随后渲染到页面中
+
+
+                    
+
+
+        */
+        class Person extends React.Component {
+            state = {
+                persons: [
+                    {id: 1, name: 'momo', age: 18},
+                    {id: 2, name: 'DwD', age: 19},
+                    {id: 3, name: 'KLL', age: 20}
+                ]
+            };
+
+
+            add = () => {
+                let {persons} = this.state;
+                persons.push({ id: 4, name: '小王', age: 13 });
+                this.setState({ persons: persons }) ;
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h2>展示人员信息</h2>
+                        <button onClick={ this.add }>添加一个小王</button>
+                        <ul>
+                            { 
+                                this.state.persons.map((personObj, index) => {
+                                    return <li key={ index }>{ personObj.name }-----{ personObj.age }</li>
+                                })
+                            }
+                        </ul>             
+                    </div>
+                );
+            }
+
+            componentDidMount() {
+
+            }
+        }
+        ReactDOM.render(<Person />, document.getElementById('container'));
+
+
+
+
+
+    </script>
+
+    
+</body>
+</html>

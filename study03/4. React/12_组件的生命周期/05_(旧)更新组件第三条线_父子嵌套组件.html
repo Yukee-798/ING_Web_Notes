@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        // 这个组件用来操作更新状态
+        class A extends React.Component {
+            state = {carName: '奔驰'}
+
+            // 1. 父组件状态更新并且成功渲染
+            change = () => {
+                this.setState({ carName: '奥迪' });
+            }
+            render() {
+                return (
+                    <div>
+                        <div>我是组件A</div>
+                        <button onClick={ this.change }>换车</button>
+                        <B carName={ this.state.carName }/>        
+                    </div>
+
+                );
+            }
+        }
+
+        // 这个组件用来显示
+        class B extends React.Component {
+
+            state = { carName:'' };
+
+            // 2. 父组件重新更新渲染完毕后执行该函数
+            componentWillReceiveProps() {
+                console.log(1);
+            }
+
+            // 3. 判断是否重新更新渲染子组件
+            shouldComponentUpdate() {
+                return true;
+            }
+
+            // 4. 子组件重新更新渲染前执行该函数
+            componentWillUpdate() {
+
+            }
+
+            // 5. 子组件重新渲染更新
+            render() {
+                return (
+                    <div>
+                        <div>我是组件B，接收到到车是：{ this.props.carName }</div>    
+                    </div>
+                );
+            }
+
+            // 6. 子组件重新渲染更新完毕
+            componentDidUpdate() {
+
+            }
+        }
+
+        ReactDOM.render(<A/>, document.getElementById('container'));
+    </script>
+    
+</body>
+</html>

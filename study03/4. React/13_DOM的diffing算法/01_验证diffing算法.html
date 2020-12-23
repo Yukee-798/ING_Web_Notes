@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Time extends React.Component {
+            state = { date: new Date() }
+
+            componentDidMount() {
+                this.timer = setInterval(() => {
+                    this.setState({ date: new Date() });
+                }, 1000);
+            }
+
+            // 组件每次状态更新，重新render的时候，由于里面的 h1 和 input 标签是没有改变的
+            // 根据diffing算法的存在，虚拟 DOM 转换为真实 DOM 的时候只会去更新标签改变的了的 DOM
+            // diffing算法判断的最小单元就是一个标签节点
+            // 另外就是如果一个节点的内容在改变，但是其嵌套的子节点内容没变化，那么 diffing 算法也只会更新外部那个正在改变的父节点
+            render() {
+                
+                return (
+                    <div>
+                        <h1>hello</h1>
+                        <input type="text" />
+                        <div>
+                            现在是：{ this.state.date.toString().split(' ')[4] }
+                            <input type="text" />
+                        </div>
+                    </div>
+                );
+            }
+        }
+
+
+        ReactDOM.render(<Time />, document.getElementById('container'));
+    </script>
+    
+</body>
+</html>
