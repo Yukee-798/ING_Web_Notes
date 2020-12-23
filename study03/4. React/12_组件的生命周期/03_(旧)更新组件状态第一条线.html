@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Count extends React.Component {
+            // 初始化状态
+            state = {num: 0}
+
+
+            // 1. 点击增加按钮时的回调函数：使用 setState 更新组件状态
+            add = () => {
+                let { num } = this.state;
+                this.setState({ num: num + 1 });
+            }
+
+            // 2. 进入判断是否应该更新组件 (每次 setState 时都会进入该钩子进行判断)
+            shouldComponentUpdate() {
+                console.log('Count-shouldComponentUpdate');
+                // 当组件的 num 状态为 5 后就无法更新
+                if (this.state.num >= 5) return false;
+                return true;
+            }
+
+            // 3. 如果阀门返回 true 则在组件重新渲染前执行该函数
+            componentWillUpdate() {
+                console.log('Count-componentWillUpdate');
+            }
+
+            // 4. 组件进行更新渲染
+            render() {
+                console.log('Count-render');
+                return (
+                    <div>
+                        <h2>当前求和为{ this.state.num }</h2>
+                        <button onClick={ this.add }>点我+1</button>
+                    </div>
+                );
+            }
+
+            // 5. 组件更新完毕执行该函数
+            componentDidUpdate() {
+                console.log('Count-componentDidUpdate');
+            }
+
+            
+        }
+
+        ReactDOM.render(<Count />, document.getElementById('container'));
+    </script>
+</body>
+
+</html>
