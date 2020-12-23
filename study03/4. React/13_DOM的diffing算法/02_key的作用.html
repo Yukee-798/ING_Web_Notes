@@ -33,6 +33,23 @@
                                 根据新的虚拟 DOM 创建新的真实 DOM，随后渲染到页面中
 
 
+                记住一个例子：
+
+                    // 旧的虚拟DOM
+                    <li key=1>小王<input type="text" /></li>
+
+
+                    // 新的虚拟DOM
+                    <li key=1>小张<input type="text" /></li>
+
+                    底层使用 diffing 算法比较的时候，由于 li 的内容已经不同了，所以会创建一个新的真实 DOM li，
+                    但是 li 嵌套内部的 input 是没变的，所以还是会复用之前旧的真实 DOM
+
+
+            关于 key 的选择：
+                一般情况下最好不要选择 index，一般将一条数据的唯一表识作为 key，比如：id、学号、身份证、手机号
+
+
                     
 
 
@@ -49,7 +66,7 @@
 
             add = () => {
                 let {persons} = this.state;
-                persons.push({ id: 4, name: '小王', age: 13 });
+                persons.push({ id: persons.length + 1, name: '小王', age: 13 });
                 this.setState({ persons: persons }) ;
             }
 
@@ -60,8 +77,8 @@
                         <button onClick={ this.add }>添加一个小王</button>
                         <ul>
                             { 
-                                this.state.persons.map((personObj, index) => {
-                                    return <li key={ index }>{ personObj.name }-----{ personObj.age }</li>
+                                this.state.persons.map((personObj) => {
+                                    return <li key={ personObj.id }>{ personObj.name }-----{ personObj.age }</li>
                                 })
                             }
                         </ul>             
