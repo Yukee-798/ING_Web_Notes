@@ -88,6 +88,7 @@ app.all('/server-JQuery', (request, response) => {
     // }, 3000);
 });
 
+// axios 服务
 app.all('/server-axios', (request, response) => {
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Headers", "*");

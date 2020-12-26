@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>axios 发送 AJAX 请求</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.js"></script>
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.js"></script>
 </head>
 
 <body>
@@ -18,10 +18,78 @@
         const btns = document.getElementsByTagName('button');
         // 发送 GET 请求
         btns[0].onclick = () => {
-            
+            axios.get('http://127.0.0.1:8000/server-axios', {
+                    // url 参数
+                    params: {
+                        id: 100,
+                        vip: 8
+                    },
+                    // 请求头信息
+                    headers: {
+                        name: 'momo',
+                        age: 20
+                    }
+                })
+                // value 为服务端返回的数据
+                .then(value => {
+                    const { data } = value;
+                    console.log(data);
+                });
         }
-        btns[1].onclick = () => {}
-        btns[2].onclick = () => {}
+        // 发送 POST 请求
+        btns[1].onclick = () => {
+
+            // 请求体对象
+            let data = {
+                username: 'admin',
+                password: 'admin'
+            };
+
+            axios.post('http://127.0.0.1:8000/server-axios', data, {
+                // url 参数
+                params: {
+                    id: 132,
+                    vip: 10
+                },
+                // 请求头信息
+                headers: {
+                    name: 'DwD',
+                    age: 20
+                }
+            });
+        }
+
+        // 通用方式发送请求
+        btns[2].onclick = () => {
+            axios({
+                // 请求方法
+                method: 'POST',
+                // url
+                url: 'http://127.0.0.1:8000/server-axios',
+
+                // url 参数
+                params: {
+                    vip: 10,
+                    level: 30
+                },
+
+                // 头信息参数
+                headers: {
+                    a: 100,
+                    b: 200
+                },
+
+                // 请求体参数
+                data: {
+                    username: 'admin',
+                    password: 'admin'
+                }
+            })
+            .then(value => {
+                let { data } = value
+                console.log({ data });
+            });
+        }
     </script>
 </body>
 

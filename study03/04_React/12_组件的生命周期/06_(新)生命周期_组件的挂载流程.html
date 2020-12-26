@@ -37,9 +37,11 @@
 
             // 2. 组件实例创建完毕后，挂载到页面前执行的函数
             // 一般在这个函数中进行页面初始化的事情：开启定时器、发送网络请求、订阅消息...
-            componentWillMount() {
-                console.log('Count-componentWillMount');
+            static getDerivedStateFromProps() {
+                console.log('Count-getDerivedStateFromProps');
+                return {num: 2};
             }
+
 
             // 3. 组件挂载到页面的整个过程在 render 中进行
             render() {
