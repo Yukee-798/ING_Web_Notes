@@ -168,10 +168,11 @@
 
 */
 
-let arr = [1, 2, 3];
-arr.splice(1, 2);
-console.log(arr);
 
+    let arr = [1, 3, 6, 10];
+    // 将原数组中每个元素乘2放入新数组中
+    arr = arr.map(e => e * 2);
+    console.log(arr);
 
 // console.log(sort([1, 3, 0, -1, -5, 8, 2]));
 

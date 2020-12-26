@@ -92,6 +92,10 @@
         let sum = arr.reduce((preValue, currentValue) => {
             return preValue + currentValue;
         })
+
+
+        // 计数已经完成了的任务的数量
+        let finishedCnt = this.props.todos.reduce((accumulator, todo) => accumulator + (todo.checked ? 1 : 0), 0);
 */
 
 
