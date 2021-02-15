@@ -1,0 +1,34 @@
+Html Webpack Plugin:
+<pre>
+  Error: webpack://webpack_test/./src/index.html?../../../node_modules/_html-webpack-plugin@5.1.0@html-webpack-plugin/lib/loader.js:9
+  var ___HTML_LOADER_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./img/img2.jpg */ "./src/img/img2.jpg"), __webpack_require__  .b);
+                                   ^
+  ReferenceError: URL is not defined
+  
+  - loader.js:9 eval
+    [..]/[_html-webpack-plugin@5.1.0@html-webpack-plugin]/lib/loader.js:9:34
+  
+  - index.html:30 Object.../../../node_modules/_html-webpack-plugin@5.1.0@html-webpack-plugin/lib/loader.js!./src/index.html
+    /Users/apple/React_Project/web_test/stage04/04_webpack/02_webpack初体验/src/index.html:30:1
+  
+  - index.html:73 __webpack_require__
+    /Users/apple/React_Project/web_test/stage04/04_webpack/02_webpack初体验/src/index.html:73:41
+  
+  - index.html:131 
+    /Users/apple/React_Project/web_test/stage04/04_webpack/02_webpack初体验/src/index.html:131:37
+  
+  - index.html:134 
+    /Users/apple/React_Project/web_test/stage04/04_webpack/02_webpack初体验/src/index.html:134:12
+  
+  - index.js:136 HtmlWebpackPlugin.evaluateCompilationResult
+    [web_test]/[_html-webpack-plugin@5.1.0@html-webpack-plugin]/index.js:136:28
+  
+  - index.js:333 
+    [web_test]/[_html-webpack-plugin@5.1.0@html-webpack-plugin]/index.js:333:26
+  
+  - task_queues.js:93 processTicksAndRejections
+    internal/process/task_queues.js:93:5
+  
+  - async Promise.all
+  
+</pre>
