@@ -1,4 +1,6 @@
 /.DS_Store
 /.vscode
 /pictures
+/stage04/04_webpack/02_webpack初体验/node_modules
 /node_modules
+/stage04/06_node/node_modules
