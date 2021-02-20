@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">发送 AJAX 请求</button>
+    <script>
+        setTimeout(() => {
+            console.log(1);
+            setTimeout(() => {
+                console.log(2);
+                setTimeout(() => {
+                    console.log(3);
+                    setTimeout(() => {
+                        console.log(4);
+                        setTimeout(() => {
+                            console.log(5);
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 1000)
+        }, 1000);
+
+
+        const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log(1);
+                    console.log(p);
+                    resolve(1);
+                }, 1000);
+            })
+            .then(value => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log(++value);
+                        console.log(p);
+                        resolve(value);
+                    }, 1000);
+                });
+            })
+            .then(value => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log(++value);
+                        console.log(p);
+                        resolve(value);
+                    }, 1000);
+                });
+            })
+            .then(value => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log(++value);
+                        console.log(p);
+                        resolve(value);
+                    }, 1000);
+                });
+            })
+            .then(value => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log(++value);
+                        console.log(p);
+                        resolve(value);
+                    }, 1000);
+                });
+            });
+
+        // console.log(result);
+    </script>
+
+</body>
+
+</html>
