@@ -68,9 +68,18 @@
         }
 
         let p: {name: string, gender: Gender};
+
         p = {
             name: 'momo',
             gender: Gender.FEMALE
+        }
+
+
+    11. 函数类型
+        let w: (x: number, y: number, z?: number) => number;
+
+        w = function(x: number, y: number) {
+            return x + y;
         }
     
     
@@ -78,7 +87,7 @@
 补充：
     (1) 类型断言
 
-        a = <string>b;
+        a = <string>b; // 类似于 Java 中 (String)b
         a = b as string; // 让编译器把 b 变量当作 string 类型来处理
 
     (2) | 与 &
@@ -89,25 +98,43 @@
         // x 对象必须同时满足，并且没有其他属性
         let x: {name: string} & {age: number}
 
-    (3) 类型别名
-        let myType = string;
+        // 联合类型
+        let a: number | string;
+
+    (3) 自定义类型
+        type myType = string;
         let a: myType;
 
-        let genderType = '男' | '女' | '保密';
+        type genderType = '男' | '女' | '保密';
         let gender: genderType;
+
+        type personType = {
+            // 可选属性
+            name?: string,
+            // 必须有的属性
+            age: number,
+            // 可以添加其他属性
+            [propName: string]: any
+        }
+
+
+        
         
 
 
 */
 
-let z: { name: string } | { age: number }
-let x: { name: string } & { age: number }
 
 
+type personType = {
+    // 可选、只读属性
+    readonly name?: string,
+    age: number,
+    [propName: string]: any
+}
 
-let gender: 'male' | 'female';
-
-let c: any = 10;
-gender = c;
-
+const person: personType = {
+    name: 'kl',
+    age: 18
+}
 
