@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="console">
+        <button onclick="testGet()">GET</button>
+        <button onclick="testPost()">POST</button>
+        <button onclick="testPut()">PUT</button>
+        <button onclick="testDelete()">DELETE</button>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+    <script>
+        function testGet() {
+            // 获取所有文章
+            axios.get('http://localhost:3000/posts')
+                .then(response => {
+                    console.log(response.data);
+                });
+        }
+
+        function testPost() {
+            // 添加新文章
+            axios.post('http://localhost:3000/posts', {
+                "title": `TypeScript 教程`,
+                "author": "yukee"
+            });
+        }
+
+        function testPut() {
+            // 更新 id 为 2 的文章
+            axios.put('http://localhost:3000/posts/2', {
+                "title": `Promise 教程`,
+                "author": "yukee"
+            });
+
+        }
+
+        function testDelete() {
+            // 删除 id 为 1 的文章
+            axios.delete('http://localhost:3000/posts/1');
+        }
+    </script>
+</body>
+
+</html>
