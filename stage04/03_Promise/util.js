@@ -12,6 +12,7 @@ export function readFile(path) {
 /* 封装 AJAX */
 export function get(url) {
     return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://api.apiopen.top/getJoke');
         xhr.send();
         xhr.onreadystatechange = () => {

@@ -11,68 +11,32 @@
 <body>
     <button id="btn">发送 AJAX 请求</button>
     <script>
-        setTimeout(() => {
-            console.log(1);
-            setTimeout(() => {
-                console.log(2);
-                setTimeout(() => {
-                    console.log(3);
-                    setTimeout(() => {
-                        console.log(4);
-                        setTimeout(() => {
-                            console.log(5);
-                        }, 1000);
-                    }, 1000);
-                }, 1000);
-            }, 1000)
-        }, 1000);
-
-
-        const p = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    console.log(1);
-                    console.log(p);
-                    resolve(1);
-                }, 1000);
-            })
-            .then(value => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        console.log(++value);
-                        console.log(p);
-                        resolve(value);
-                    }, 1000);
-                });
-            })
-            .then(value => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        console.log(++value);
-                        console.log(p);
-                        resolve(value);
-                    }, 1000);
-                });
-            })
-            .then(value => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        console.log(++value);
-                        console.log(p);
-                        resolve(value);
-                    }, 1000);
-                });
-            })
-            .then(value => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        console.log(++value);
-                        console.log(p);
-                        resolve(value);
-                    }, 1000);
-                });
+        function get(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.responseType = 'json';
+                xhr.open('GET', url);
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            resolve(xhr.response)
+                        } else {
+                            reject(xhr.response);
+                        }
+                    }
+                }
             });
+        };
 
-        // console.log(result);
+        document.getElementById('btn').addEventListener('click', async () => {
+            try {
+                let data = await get('http://wthrcdn.etouch.cn/weather_mini?city=重庆市');
+                console.log(data);
+            } catch (reason) {
+                console.log(reason);
+            }
+        });
     </script>
 
 </body>
