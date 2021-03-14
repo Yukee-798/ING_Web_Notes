@@ -169,32 +169,51 @@
 */
 
 
-    let arr = [1, 3, 6, 10];
-    // 将原数组中每个元素乘2放入新数组中
-    arr = arr.map(e => e * 2);
-    console.log(arr);
+    // let arr = [1, 3, 6, 10];
+    // // 将原数组中每个元素乘2放入新数组中
+    // arr = arr.map(e => e * 2);
+    // console.log(arr);
+    
 
-// console.log(sort([1, 3, 0, -1, -5, 8, 2]));
+    // const arr = [true, false, true];
+    
 
-// function sort(queue) {
-//     for (let i = queue.length - 1; i >= 0; i--) {
-//         for (let j = 0; j <= i; j++) {
-//             if (j + 1 < queue.length && queue[j] > queue[j + 1]) {
-//                 swap(queue, j + 1, j);
-//             }
-//         }
+    
+const arr = [1, 2, 3, 4, 5, 5, 1, 0];
+
+const judgeRepeat = (arr, value) => {
+    // 记录出现次数
+    let times = 0;
+    arr.forEach(element => {
+        if (element === value) times++;
+    });
+    // 如果出现2次及以上则为重复数字
+    if (times >= 2) return false;
+    else return true;
+}
+
+// 将重复数字去除
+// 目标：[2, 3, 4, 0]
+const newArr = arr.filter((current) => {
+    return (judgeRepeat(arr, current));
+});
+
+console.log(newArr);
+
+
+
+
+// const arr = [1, 2, 3, 4, 5];
+// // 需求：将数组中的偶数*2，奇数减1，返回到一个新数组中
+// const newArr = arr.map((current) => {
+//     if (current % 2 === 0) {
+//         return current * 2;
+//     } else {
+//         return current - 1;
 //     }
-//     return queue;
-// }
+// });
 
-// function swap(arr, index1, index2) {
-//     let temp = arr[index1];
-//     arr[index1] = arr[index2];
-//     arr[index2] = temp;
-// }
-
-
-
+// console.log(newArr);
 
 
 

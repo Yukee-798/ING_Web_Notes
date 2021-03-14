@@ -99,7 +99,13 @@
 */
 
 
-let arr = [1, 2, 3, 4];
-console.log(arr.reduce((preValue, currentValue) => {
-    return preValue + currentValue;
-}));
+let arr = [true, true, true, true];
+// let init = true;
+// arr.forEach((current) => {
+//     init&=current;
+// });
+
+const res = arr.reduce((pre, current) => pre &= current, true);
+
+console.log(res);
+

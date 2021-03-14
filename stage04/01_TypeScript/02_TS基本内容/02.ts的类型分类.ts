@@ -138,3 +138,7 @@ const person: personType = {
     age: 18
 }
 
+interface ITheme {
+    [key: string]: {name: string, age: number}
+}
+
