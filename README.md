@@ -4,7 +4,12 @@
 * TypeScript
 * react hook 封装请求
 * webpack
+* 异步
 * promise
 * axios
 * node
+* canvas
+* svg
+* three.js
+  
 
