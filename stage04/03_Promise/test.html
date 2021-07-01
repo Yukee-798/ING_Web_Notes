@@ -11,32 +11,43 @@
 <body>
     <button id="btn">发送 AJAX 请求</button>
     <script>
-        function get(url) {
-            return new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest();
-                xhr.responseType = 'json';
-                xhr.open('GET', url);
-                xhr.send();
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status >= 200 && xhr.status < 300) {
-                            resolve(xhr.response)
-                        } else {
-                            reject(xhr.response);
-                        }
-                    }
-                }
-            });
-        };
+        let p = new Promise((resolve, reject) => {
+                resolve('OK'); // 这里理解为改变 promise 对象的代码，先不讨论同步或异步
+            })
+            .then(value => {
 
-        document.getElementById('btn').addEventListener('click', async () => {
-            try {
-                let data = await get('http://wthrcdn.etouch.cn/weather_mini?city=重庆市');
-                console.log(data);
-            } catch (reason) {
-                console.log(reason);
-            }
-        });
+            });
+
+        
+
+
+
+        // function get(url) {
+        //     return new Promise((resolve, reject) => {
+        //         const xhr = new XMLHttpRequest();
+        //         xhr.responseType = 'json';
+        //         xhr.open('GET', url);
+        //         xhr.send();
+        //         xhr.onreadystatechange = () => {
+        //             if (xhr.readyState === 4) {
+        //                 if (xhr.status >= 200 && xhr.status < 300) {
+        //                     resolve(xhr.response)
+        //                 } else {
+        //                     reject(xhr.response);
+        //                 }
+        //             }
+        //         }
+        //     });
+        // };
+
+        // document.getElementById('btn').addEventListener('click', async () => {
+        //     try {
+        //         let data = await get('http://wthrcdn.etouch.cn/weather_mini?city=重庆市');
+        //         console.log(data);
+        //     } catch (reason) {
+        //         console.log(reason);
+        //     }
+        // });
     </script>
 
 </body>

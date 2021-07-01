@@ -242,7 +242,6 @@
         
 */
 
-const { fsync } = require("fs/promises");
 
 
 function fn(target) {

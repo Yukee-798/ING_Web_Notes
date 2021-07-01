@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div id="container"></div>
     <script src="../js/17.0.1/react.development.js"></script>
@@ -13,29 +15,83 @@
 
     <script type="text/babel">
         class Time extends React.Component {
-            state = { date: new Date() }
+            state = { items: [
+                {
+                    id: 0,
+                    value: ''
+                },
+                {
+                    id: 1,
+                    value: ''
+                },
+                {
+                    id: 2,
+                    value: ''
+                },
+            ] }
 
-            componentDidMount() {
-                this.timer = setInterval(() => {
-                    this.setState({ date: new Date() });
-                }, 1000);
-            }
+            // componentDidMount() {
+            //     this.timer = setInterval(() => {
+            //         this.setState({ date: new Date() });
+            //     }, 1000);
+            // }
 
             // 组件每次状态更新，重新render的时候，由于里面的 h1 和 input 标签是没有改变的
             // 根据diffing算法的存在，虚拟 DOM 转换为真实 DOM 的时候只会去更新标签改变的了的 DOM
             // diffing算法判断的最小单元就是一个标签节点
             // 另外就是如果一个节点的内容在改变，但是其嵌套的子节点内容没变化，那么 diffing 算法也只会更新外部那个正在改变的父节点
+
+            handleChange = (index, e) => {
+                this.setState({items: this.state.items.map((item, i) => {
+                    if (i === index) {
+                        return {...item, value: e.target.value};
+                    }
+                    return item;
+                })})
+                // e.target.value = this.state.items[index].value
+                // console.log(index);
+            }
             render() {
                 
                 return (
                     <div>
+                        {/* 
                         <h1>hello</h1>
                         <input type="text" />
                         <div>
-                            现在是：{ this.state.date.toString().split(' ')[4] }
+                            <span>
+                                现在是：{ this.state.date.toString().split(' ')[4] }
+                                <div className={this.state.date.toString()}>
+                                    <input type="text" />
+                                    {this.state.date.toString()}
+                                </div>
+                            </span>
                             <input type="text" />
                         </div>
+                        */}
+
+                        {
+                            this.state.items.map((item, index) => (
+                                <div>
+                                    <label>
+                                        {index}：
+                                        <input 
+                                            type="text"
+                                            value={this.state.items[index].value}
+                                            onChange={(e)=> {
+                                                this.handleChange(index, e)
+                                            }}
+                                        />
+                                    </label>
+
+                                    <button onClick={() => {
+                                        this.setState({items: this.state.items.filter((item, i) => (i !== index))})
+                                    }}>Delete</button>
+                                </div>
+                            ))
+                        }
                     </div>
+                    
                 );
             }
         }
@@ -43,6 +99,7 @@
 
         ReactDOM.render(<Time />, document.getElementById('container'));
     </script>
-    
+
 </body>
+
 </html>

@@ -198,7 +198,10 @@ const newArr = arr.filter((current) => {
     return (judgeRepeat(arr, current));
 });
 
-console.log(newArr);
+// console.log(newArr);
+
+arr.splice(2, 0, -1);
+console.log(arr);
 
 
 

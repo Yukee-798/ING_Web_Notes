@@ -43,6 +43,7 @@ const mClass = new MyClass<string>('hello');
 
 
 // 交换一个元组的两个元素
-function swap<T, U>(tuple: [T, U]): [U, T] {
+function swap<T, U>(tuple: [T, U]): [U, T]  {
     return [tuple[1], tuple[0]];
 }
+

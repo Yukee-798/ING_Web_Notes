@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+
+<script>
+    function loadImg(src, resolve, reject) {
+        let img = new Image();
+        img.src = src;
+        img.onload = () => {
+            resolve(img);
+        }
+        img.onerror = reject;
+    }
+
+    loadImg('./pic的副本/84993086_p0.jpg', (img) => {
+        document.body.appendChild(img);
+        console.log('图片加载完毕');
+    }, () => {
+        console.log('图片加载失败');
+    });
+
+    console.log('yuklm');
+</script>
+</html>

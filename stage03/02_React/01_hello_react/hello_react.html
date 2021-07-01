@@ -23,10 +23,21 @@
     <!-- 使用 babel 翻译 jsx -->
     <script type="text/babel">
         // 1. 创建虚拟 DOM
-        const VDOM = <h1>hello react!</h1>; /* 此处是 jsx 语法 */
+        // const VDOM = <h1>hello react!</h1>; /* 此处是 jsx 语法 */
+
+        let virtualDOM = (
+        <div id='A1' key='A1'>
+            <div id='B1' key='B1'>B1</div>
+        </div>
+        )
+
+
+        
+
+        console.log(virtualDOM);
 
         // 2. 渲染虚拟 DOM 到页面中
-        ReactDOM.render(VDOM, document.getElementById('test'));
+        ReactDOM.render(virtualDOM, document.getElementById('test'));
     </script>
 
 </body>
